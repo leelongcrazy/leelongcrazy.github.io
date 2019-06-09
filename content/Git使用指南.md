@@ -1,10 +1,3 @@
-Title: Git使用指南
-Date: 2019-5-30 17:00
-Category: Tech
-Tags: Tech,Github,Git 
-Authors: leelongcrazy
-Summary: git使用常用命令，技巧
-
 Git使用指南
 ===
 看懂Git命令，搞懂版本控制
@@ -66,6 +59,12 @@ $:git config --global user.email "YourEmail@xxx.com"
 
 ### `git clone https://github.com/userName/projectName.git`
 #### 将项目远程仓库的代码clone到你本地计算机。
+
+### `git clone -b branchName https://github.com/userName/projectName.git`
+#### 将远程仓库`branchName`分支的代码clone到本地计算机。
+
+### `git add -A && git commit -a -m "description" && git push --all`
+#### 一行命令搞定代码提交。
 
 ### `git pull`
 #### 如果你和别人用一样的代码库，这个命令可以让你从远程存储库获取最新版本，更新你的本地版本，这样就可以在别人的基础上继续写代码了。
