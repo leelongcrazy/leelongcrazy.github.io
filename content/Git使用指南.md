@@ -1,3 +1,10 @@
+﻿Title: Git使用指南 
+Date: 2019-5-28 17:00
+Category: Git 
+Tags: Tech,Git
+Authors: leelongcrazy
+Summary: github常用命令解析
+
 Git使用指南
 ===
 看懂Git命令，搞懂版本控制

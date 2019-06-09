@@ -13,7 +13,7 @@
                 <h1><a href="/">LeeLongCrazy's Blog </a></h1>
                 <nav><ul>
                     <li><a href="/category/article.html">Article</a></li>
-                    <li class="active"><a href="/category/tech.html">Tech</a></li>
+                    <li class="active"><a href="/category/git.html">Git</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
@@ -26,15 +26,15 @@
 
     <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2019-05-30T17:00:00+08:00">
-                Published: 四 30 五月 2019
+        <abbr class="published" title="2019-05-28T17:00:00+08:00">
+                Published: Tue 28 May 2019
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
         </address>
-<p>In <a href="/category/tech.html">Tech</a>.</p>
-<p>tags: <a href="/tag/tech.html">Tech</a> <a href="/tag/github.html">Github</a> <a href="/tag/git.html">Git</a> </p>
+<p>In <a href="/category/git.html">Git</a>.</p>
+<p>tags: <a href="/tag/tech.html">Tech</a> <a href="/tag/git.html">Git</a> </p>
 </footer><!-- /.post-info -->      <h1>Git使用指南</h1>
 <h2>看懂Git命令，搞懂版本控制</h2>
 <h3>Git，版本控制必备手段，程序员黑客Linus Benedict Torvalds发明了这个有名的版本控制工具，他还是Linux内核的发明人和这个计划的合作者。</h3>
@@ -77,6 +77,10 @@ $:git config --global user.email <span class="s2">&quot;YourEmail@xxx.com&quot;<
 <h4>在执行完初始推送后把代码刚到GitHub上。</h4>
 <h3><code>git clone https://github.com/userName/projectName.git</code></h3>
 <h4>将项目远程仓库的代码clone到你本地计算机。</h4>
+<h3><code>git clone -b branchName https://github.com/userName/projectName.git</code></h3>
+<h4>将远程仓库<code>branchName</code>分支的代码clone到本地计算机。</h4>
+<h3><code>git add -A &amp;&amp; git commit -a -m "description" &amp;&amp; git push --all</code></h3>
+<h4>一行命令搞定代码提交。</h4>
 <h3><code>git pull</code></h3>
 <h4>如果你和别人用一样的代码库，这个命令可以让你从远程存储库获取最新版本，更新你的本地版本，这样就可以在别人的基础上继续写代码了。</h4>
     </div><!-- /.entry-content -->
