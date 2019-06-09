@@ -1,2 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Lee's Blog</title><link>/</link><description></description><lastBuildDate>Mon, 27 Nov 2017 12:30:00 +0800</lastBuildDate><item><title>My first Article</title><link>/My-first-post.html</link><description>&lt;p&gt;This is the &lt;em&gt;first post&lt;/em&gt; from my Pelican blog. &lt;strong&gt;YAY!&lt;/strong&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">leelongcrazy</dc:creator><pubDate>Sun, 26 Nov 2017 10:01:00 +0800</pubDate><guid isPermaLink="false">tag:None,2017-11-26:/My-first-post.html</guid><category>first</category><category>misc</category></item></channel></rss>
+<rss version="2.0"><channel><title>LeeLongCrazy's Blog</title><link>/</link><description></description><lastBuildDate>Thu, 30 May 2019 17:00:00 +0800</lastBuildDate><item><title>GitHub配置SSH</title><link>/githubpei-zhi-ssh.html</link><description>&lt;h2&gt;GitHub配置SSH&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h3&gt;在使用GitHub配置ssh的时候吃了好多苦头，整理了下完整的操作过程&lt;/h3&gt;
+&lt;h4&gt;必备工具，操作是在Linux系统环境下完成的&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Bash&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;li&gt;GitHub账号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;在使用Git工具之前需要对&lt;code&gt;git config&lt;/code&gt;进行配置&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git config --global user.email &lt;span class="s2"&gt;&amp;quot;xxx@xxx.com&amp;quot;&lt;/span&gt;
+$ git config --global user.name &lt;span class="s2"&gt;&amp;quot;user-name&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;在&lt;code&gt;~/.ssh/&lt;/code&gt;目录下创建一对公私密钥&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ssh-keygen
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;执行完后会在当前目录下生成两个新的文件，将后缀名.pub的公约内容复制到Github个人账号-&amp;gt; settings -&amp;gt; SSH and GPG Kyes -&amp;gt; New SSH key文本框中，点击&lt;code&gt;Add SSH key&lt;/code&gt;添加密钥；并对添加的公钥命个别名。&lt;/h4&gt;
+&lt;h4&gt;在终端执行下面命令：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;ssh-agent -s&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="c1"&gt;#注意是反单引号&lt;/span&gt;
+$ ssh-add 私钥文件名
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;测试：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ssh -T git@github.com 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;测试成功显示：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ Hi user-name! You&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;接着push代码，发现仍需要输入用户名和密码，执行下面的操作，删除远程仓库重新建立连接&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git remote rm origin
+$ git remote add origin git@github.com:user-name/repository-name.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;接下来远程推送的时候不再需要输入的用户名和密码。&lt;/h4&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">leelongcrazy</dc:creator><pubDate>Thu, 30 May 2019 17:00:00 +0800</pubDate><guid isPermaLink="false">tag:None,2019-05-30:/githubpei-zhi-ssh.html</guid><category>Tech</category><category>Github</category></item><item><title>Git使用指南</title><link>/gitshi-yong-zhi-nan.html</link><description>&lt;h1&gt;Git使用指南&lt;/h1&gt;
+&lt;h2&gt;看懂Git命令，搞懂版本控制&lt;/h2&gt;
+&lt;h3&gt;Git，版本控制必备手段，程序员黑客Linus Benedict Torvalds发明了这个有名的版本控制工具，他还是Linux内核的发明人和这个计划的合作者。&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;git init&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;这是创建一个新的项目要做的第一件事，在项目文件目录下创建一个&lt;code&gt;.git&lt;/code&gt;的存储库（隐藏文件夹），存储库（repo）是你对项目文件的修改按照时间顺序存储的集合，记录下所有更改的记录。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git config&lt;/code&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$:git config --global user.name &lt;span class="s2"&gt;&amp;quot;Your name&amp;quot;&lt;/span&gt;
+$:git config --global user.email &lt;span class="s2"&gt;&amp;quot;YourEmail@xxx.com&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;用来设置你提交时候需要设置的信息，只在Git安装之后设置一次就可以了。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git add filename&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;可以添加任何你想添加的文件到暂存区（staging area）。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git add .&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;可以将项目文件夹下所有文件放到暂存区，而不用一个一个添加。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git status&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;显示所有你已经放进暂存区的文件，和进行了修改需要放进暂存区的文件。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git reset filename&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;从暂存区删除指定文件&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git rm --cached filename&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;从暂存区删除指定文件，并将其设置为未跟踪。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git commit -m "Description of the commit"&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;从暂存区获取文件，并将它们提交到本地存储库。引号部分为修改文件的描述，注意一定要写的简单清晰，不可省略。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;touch .gitignore&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;创建一个名叫.gitignore的文件，可以通过文本编辑的方式写下存储库需要忽略的文件名或文件夹名，运行时候这些被忽略的文件不会显示。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git branch branchName&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;创建一个代码分支，就是前一个分支代码库的直接副本。如果不加分支名字可以列出当前代码库的分支情况，前面带有&lt;code&gt;*&lt;/code&gt;号的分支即为你当前所在分支。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git checkout "branchName"&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;检查你创建的分支，并在这个分支上工作，通俗的讲就是分支切换。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git merge branchName&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;这个命令把分支&lt;code&gt;branchName&lt;/code&gt;合并到当前分支。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git remote add origin https://github.com/UserName/projectName.git&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;添加远程存储库的位置。在此之前的操作都是在本地完成，此步需要登录GitHub账号创建一个远程存储库，然后把本地存储库的文件放上去。创建远程存储库之后会生成一个链接，可以放在上面的命令中。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git remote&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;和项目关联的远程存储库列表。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git push -u origin master&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;将本地存储库推送到远程存储库，第一次执行命令时直接这样写就好。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git push&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;在执行完初始推送后把代码刚到GitHub上。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git clone https://github.com/userName/projectName.git&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;将项目远程仓库的代码clone到你本地计算机。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git pull&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;如果你和别人用一样的代码库，这个命令可以让你从远程存储库获取最新版本，更新你的本地版本，这样就可以在别人的基础上继续写代码了。&lt;/h4&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">leelongcrazy</dc:creator><pubDate>Thu, 30 May 2019 17:00:00 +0800</pubDate><guid isPermaLink="false">tag:None,2019-05-30:/gitshi-yong-zhi-nan.html</guid><category>Tech</category><category>Github</category><category>Git</category></item><item><title>电影《绿皮书》观后感</title><link>/dian-ying-lu-pi-shu-guan-hou-gan.html</link><description>&lt;h1&gt;Green Book&lt;/h1&gt;
+&lt;h2&gt;电影《绿皮书》观后感&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;钢琴三重奏&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;乐曲题材或演奏形式之一，由钢琴，小提琴，大提琴组成。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;电影根据真实历史改编，主角之一托尼·利普一开始是俱乐部的安保一样的职位，靠混社会谋生活，后来成为黑人钢琴家唐·雪莉的司机，随他一路南下表演，充当安全保护的角色，当时的历史背景黑人依然受到白人的歧视。&lt;/h4&gt;
+&lt;h4&gt;电影展现的的两个人之间的阶级冲突，肤色冲突，一个是通过钢琴演奏成为了富裕阶层，一个生活仍得不到保障，甚至需要通过在餐厅和别人通过打赌吃热狗来谋生活费用。&lt;/h4&gt;
+&lt;h4&gt;在南下的路上，两个人因为生活习惯的不同而互相看不惯，不能理解对方。托尼吃相，随意的行为在雪莉看来很难忍受，雪莉一身整齐的仪表，谈吐尽显雅致，细节过于拘谨在唐尼眼中不以为然。雪莉试图改变唐尼的言语和行为，但一路上听他讲述关于自己的故事，在自己遇到麻烦的时候唐尼总是能化解危机渐渐而开始慢慢理解他了，唐尼在每次演出时观看雪莉在台上的演奏渐渐被雪莉的音乐感染，像走进了他的内心一样，开始欣赏这个自己不以为意的音乐家。&lt;/h4&gt;
+&lt;h4&gt;演出的最后一站，发生了小小的冲突，雪莉要在一个餐厅表演，但因为肤色的原因却不能在这家餐厅用餐，他采用了唐尼的处事习惯，强硬回应了店主的无理要求，造成合同违约了。&lt;/h4&gt;
+&lt;h4&gt;两个人完全是不同的生活哲学，在相处的过程中慢慢相互渗透，能形成这样的结果，因为两个人都是有&lt;code&gt;同理心&lt;/code&gt;的，通过这一段奇妙的经历彼此促进双方的心智成熟，最终唐尼赢得了更融洽的家庭环境，雪莉走出了个人的孤独，感受到爱的力量。&lt;/h4&gt;
+&lt;h4&gt;善良对待身边的每一个人，人生那么长，能在某一个时空下相遇多么难得的机会，《山河故人》里的的台词“每个人都只能陪你走一段路”，感谢一路有你，才能让我看到最靓的风景。&lt;/h4&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">leelongcrazy</dc:creator><pubDate>Tue, 28 May 2019 17:00:00 +0800</pubDate><guid isPermaLink="false">tag:None,2019-05-28:/dian-ying-lu-pi-shu-guan-hou-gan.html</guid><category>article</category></item><item><title>My first Article</title><link>/My-first-post.html</link><description>&lt;p&gt;This is the &lt;em&gt;first post&lt;/em&gt; from my Pelican blog. &lt;strong&gt;YAY!&lt;/strong&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">leelongcrazy</dc:creator><pubDate>Sun, 26 Nov 2017 10:01:00 +0800</pubDate><guid isPermaLink="false">tag:None,2017-11-26:/My-first-post.html</guid><category>article</category></item></channel></rss>

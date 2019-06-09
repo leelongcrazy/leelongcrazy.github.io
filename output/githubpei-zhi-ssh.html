@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>My first Article</title>
+        <title>GitHub配置SSH</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="LeeLongCrazy's Blog Atom Feed" />
         <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="LeeLongCrazy's Blog RSS Feed" />
@@ -12,34 +12,73 @@
         <header id="banner" class="body">
                 <h1><a href="/">LeeLongCrazy's Blog </a></h1>
                 <nav><ul>
-                    <li class="active"><a href="/category/article.html">article</a></li>
-                    <li><a href="/category/tech.html">Tech</a></li>
+                    <li><a href="/category/article.html">article</a></li>
+                    <li class="active"><a href="/category/tech.html">Tech</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="/My-first-post.html" rel="bookmark"
-           title="Permalink to My first Article">My first Article</a></h1>
+        <a href="/githubpei-zhi-ssh.html" rel="bookmark"
+           title="Permalink to GitHub配置SSH">GitHub配置SSH</a></h1>
     </header>
 
     <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2017-11-26T10:01:00+08:00">
-                Published: 日 26 十一月 2017
-        </abbr>
-		<br />
-        <abbr class="modified" title="2017-11-27T12:30:00+08:00">
-                Updated: 一 27 十一月 2017
+        <abbr class="published" title="2019-05-30T17:00:00+08:00">
+                Published: 四 30 五月 2019
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
         </address>
-<p>In <a href="/category/article.html">article</a>.</p>
-<p>tags: <a href="/tag/article.html">article</a> </p>
-</footer><!-- /.post-info -->      <p>This is the <em>first post</em> from my Pelican blog. <strong>YAY!</strong></p>
+<p>In <a href="/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="/tag/tech.html">Tech</a> <a href="/tag/github.html">Github</a> </p>
+</footer><!-- /.post-info -->      <h2>GitHub配置SSH</h2>
+<hr>
+<h3>在使用GitHub配置ssh的时候吃了好多苦头，整理了下完整的操作过程</h3>
+<h4>必备工具，操作是在Linux系统环境下完成的</h4>
+<ul>
+<li>Bash</li>
+<li>Git</li>
+<li>GitHub账号</li>
+</ul>
+<h4>在使用Git工具之前需要对<code>git config</code>进行配置</h4>
+<div class="highlight"><pre><span></span>$ git config --global user.email <span class="s2">&quot;xxx@xxx.com&quot;</span>
+$ git config --global user.name <span class="s2">&quot;user-name&quot;</span>
+</pre></div>
+
+
+<h4>在<code>~/.ssh/</code>目录下创建一对公私密钥</h4>
+<div class="highlight"><pre><span></span>$ ssh-keygen
+</pre></div>
+
+
+<h4>执行完后会在当前目录下生成两个新的文件，将后缀名.pub的公约内容复制到Github个人账号-&gt; settings -&gt; SSH and GPG Kyes -&gt; New SSH key文本框中，点击<code>Add SSH key</code>添加密钥；并对添加的公钥命个别名。</h4>
+<h4>在终端执行下面命令：</h4>
+<div class="highlight"><pre><span></span>$ <span class="nb">eval</span> <span class="sb">`</span>ssh-agent -s<span class="sb">`</span> <span class="c1">#注意是反单引号</span>
+$ ssh-add 私钥文件名
+</pre></div>
+
+
+<h4>测试：</h4>
+<div class="highlight"><pre><span></span>$ ssh -T git@github.com 
+</pre></div>
+
+
+<h4>测试成功显示：</h4>
+<div class="highlight"><pre><span></span>$ Hi user-name! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+</pre></div>
+
+
+<h4>接着push代码，发现仍需要输入用户名和密码，执行下面的操作，删除远程仓库重新建立连接</h4>
+<div class="highlight"><pre><span></span>$ git remote rm origin
+$ git remote add origin git@github.com:user-name/repository-name.git
+</pre></div>
+
+
+<h4>接下来远程推送的时候不再需要输入的用户名和密码。</h4>
     </div><!-- /.entry-content -->
 
   </article>

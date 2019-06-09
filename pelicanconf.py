@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'leelongcrazy'
-SITENAME = "Lee's Blog"
+SITENAME = "LeeLongCrazy's Blog"
 SITEURL = ''
 
 PATH = 'content'
@@ -29,8 +29,8 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Github', 'https://github.com/'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('My Github', 'https://github.com/leelongcrazy'),
+          ('My Twitter', 'https://twitter.com/leelongcrazy'))
 
 DEFAULT_PAGINATION = 10
 

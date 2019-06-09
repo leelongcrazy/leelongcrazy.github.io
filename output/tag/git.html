@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>LeeLongCrazy's Blog - Git</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="LeeLongCrazy's Blog Atom Feed" />
+        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="LeeLongCrazy's Blog RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">LeeLongCrazy's Blog </a></h1>
+                <nav><ul>
+                    <li><a href="/category/article.html">article</a></li>
+                    <li><a href="/category/tech.html">Tech</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/gitshi-yong-zhi-nan.html">Git使用指南</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2019-05-30T17:00:00+08:00">
+                Published: 四 30 五月 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
+        </address>
+<p>In <a href="/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="/tag/tech.html">Tech</a> <a href="/tag/github.html">Github</a> <a href="/tag/git.html">Git</a> </p>
+</footer><!-- /.post-info --><h1>Git使用指南</h1>
+<h2>看懂Git命令，搞懂版本控制</h2>
+<h3>Git，版本控制必备手段，程序员黑客Linus Benedict Torvalds发明了这个有名的版本控制工具，他还是Linux内核的发明人和这个计划的合作者。</h3>
+<h3><code>git init</code></h3>
+<h4>这是创建一个新的项目要做的第一件事，在项目文件目录下创建一个<code>.git</code>的存储库（隐藏文件夹），存储库（repo）是你对项目文件的修改按照时间顺序存储的集合，记录下所有更改的记录。</h4>
+<h3><code>git config</code></h3>
+<div class="highlight"><pre><span></span>$:git config --global user.name <span class="s2">&quot;Your name&quot;</span>
+$:git config --global user.email <span class="s2">&quot;YourEmail@xxx.com&quot;</span>
+</pre></div>
+
+
+<h4>用来设置你提交时候需要设置的信息，只在Git安装之后设置一次就可以了。</h4>
+<h3><code>git add filename</code></h3>
+<h4>可以添加任何你想添加的文件到暂存区（staging area）。</h4>
+<h3><code>git add .</code></h3>
+<h4>可以将项目文件夹下所有文件放到暂存区，而不用一个一个添加。</h4>
+<h3><code>git status</code></h3>
+<h4>显示所有你已经放进暂存区的文件，和进行了修改需要放进暂存区的文件。</h4>
+<h3><code>git reset filename</code></h3>
+<h4>从暂存区删除指定文件</h4>
+<h3><code>git rm --cached filename</code></h3>
+<h4>从暂存区删除指定文件，并将其设置为未跟踪。</h4>
+<h3><code>git commit -m "Description of the commit"</code></h3>
+<h4>从暂存区获取文件，并将它们提交到本地存储库。引号部分为修改文件的描述，注意一定要写的简单清晰，不可省略。</h4>
+<h3><code>touch .gitignore</code></h3>
+<h4>创建一个名叫.gitignore的文件，可以通过文本编辑的方式写下存储库需要忽略的文件名或文件夹名，运行时候这些被忽略的文件不会显示。</h4>
+<h3><code>git branch branchName</code></h3>
+<h4>创建一个代码分支，就是前一个分支代码库的直接副本。如果不加分支名字可以列出当前代码库的分支情况，前面带有<code>*</code>号的分支即为你当前所在分支。</h4>
+<h3><code>git checkout "branchName"</code></h3>
+<h4>检查你创建的分支，并在这个分支上工作，通俗的讲就是分支切换。</h4>
+<h3><code>git merge branchName</code></h3>
+<h4>这个命令把分支<code>branchName</code>合并到当前分支。</h4>
+<h3><code>git remote add origin https://github.com/UserName/projectName.git</code></h3>
+<h4>添加远程存储库的位置。在此之前的操作都是在本地完成，此步需要登录GitHub账号创建一个远程存储库，然后把本地存储库的文件放上去。创建远程存储库之后会生成一个链接，可以放在上面的命令中。</h4>
+<h3><code>git remote</code></h3>
+<h4>和项目关联的远程存储库列表。</h4>
+<h3><code>git push -u origin master</code></h3>
+<h4>将本地存储库推送到远程存储库，第一次执行命令时直接这样写就好。</h4>
+<h3><code>git push</code></h3>
+<h4>在执行完初始推送后把代码刚到GitHub上。</h4>
+<h3><code>git clone https://github.com/userName/projectName.git</code></h3>
+<h4>将项目远程仓库的代码clone到你本地计算机。</h4>
+<h3><code>git pull</code></h3>
+<h4>如果你和别人用一样的代码库，这个命令可以让你从远程存储库获取最新版本，更新你的本地版本，这样就可以在别人的基础上继续写代码了。</h4>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="https://github.com/">Github</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/leelongcrazy">My Github</a></li>
+                            <li><a href="https://twitter.com/leelongcrazy">My Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
