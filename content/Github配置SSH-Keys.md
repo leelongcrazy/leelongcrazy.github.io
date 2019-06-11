@@ -40,9 +40,9 @@ $ ssh -T git@github.com
 ```
 $ Hi user-name! You've successfully authenticated, but GitHub does not provide shell access.
 ```
-#### 接着push代码，发现仍需要输入用户名和密码，执行下面的操作，删除远程仓库重新建立连接
+#### 接着push代码，发现仍需要输入用户名和密码，执行下面的命令， **注意连接域名和用户名之间的符号是 `:`,而不是 `/`**，删除远程仓库重新建立连接
 ```
 $ git remote rm origin
-$ git remote add origin git@github.com:user-name/repository-name.git
+$ git remote add origin git@github.com:user-name/repository-name.git 
 ```
 #### 接下来远程推送的时候不再需要输入的用户名和密码。

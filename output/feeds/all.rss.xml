@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>LeeLongCrazy's Blog</title><link>/</link><description></description><lastBuildDate>Thu, 30 May 2019 17:00:00 +0800</lastBuildDate><item><title>GitHub配置SSH</title><link>/githubpei-zhi-ssh.html</link><description>&lt;h2&gt;GitHub配置SSH&lt;/h2&gt;
+<rss version="2.0"><channel><title>LeeLongCrazy's Blog</title><link>/</link><description></description><lastBuildDate>Tue, 11 Jun 2019 18:00:00 +0800</lastBuildDate><item><title>俞军的PM12条方法论</title><link>/yu-jun-de-pm12tiao-fang-fa-lun.html</link><description>&lt;h1&gt;俞军的PM12条方法论&lt;/h1&gt;
+&lt;h4&gt;俞军，百度贴吧之父，近期从滴滴离职，是滴滴产品的严格把关者。&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://baike.baidu.com/item/%E4%BF%9E%E5%86%9B/5349#viewPageContent"&gt;滴滴出行顾问、百度原产品副总裁&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="俞军照片" src="https://baike.baidu.com/pic/%E4%BF%9E%E5%86%9B/5349/0/734f12f386aba09a0a46e090"&gt;&lt;/p&gt;
+&lt;p&gt;1.PM首先是用户&lt;/p&gt;
+&lt;p&gt;2.站在用户角度看待问题&lt;/p&gt;
+&lt;p&gt;3.用户体验是一个完整的过程&lt;/p&gt;
+&lt;p&gt;4.追求效果，不做没用的东西。&lt;/p&gt;
+&lt;p&gt;5.发现需求，而不是创造需求。&lt;/p&gt;
+&lt;p&gt;6.决定不做什么，往往比决定做什么更重要。&lt;/p&gt;
+&lt;p&gt;7.用户是很难被教育的，要迎合用户，而不是改变用户。&lt;/p&gt;
+&lt;p&gt;8.关注最大多数用户，在关键点上超越竞争对手，快速上线，在实践中不断改进。&lt;/p&gt;
+&lt;p&gt;9.给用户稳定的体验预期&lt;/p&gt;
+&lt;p&gt;10.如果不确定该怎么做，就先学别人是怎么做的。&lt;/p&gt;
+&lt;p&gt;11.把用户当傻瓜，不要让用户思考和选择，替用户预先想好。&lt;/p&gt;
+&lt;p&gt;12.不要给用户不想要的东西，任何没用的东西对用户都是一种伤害。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">leelongcrazy</dc:creator><pubDate>Tue, 11 Jun 2019 18:00:00 +0800</pubDate><guid isPermaLink="false">tag:None,2019-06-11:/yu-jun-de-pm12tiao-fang-fa-lun.html</guid><category>TECH</category></item><item><title>GitHub配置SSH</title><link>/githubpei-zhi-ssh.html</link><description>&lt;h2&gt;GitHub配置SSH&lt;/h2&gt;
 &lt;hr&gt;
 &lt;h3&gt;在使用GitHub配置ssh的时候吃了好多苦头，整理了下完整的操作过程&lt;/h3&gt;
 &lt;h4&gt;必备工具，操作是在Linux系统环境下完成的&lt;/h4&gt;
@@ -36,9 +51,9 @@ $ ssh-add 私钥文件名
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;接着push代码，发现仍需要输入用户名和密码，执行下面的操作，删除远程仓库重新建立连接&lt;/h4&gt;
+&lt;h4&gt;接着push代码，发现仍需要输入用户名和密码，执行下面的命令， &lt;strong&gt;注意连接域名和用户名之间的符号是 &lt;code&gt;:&lt;/code&gt;,而不是 &lt;code&gt;/&lt;/code&gt;&lt;/strong&gt;，删除远程仓库重新建立连接&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git remote rm origin
-$ git remote add origin git@github.com:user-name/repository-name.git
+$ git remote add origin git@github.com:user-name/repository-name.git 
 &lt;/pre&gt;&lt;/div&gt;
 
 

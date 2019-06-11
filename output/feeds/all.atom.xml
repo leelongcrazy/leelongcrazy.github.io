@@ -36,9 +36,9 @@ $ ssh-add 私钥文件名
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;接着push代码，发现仍需要输入用户名和密码，执行下面的操作，删除远程仓库重新建立连接&lt;/h4&gt;
+&lt;h4&gt;接着push代码，发现仍需要输入用户名和密码，执行下面的命令， &lt;strong&gt;注意连接域名和用户名之间的符号是 &lt;code&gt;:&lt;/code&gt;,而不是 &lt;code&gt;/&lt;/code&gt;&lt;/strong&gt;，删除远程仓库重新建立连接&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git remote rm origin
-$ git remote add origin git@github.com:user-name/repository-name.git
+$ git remote add origin git@github.com:user-name/repository-name.git 
 &lt;/pre&gt;&lt;/div&gt;
 
 

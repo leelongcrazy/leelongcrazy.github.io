@@ -4,7 +4,6 @@
         <meta charset="utf-8" />
         <title>GitHub配置SSH</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="LeeLongCrazy's Blog Atom Feed" />
         <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="LeeLongCrazy's Blog RSS Feed" />
 </head>
 
@@ -14,6 +13,7 @@
                 <nav><ul>
                     <li><a href="/category/article.html">Article</a></li>
                     <li class="active"><a href="/category/git.html">Git</a></li>
+                    <li><a href="/category/tech.html">TECH</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
@@ -72,9 +72,9 @@ $ ssh-add 私钥文件名
 </pre></div>
 
 
-<h4>接着push代码，发现仍需要输入用户名和密码，执行下面的操作，删除远程仓库重新建立连接</h4>
+<h4>接着push代码，发现仍需要输入用户名和密码，执行下面的命令， <strong>注意连接域名和用户名之间的符号是 <code>:</code>,而不是 <code>/</code></strong>，删除远程仓库重新建立连接</h4>
 <div class="highlight"><pre><span></span>$ git remote rm origin
-$ git remote add origin git@github.com:user-name/repository-name.git
+$ git remote add origin git@github.com:user-name/repository-name.git 
 </pre></div>
 
 
@@ -96,7 +96,6 @@ $ git remote add origin git@github.com:user-name/repository-name.git
                 <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
                             <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
                             <li><a href="https://github.com/leelongcrazy">My Github</a></li>

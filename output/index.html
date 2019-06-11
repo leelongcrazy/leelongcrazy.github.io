@@ -4,7 +4,6 @@
         <meta charset="utf-8" />
         <title>LeeLongCrazy's Blog</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="LeeLongCrazy's Blog Atom Feed" />
         <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="LeeLongCrazy's Blog RSS Feed" />
 </head>
 
@@ -14,12 +13,52 @@
                 <nav><ul>
                     <li><a href="/category/article.html">Article</a></li>
                     <li><a href="/category/git.html">Git</a></li>
+                    <li><a href="/category/tech.html">TECH</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/githubpei-zhi-ssh.html">GitHub配置SSH</a></h1>
+                    <h1 class="entry-title"><a href="/yu-jun-de-pm12tiao-fang-fa-lun.html">俞军的PM12条方法论</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2019-06-11T18:00:00+08:00">
+                Published: Tue 11 June 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
+        </address>
+<p>In <a href="/category/tech.html">TECH</a>.</p>
+<p>tags: <a href="/tag/tech.html">TECH</a> </p>
+</footer><!-- /.post-info --><h1>俞军的PM12条方法论</h1>
+<h4>俞军，百度贴吧之父，近期从滴滴离职，是滴滴产品的严格把关者。</h4>
+<p><a href="https://baike.baidu.com/item/%E4%BF%9E%E5%86%9B/5349#viewPageContent">滴滴出行顾问、百度原产品副总裁</a></p>
+<p><img alt="俞军照片" src="https://baike.baidu.com/pic/%E4%BF%9E%E5%86%9B/5349/0/734f12f386aba09a0a46e090"></p>
+<p>1.PM首先是用户</p>
+<p>2.站在用户角度看待问题</p>
+<p>3.用户体验是一个完整的过程</p>
+<p>4.追求效果，不做没用的东西。</p>
+<p>5.发现需求，而不是创造需求。</p>
+<p>6.决定不做什么，往往比决定做什么更重要。</p>
+<p>7.用户是很难被教育的，要迎合用户，而不是改变用户。</p>
+<p>8.关注最大多数用户，在关键点上超越竞争对手，快速上线，在实践中不断改进。</p>
+<p>9.给用户稳定的体验预期</p>
+<p>10.如果不确定该怎么做，就先学别人是怎么做的。</p>
+<p>11.把用户当傻瓜，不要让用户思考和选择，替用户预先想好。</p>
+<p>12.不要给用户不想要的东西，任何没用的东西对用户都是一种伤害。</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/githubpei-zhi-ssh.html" rel="bookmark"
+                           title="Permalink to GitHub配置SSH">GitHub配置SSH</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2019-05-30T17:00:00+08:00">
                 Published: Thu 30 May 2019
@@ -30,55 +69,10 @@
         </address>
 <p>In <a href="/category/git.html">Git</a>.</p>
 <p>tags: <a href="/tag/tech.html">Tech</a> <a href="/tag/git.html">Git</a> </p>
-</footer><!-- /.post-info --><h2>GitHub配置SSH</h2>
-<hr>
-<h3>在使用GitHub配置ssh的时候吃了好多苦头，整理了下完整的操作过程</h3>
-<h4>必备工具，操作是在Linux系统环境下完成的</h4>
-<ul>
-<li>Bash</li>
-<li>Git</li>
-<li>GitHub账号</li>
-</ul>
-<h4>在使用Git工具之前需要对<code>git config</code>进行配置</h4>
-<div class="highlight"><pre><span></span>$ git config --global user.email <span class="s2">&quot;xxx@xxx.com&quot;</span>
-$ git config --global user.name <span class="s2">&quot;user-name&quot;</span>
-</pre></div>
-
-
-<h4>在<code>~/.ssh/</code>目录下创建一对公私密钥</h4>
-<div class="highlight"><pre><span></span>$ ssh-keygen
-</pre></div>
-
-
-<h4>执行完后会在当前目录下生成两个新的文件，将后缀名.pub的公约内容复制到Github个人账号-&gt; settings -&gt; SSH and GPG Kyes -&gt; New SSH key文本框中，点击<code>Add SSH key</code>添加密钥；并对添加的公钥命个别名。</h4>
-<h4>在终端执行下面命令：</h4>
-<div class="highlight"><pre><span></span>$ <span class="nb">eval</span> <span class="sb">`</span>ssh-agent -s<span class="sb">`</span> <span class="c1">#注意是反单引号</span>
-$ ssh-add 私钥文件名
-</pre></div>
-
-
-<h4>测试：</h4>
-<div class="highlight"><pre><span></span>$ ssh -T git@github.com 
-</pre></div>
-
-
-<h4>测试成功显示：</h4>
-<div class="highlight"><pre><span></span>$ Hi user-name! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
-</pre></div>
-
-
-<h4>接着push代码，发现仍需要输入用户名和密码，执行下面的操作，删除远程仓库重新建立连接</h4>
-<div class="highlight"><pre><span></span>$ git remote rm origin
-$ git remote add origin git@github.com:user-name/repository-name.git
-</pre></div>
-
-
-<h4>接下来远程推送的时候不再需要输入的用户名和密码。</h4>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>对github账号配置ssh密钥对实现远程推送</p>
+                <a class="readmore" href="/githubpei-zhi-ssh.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -164,7 +158,6 @@ $ git remote add origin git@github.com:user-name/repository-name.git
                 <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
                             <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
 
                             <li><a href="https://github.com/leelongcrazy">My Github</a></li>
