@@ -1,6 +1,6 @@
-Title: GitHub配置SSH
-Date: 2019-5-30 17:00
-Category: Git
+Title: GitHub配置SSH 
+Date: 2019-5-30 17:00 
+Category: IT
 Tags: Tech,Git 
 Authors: leelongcrazy
 Summary: 对github账号配置ssh密钥对实现远程推送

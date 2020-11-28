@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>leelongcrazy's blog - IT</title><link href="https://leelongcrazy.github.io/" rel="alternate"></link><link href="https://leelongcrazy.github.io/feeds/it.atom.xml" rel="self"></link><id>https://leelongcrazy.github.io/</id><updated>2020-08-29T17:00:00+08:00</updated><entry><title>在Mac上安装python虚拟环境管理工具</title><link href="https://leelongcrazy.github.io/zai-macshang-an-zhuang-pythonxu-ni-huan-jing-guan-li-gong-ju.html" rel="alternate"></link><published>2020-08-29T17:00:00+08:00</published><updated>2020-08-29T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2020-08-29:/zai-macshang-an-zhuang-pythonxu-ni-huan-jing-guan-li-gong-ju.html</id><summary type="html">&lt;p&gt;如果熟悉Linux系统，一定要打交道的就是SHELL语言，掌握使用SHELL的高效方法，做起很多事情来得心应手，最开始我只熟悉bash，当我安装完zsh,并使用oh my zsh套件以后，太震撼了。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;如果熟悉Linux系统，一定要打交道的就是SHELL语言，掌握使用SHELL的高效方法，做起很多事情来得心应手，最开始我只熟悉bash，当我安装完zsh,并使用oh my zsh套件以后，太震撼了。&lt;/h2&gt;
+&lt;h3&gt;前些天拿出吃了很久灰的树莓派，借这次安装zsh的机会，整理出来了安装的过程。&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;查看当前使用SHELL，和已经安装的shell&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$SHELL&lt;/span&gt; &lt;span class="c1"&gt;# 查看当前使用SHELL&lt;/span&gt;
+➜ cat /etc/shells  &lt;span class="c1"&gt;# 列出已经安装的shell&lt;/span&gt;
+/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/bin/dash
+/usr/bin/dash
+/usr/bin/tmux
+/usr/bin/screen
+/bin/zsh
+/usr/bin/zsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;如果没有显示&lt;code&gt;/bin/zsh&lt;/code&gt;，则执行下面安装命令&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# 我在Debian环境下安装的&lt;/span&gt;
+sudo apt-get install zsh
+&lt;span class="c1"&gt;# os x 下安装&lt;/span&gt;
+brew install zsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;安装完成后切换SHELL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo chsh -s /bin/zsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;重启操作系统生效&lt;/li&gt;
+&lt;li&gt;可再次查看当前SHELL&lt;code&gt;echo $SHELL&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装oh my zsh 有两种方式：&lt;code&gt;curl&lt;/code&gt;和&lt;code&gt;wget&lt;/code&gt;，&lt;a href="https://github.com/ohmyzsh/ohmyzsh"&gt;官方安装指导&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# use curl&lt;/span&gt;
+sh -c &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;# or use wget&lt;/span&gt;
+sh -c &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;7.安装完成后可编辑&lt;code&gt;.zshrc&lt;/code&gt;进行自定义设置，另外注意，原来&lt;code&gt;.bashrc&lt;/code&gt;下的配置在&lt;code&gt;zsh&lt;/code&gt;下仍然可以使用，&lt;code&gt;zsh&lt;/code&gt;是完全兼容&lt;code&gt;bash&lt;/code&gt;的。&lt;/p&gt;</content><category term="IT"></category><category term="Bash"></category><category term="zsh"></category></entry><entry><title>从远程仓库更新到本地</title><link href="https://leelongcrazy.github.io/cong-yuan-cheng-cang-ku-geng-xin-dao-ben-di.html" rel="alternate"></link><published>2020-08-05T15:00:00+08:00</published><updated>2020-08-05T15:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2020-08-05:/cong-yuan-cheng-cang-ku-geng-xin-dao-ben-di.html</id><summary type="html">&lt;p&gt;从远程仓库更新到本地&lt;/p&gt;</summary><content type="html">&lt;h2&gt;从远程仓库更新到本地&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;使用git fetch更新，相当于是从远程获取最新版本到本地，不会自动merge，可以先查看更新情况，再决定是否更新。有以下两种方式进行更新：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# 不额外建立临时分支，推荐这种更新方式&lt;/span&gt;
+git fetch origin master
+git log -p master..origin/master
+git merge origin/master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;=&amp;gt; &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# 通过建立临时分支实现更新&lt;/span&gt;
+git fetch origin master:tmp &lt;span class="c1"&gt;# 从远程的origin的master主分支下载最新的版本到tmp分支上&lt;/span&gt;
+git diff tmp &lt;span class="c1"&gt;# 比较本地的master分支和tmp分支的差别&lt;/span&gt;
+git merge tmp &lt;span class="c1"&gt;# 合并到本地分支&lt;/span&gt;
+git branch -D tmp &lt;span class="c1"&gt;# 删除本地临时分支&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;不推荐使用git pull 进行代码更新操作，相当于从远程代码获取更新并合并到本地，容易发生覆盖本地文件的错误。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git pull origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="IT"></category><category term="Tech"></category><category term="Github"></category><category term="Git"></category></entry><entry><title>brew源管理</title><link href="https://leelongcrazy.github.io/brewyuan-guan-li.html" rel="alternate"></link><published>2020-07-16T17:00:00+08:00</published><updated>2020-07-16T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2020-07-16:/brewyuan-guan-li.html</id><summary type="html">&lt;p&gt;brew源管理配置&lt;/p&gt;</summary><content type="html">&lt;h2&gt;brew源管理&lt;/h2&gt;
+&lt;h3&gt;Mac系统下brew工具源管理&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;显示brew安装位置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew --repo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;查看brew目前所使用的源&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; remote get-url origin
+git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt; homebrew/core&amp;quot;&lt;/span&gt; remote get-url origin
+git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt; homebrew/cask)&amp;quot;&lt;/span&gt; remote get-url origin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;更换为清华源&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt; homebrew/core&amp;quot;&lt;/span&gt; remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo homebrew/cask&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git
+brew update &lt;span class="c1"&gt;# 执行更新&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;恢复默认源&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; remote set-url origin https://github.com/Homebrew/brew.git
+git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo homebrew/core&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; remote set-url origin https://github.com/Homebrew/homebrew-core.git
+git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo homebrew/cask&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; remote set-url origin https://github.com/Homebrew/homebrew-cask.git
+brew update &lt;span class="c1"&gt;# 执行更新&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="IT"></category><category term="Tech"></category><category term="os"></category></entry><entry><title>在Mac上安装python虚拟环境管理工具</title><link href="https://leelongcrazy.github.io/Install-virtualenv-on-Mac.html" rel="alternate"></link><published>2020-05-29T17:00:00+08:00</published><updated>2020-05-29T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2020-05-29:/Install-virtualenv-on-Mac.html</id><summary type="html">&lt;p&gt;在Mac上安装python虚拟环境管理工具&lt;/p&gt;</summary><content type="html">&lt;h2&gt;在Mac上安装python虚拟环境管理工具&lt;/h2&gt;
+&lt;h4&gt;在Mac上安装完homebrew以后，测试下工具就安装python3，安装完以后发现和系统中的一些工具默认以python2执行的冲突了，执行命令的时候会报出多行错误信息，害得我一度认为我把Mac系统给玩坏了，后来重新安装了一遍python2 的pip工具，问题解决了。&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://www.cnblogs.com/kaid/p/8227635.html" title="在Mac上搭建Python虚拟环境"&gt;避免以后安装的库文件和Mac系统环境的依赖库重叠，最好的办法莫过于多创建虚拟环境。&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;安装virtualenv&lt;/h3&gt;
+&lt;h5&gt;安装执行：&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ pip3 install virtualenv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;创建虚拟环境，激活，退出：&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ virtualenv test_env
+$ &lt;span class="nb"&gt;cd&lt;/span&gt; test_env  &lt;span class="c1"&gt;# 进入虚拟环境目录&lt;/span&gt;
+$ &lt;span class="nb"&gt;source&lt;/span&gt; bin/activate &lt;span class="c1"&gt;# 激活虚拟环境&lt;/span&gt;
+$ deactivate  &lt;span class="c1"&gt;# 退出虚拟环境&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;安装virtualenvwrapper&lt;/h3&gt;
+&lt;h5&gt;Virtaulenvwrapper是virtualenv的扩展包，可以更方便地新增，删除，复制，切换虚拟环境。&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# 安装&lt;/span&gt;
+&lt;span class="err"&gt;$ pip3 install virtualenvwrapper&lt;/span&gt;
+&lt;span class="err"&gt;# 创建一个隐藏文件夹用以存放虚拟环境&lt;/span&gt;
+&lt;span class="err"&gt;$ mkdir .virtualenvs&lt;/span&gt;
+&lt;span class="err"&gt;# 记住下面两个命令显示的路径&lt;/span&gt;
+&lt;span class="err"&gt;$ which virtualenvwrapper.sh&lt;/span&gt;
+&lt;span class="err"&gt;$ which python3&lt;/span&gt;
+&lt;span class="err"&gt;# 编辑zsh配置文件&lt;/span&gt;
+&lt;span class="err"&gt;$ vi .zshrc&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;在末尾添加下面的内容&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;export WORKON_HOME=&amp;quot;~/.virtualenvs&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;export VIRTUALENVWRAPPER_PYTHON=&amp;quot;/usr/local/bin/python3&amp;quot;&lt;/span&gt;
+&lt;span class="err"&gt;source /usr/local/bin/virtualenvwrapper.sh&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# 刷新shell&lt;/span&gt;
+&lt;span class="err"&gt;$ source .zshrc&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;virtualenvwrapper常用命令&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt; &lt;span class="n"&gt;environments&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;lsvirtualenv&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;change&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;workon&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;installed&lt;/span&gt; &lt;span class="n"&gt;packages&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;lssitepackages&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;enter&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;current&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s path&lt;/span&gt;
+&lt;span class="s1"&gt;$ cdvirtualenv&lt;/span&gt;
+
+&lt;span class="s1"&gt;# 5.enter the current virtualenv&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cdsitepackages&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;copy&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cpvirtualenv&lt;/span&gt; &lt;span class="n"&gt;env1&lt;/span&gt; &lt;span class="n"&gt;env2&lt;/span&gt;
+&lt;span class="n"&gt;Copying&lt;/span&gt; &lt;span class="n"&gt;env1&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;env2&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;deactivate&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;rmvirtualenv&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="IT"></category><category term="Python"></category><category term="Code"></category></entry><entry><title>oh my zsh &amp;&amp; git</title><link href="https://leelongcrazy.github.io/oh-my-zsh-git.html" rel="alternate"></link><published>2020-05-28T17:00:00+08:00</published><updated>2020-05-28T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2020-05-28:/oh-my-zsh-git.html</id><summary type="html">&lt;p&gt;oh my zsh下git命令别名&lt;/p&gt;</summary><content type="html">&lt;h2&gt;oh my zsh --- git.md&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;git
+&lt;span class="nv"&gt;ga&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git add&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gaa&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git add --all&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git apply&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gapa&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git add --patch&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gau&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git add --update&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gav&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git add --verbose&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gb&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git branch&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git branch -D&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gba&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git branch -a&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git branch -d&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbda&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git branch --no-color --merged | command grep -vE &amp;quot;^(\+|\*|\s*(master|develop|dev)\s*$)&amp;quot; | command xargs -n 1 git branch -d&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git blame -b -w&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbnm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git branch --no-merged&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git branch --remote&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git bisect&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbsb&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git bisect bad&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbsg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git bisect good&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbsr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git bisect reset&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gbss&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git bisect start&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -v&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;gc!&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -v --amend&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gca&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -v -a&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;gca!&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -v -a --amend&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcam&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -a -m&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;gcan!&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -v -a --no-edit --amend&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;gcans!&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -v -a -s --no-edit --amend&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcb&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git checkout -b&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git checkout develop&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcf&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git config --list&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git clone --recurse-submodules&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gclean&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git clean -id&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git checkout master&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcmsg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -m&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;gcn!&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -v --no-edit --amend&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gco&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git checkout&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcount&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git shortlog -sn&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git cherry-pick&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcpa&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git cherry-pick --abort&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcpc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git cherry-pick --continue&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -S&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gcsm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git commit -s -m&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git diff&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gdca&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git diff --cached&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gdct&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git describe --tags $(git rev-list --tags --max-count=1)&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gdcw&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git diff --cached --word-diff&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gds&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git diff --staged&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gdt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git diff-tree --no-commit-id --name-only -r&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gdw&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git diff --word-diff&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gf&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git fetch&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gfa&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git fetch --all --prune&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gfg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git ls-files | grep&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git fetch origin&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git gui citool&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gga&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git gui citool --amend&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;ggpull&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git pull origin &amp;quot;$(git_current_branch)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;ggpur&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ggu
+&lt;span class="nv"&gt;ggpush&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git push origin &amp;quot;$(git_current_branch)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;ggsup&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git branch --set-upstream-to=origin/$(git_current_branch)&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;ghh&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git help&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gignore&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git update-index --assume-unchanged&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gignored&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git ls-files -v | grep &amp;quot;^[[:lower:]]&amp;quot;&amp;#39;&lt;/span&gt;
+git-svn-dcommit-push&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git svn dcommit &amp;amp;&amp;amp; git push github master:svntrunk&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gk&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;\gitk --all --branches&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gke&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;\gitk --all $(git log -g --pretty=%h)&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git pull&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --stat&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glgg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --graph&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glgga&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --graph --decorate --all&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glgm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --graph --max-count=10&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glgp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --stat -p&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --oneline --decorate&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glod&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --graph --pretty=&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --graph --pretty=&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; --date=short&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glog&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --oneline --decorate --graph&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gloga&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --oneline --decorate --graph --all&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glol&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --graph --pretty=&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glola&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --graph --pretty=&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; --all&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glols&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log --graph --pretty=&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\&amp;#39;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; --stat&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;glp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;_git_log_prettily
+&lt;span class="nv"&gt;glum&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git pull upstream master&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git merge&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gma&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git merge --abort&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gmom&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git merge origin/master&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gmt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git mergetool --no-prompt&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gmtvim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git mergetool --no-prompt --tool=vimdiff&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gmum&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git merge upstream/master&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;goproxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;export http_proxy=http://127.0.0.1:1087 https_proxy=https://127.0.0.1:1087&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git push&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gpd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git push --dry-run&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gpf&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git push --force-with-lease&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;gpf!&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git push --force&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gpoat&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git push origin --all &amp;amp;&amp;amp; git push origin --tags&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gpristine&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git reset --hard &amp;amp;&amp;amp; git clean -dfx&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gpsup&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git push --set-upstream origin $(git_current_branch)&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gpu&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git push upstream&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gpv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git push -v&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git remote&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gra&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git remote add&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grb&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rebase&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grba&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rebase --abort&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grbc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rebase --continue&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grbd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rebase develop&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grbi&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rebase -i&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grbm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rebase master&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grbs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rebase --skip&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grep&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grev&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git revert&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grh&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git reset&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grhh&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git reset --hard&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rm&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grmc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rm --cached&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grmv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git remote rename&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;groh&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git reset origin/$(git_current_branch) --hard&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grrm&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git remote remove&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git restore&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git remote set-url&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grss&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git restore --source&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cd &amp;quot;$(git rev-parse --show-toplevel || echo .)&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gru&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git reset --&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grup&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git remote update&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;grv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git remote -v&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gsb&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git status -sb&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gsd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git svn dcommit&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gsh&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git show&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gsi&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git submodule init&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gsps&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git show --pretty=short --show-signature&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gsr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git svn rebase&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gss&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git status -s&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git status&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gsta&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git stash push&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gstaa&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git stash apply&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gstall&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git stash --all&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gstc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git stash clear&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gstd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git stash drop&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gstl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git stash list&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gstp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git stash pop&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gsts&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git stash show --text&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gsu&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git submodule update&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gsw&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git switch&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gswc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git switch -c&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gtl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;gtl(){ git tag --sort=-v:refname -n -l ${1}* }; noglob gtl&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gts&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git tag -s&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gtv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git tag | sort -V&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gunignore&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git update-index --no-assume-unchanged&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gunwip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git log -n 1 | grep -q -c &amp;quot;\-\-wip\-\-&amp;quot; &amp;amp;&amp;amp; git reset HEAD~1&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gup&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git pull --rebase&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gupa&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git pull --rebase --autostash&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gupav&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git pull --rebase --autostash -v&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gupv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git pull --rebase -v&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gwch&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git whatchanged -p --abbrev-commit --pretty=medium&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;gwip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git add -A; git rm $(git ls-files --deleted) 2&amp;gt; /dev/null; git commit --no-verify --no-gpg-sign -m &amp;quot;--wip-- [skip ci]&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="IT"></category><category term="Tech"></category><category term="Git，zsh"></category></entry><entry><title>Python的故事 （Python‘s Tale)</title><link href="https://leelongcrazy.github.io/pythonde-gu-shi-pythons-tale.html" rel="alternate"></link><published>2020-02-28T17:00:00+08:00</published><updated>2020-02-28T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2020-02-28:/pythonde-gu-shi-pythons-tale.html</id><summary type="html">&lt;p&gt;Python的故事 （Python‘s Tale)翻译&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Python的故事 （Python‘s Tale)&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;写在前面的话：&lt;/p&gt;
+&lt;p&gt;这是我翻译的第二篇文字，耗时四天完成，内容是&lt;a href="https://www.redhat.com/en/command-line-heroes/season-3/pythons-tale" title="Command Line Heroes Season 3 Python's Tale"&gt;开源Linux公司红帽的一期关于Python的播客音频&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;翻译使自己的英语进步更快，尤其在断句，俚语，时态语法，词汇等方面。&lt;/p&gt;
+&lt;p&gt;这期播客节目聊到了Python的起源，发展与壮大的原因，也谈到了Python之父的离去，以及以后Python社区的发展。&lt;/p&gt;
+&lt;p&gt;有说法讲Python未来的发展一定是搞黑客和机器学习的人接管，我深信不疑。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;本期节目简介&lt;/h2&gt;
+&lt;p&gt;一个仁慈的独裁者下台，改变了Python编程语言未来的航向。吉多·范·罗素姆（Guido van Rossum）的“权利转移“备忘录给编程语言进化方式带来关注。&lt;/p&gt;
+&lt;p&gt;在这期节目中，艾米丽·莫尔豪斯（Emily Morehouse）把Python的技术扩展性和它的相关的社区连接起来。迈克尔·肯尼迪（Michael Kennedy）解释了为什么Python易于学习和对于建立Youtube和Instagram足够的强大。黛安·穆勒（Diane Mueller）强调Python社区如何在技术中如此广泛的包容性实践中起带头作用，包括社区主导的决策制定的兴起。&lt;/p&gt;
+&lt;p&gt;有时，一个仁慈的独裁者可以创造一门编程语言。但是Python显示它的社区使其茁壮成长。&lt;/p&gt;
+&lt;h2&gt;相关人物&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;艾米丽·莫尔豪斯（Emily Morehouse）：&lt;/strong&gt; Cuttlesoft公司工程总监和Python核心开发&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/strong&gt; Python Bytes 和 Talk Python to Me两期的嘉宾，话说Python培训的创始人，Python软件基金会成员&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;黛安·穆勒（Diane Mueller）：&lt;/strong&gt; 红帽社区发展总监&lt;/p&gt;
+&lt;h2&gt;音频文字记录&lt;/h2&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;2018年7月12日的早晨，世界各地的Python社区成员醒来，抓起一杯咖啡，并打开手提电脑。他们陆续发现一条来自仁慈的独裁者的信息。&lt;/p&gt;
+&lt;p&gt;吉多·范·罗素姆（Guido van Rossum）是Python的发明者，世界上最伟大的编程语言之一，也可能是最伟大的编程语言，他写给了所有人。所以可以想象所有Python粉丝读完这些文字后的表情。&lt;/p&gt;
+&lt;h3&gt;琐碎片段：&lt;/h3&gt;
+&lt;p&gt;我在进行艰难的战斗，却发现有人不满意我的决定，我想完全从决策进程中离开，给自己一个无限期的假期，从仁慈的独裁者中离开。你们将依靠你们自己，我将不再是假装成功者。你们想要做什么。创造民主吗？还是无政府状态？&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;在这简短却震惊内外的备忘录中，吉多·范·罗素姆（Guido van Rossum）这个人已经领导了Python社区数十年之久。好吧，最后他还是躬身离开了。他的消息以“权力移交”命名，并且它将改变Python编程语言未来的前景。&lt;/p&gt;
+&lt;p&gt;更深程度上，它也带来的所有编程语言在未来该如何进化，发展繁荣的问题。是否编程语言该被支持由一个给他们定型和使其连贯的仁慈的独裁者运行？或者，在开源的世界里，是否编程语言更像是根据一群完全不同话语者的行为成长起来，作出反应的说话语言，东西？据过去查明，Python社区是任何编程语言语言中成长最快的社区。&lt;/p&gt;
+&lt;p&gt;我是萨隆·伊特巴莱克（Saron Yitbarek），这里是第三季的《代码英雄》，一个由红帽公司原创的播客节目。在上一季的《代码英雄》中，我们探索了一个被拉长的领域，从游戏，到失败的艺术，再到无服务开发。我们甚至最后追踪一个美国航天局的漫游者从火星表面穿过。但是有一件事似乎真的捕获了每个人的想象力，那就是格雷斯·琥珀的故事。她在编译器方面的工作促成了第一高级编程语言，COBOL。我们事后意识到格雷斯·琥珀的故事，仅仅是如此多编程语言重塑世界开发和操作中的一个。新的编程语言允许我们连接人类和机器。他们打开通向令人惊奇新可能性的大门。&lt;/p&gt;
+&lt;p&gt;所以，第三季都是关于那些编程语言的。我们将会讨论JavaScript，我们将讨论BASIC，GO，Perl。而现在，我们正在讨论Python。Python将是我们旅程开始的地方，因为循着Python的故事，我们了解到关于所有编程语言的未来至关重要的真相。&lt;/p&gt;
+&lt;p&gt;在Python仁慈的独裁者放弃他的宝座之后，对Python社区，吖，一个不小的损失，如何在独裁者离开之后组织事物？有人建议可以重塑他们的结构在哥老会礼拜之后。那个主意是行不通的。一般来说要想理解Python是如何整顿以及他对编程语言的未来意味着什么？我们不得不回到Python故事的起源。&lt;/p&gt;
+&lt;h3&gt;吉多·范·罗素姆（Guido van Rossum）：&lt;/h3&gt;
+&lt;p&gt;好吧，我用C语言写了所有代码，它变得有点单调乏味。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;这个人就是吉多·范·罗素姆（Guido van Rossum），Python的仁慈的独裁者。范·罗素姆曾经在阿姆斯特丹的著名公司CWI工作了几年，在那里他帮助开发ABC编程语言。现在，他正描述那个时候他用C语言工作并看到一种新编程语言的需求。&lt;/p&gt;
+&lt;h3&gt;吉多·范·罗素姆（Guido van Rossum）：&lt;/h3&gt;
+&lt;p&gt;它感觉好像有非常多的错误，而且进度缓慢。我正想，嗯，如果我们用ABC在这执行，我写一个完整的登录程序，仅仅需要15分钟，随后我用C语言再转向帐号管理程序或者其他什么，每项都要花费我一周的时间。我开始思考以某种方式想到一个方法在阿米巴环境中使用ABC的特征。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;这是我们在研究编程语言历史的过程中的一些发现。没有什么东西是新的，他们都是从旧的编程语言中借鉴的，为了胡乱拼凑解决方案。编程语言开始变形，进化，分支。当范·罗素姆对它们的潜力不满意，他想象一种编程语言可以连接C语言和Shell编程语言之间的缝隙。C语言过于臃肿，但与此同时，Shell脚本感觉太笨拙。两者之间有一个绝佳的点，而那个点就是由Python来填充。当范·罗素姆在1991年第一次发布Python，让人大开眼界，尤其对系统管理员来说。这是一个全能的脚本语言，不像之前的任何语言。&lt;/p&gt;
+&lt;h3&gt;艾米丽·莫尔豪斯（Emily Morehouse）：&lt;/h3&gt;
+&lt;p&gt;我第一次使用Python的时候，我已经彻底的喜欢上它了。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;这是艾米丽·莫尔豪斯（Emily Morehouse），当今的五位女性Python核心开发者之一。&lt;/p&gt;
+&lt;h3&gt;艾米丽·莫尔豪斯（Emily Morehouse）：&lt;/h3&gt;
+&lt;p&gt;我想我看到了赤裸裸的不同在像C++这样的第一编程语言和转向像Python这样的语言之间，你能真的看到编程语言的优雅和编程语言设计本身。你不需要必须处理内存管理冗杂的执行细节，它是更快建立事物，宽泛的多样化应用程序的最棒的方法。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;Python吸引力的关键是他的扩展能力。诸如像ABC的编程语言，在设计上单一庞大。对一个真正的社区没有办法帮助定义编程语言该如何工作。相比之下，范·罗素姆想要Python从一开始就是开放的，可扩展的。&lt;/p&gt;
+&lt;h3&gt;艾米丽·莫尔豪斯（Emily Morehouse）：&lt;/h3&gt;
+&lt;p&gt;当处理软件设计的时候，你将经常不得不带着要么存在软件，或者其他软件系统，并让他们在一起工作，如何设计软件以确保他们具有可扩展性是非常真实的价值之一。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;这个听起来好像是件不费脑筋的事，但并不是每一种编程语言都实现可扩展的水平，而Python从一开始就具有这种能力。真相就是如果一种编程语言，没有可扩展性烘培它，他最终将会随着他的成长倒在自己的重压之下。&lt;/p&gt;
+&lt;h3&gt;艾米丽·莫尔豪斯（Emily Morehouse）：&lt;/h3&gt;
+&lt;p&gt;Python被用一种非常有趣的方式设计，允许它的核心也具有扩展性。你竟然可以在系统运行的时候补不同的部件，所以如果你想知道引用了多少模块，或者你想知道是字符串类型还是整型类型，Python都允许你非常方便的做这些事情。&lt;/p&gt;
+&lt;p&gt;Python的核心扩展能力一些被称作C语言扩展，或者C语言模块。所以Python竟然已经给你设计进入其他编程语言的入口，并且本质上，如果你写C语言扩展或C语言模块，那么就可以连接其他几百种编程语言，颇有点黑客Python的意思。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;这是所有关于用户的适应语言自身需求的能力。所以Python，正如吉多·范·罗素姆（Guido van Rossum）所遇见的那样，从不会限制在一个独裁者的视野。他的“权利移交“备忘录经过深思熟虑。范·罗素姆深知社区的影响有多强大，每个人在一起共事产生的力量有多强大。是的，他最后得了一个独裁者的称号，却是仁慈的独裁者。&lt;/p&gt;
+&lt;h3&gt;艾米丽·莫尔豪斯（Emily Morehouse）：&lt;/h3&gt;
+&lt;p&gt;我想Python能有一个如此多样的社区其中一个原因就是因为吉多。Python已经拥有女性核心开发者因为吉多想做出这种改变，并使其发生。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;娜奥米·塞德（Naomi Ceder），Python软件基金会的主席，曾经她定了一个基调，“Python，为语言而生，为社区而存在。”并且这或许是吉多·范·罗素姆（Guido van Rossum）最伟大的遗产。不止是Python，
+他还为Python社区腾出空间。他使Python可以严格的扩展，但是在某种方式上，它可以在社会上扩展。它总给人们的增加留有余地。&lt;/p&gt;
+&lt;h3&gt;艾米丽·莫尔豪斯（Emily Morehouse）：&lt;/h3&gt;
+&lt;p&gt;你有如此多不同的Python应用程序，以至于根据定义，并通过构造，你的社区变得非常多种多样。所以这是真的，真的扩大社区范围。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;艾米丽·莫尔豪斯（Emily Morehouse）是Python核心开发者，Cuttlesoft公司的项目总监。&lt;/p&gt;
+&lt;p&gt;一旦Python孵化出来，它就开始长得不像之前的样子。我看StackOverflow图表展示每种编程语言的讨论数量，关于Python的那一条火箭式上升。在2018年，人们在Google上搜索Python的条数已经超过了Kim Kardashian（美国的演员，企业家）。所有的一切已经使它跻身于和像有最常用编程语言称号的Java，C，C++比肩的地位。&lt;/p&gt;
+&lt;p&gt;所以，所有的爱到底是怎么回事？为了查明，我找到了活在Python时代精神的中心的开发者迈克尔·肯尼迪。迈克尔不是第一次光临，已经做客两次关于Python的播客——话说Python于我（Talk Python to Me)和Python字节(Python Bytes)。我们将在展示简介中放一些链接，以便你们可以看一下。我和迈克尔会聊一聊Python是如何快速发展的。&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;如果你看了分析，调查，和像那样的东西，2012年似乎真的像是一个大拐点，最重大的事情发生在2012年，就是数据科学社区从像R的语言离开，还有其他一些东西聚集在Python上。自从那发生之后，势头就更猛了，有更多的机器学习库。比如，很多流行的机器学习库，优选考虑Python，然后才会考虑其他编程语言。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;是的，我也是这样理解的。当我想起Python的时候，我知道它可以用来做web开发；我知道有很多人依然用它构建web应用程序。但是我感觉它现在的核心是做数据科学那部分的事情。你认为是什么导致这种事情发生？为什么数据科学社区撤离，或者我不能说撤离，但确实从像R的语言离开？&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;是的，的确如此。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;那又起源于哪里呢？&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;我想在过渡中有两件事情。其中之一无疑是用Python来处理是真的，带引号的，“真的”编程语言，在这种感觉上你可以建立简单的事物。你可以画图表，做数据分析工具，诸如此类。而且你也可以构建Instagram，YouTube，所有这样其他的东西。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;是的，确实这样。&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;而像R这样的语言，是啊，从字面上看，确实这样。那些是用Python写成的。所以，他们使用的其他编程语言，当时像R语言，是做数据科学事情如科学分类，统计类型的编程语言。但是如果你想建立一个展示你成果的web应用程序，那你会使用什么呢？Node，还是Python，或者其他，你估计犹豫不决。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;好啊，有一个好点子了。&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;所以Python拥有完美的能力，基本上，它是真的编程语言。可以说是第一了。第二是，Python在这方面绝对是独一无二的，如我说，它是全能编程语言。我所说全能是，我可以是生物学家或者天体物理学家或者别的，我想探索一点数据的奥秘，我想载入‘CSV'格式的文件，运行一些命令并得到一张图片。我不需要理解类，静态方法，静态无返回主函数，聚合，连接等概念。你不需要经过一些编程语言做的那样经过所有的过程来开始。你只需要写几行代码，键入一条命令，就能运行了。&lt;/p&gt;
+&lt;p&gt;然而，你可以建立像Instagram等等一类的东西。它绝对能成为你能使用的专业系统，但是你不会被强迫立马理解所有这些对一个大型应用程序的深奥的抽象概念。你可以接受他们，如果你想需要的话。这有意义吗？&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;是啊，是啊，这有很大的意义。所以我们讨论约在2012年转折点的时候，我正查找，做一些关于Python的调查，Python实际上是世界上用Google搜索最多的编程语言之一。&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;哇&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;你认为它在这个时候是真的在上升，增长吗？&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）： 13：47&lt;/h3&gt;
+&lt;p&gt;我确实认为它正在上升，并且正在增长。我们讨论这几年的最新数字，确实有更多企业组织正在使用Python。他们过去使用.Net，Java，也许有些C语言。这就是答案，现在Python正在开始自己的方式，我认为它正越来越侧重于那些环境一些，并以此，和数据科学走的更近。这就像，嗯，很明显我们要使用Jupyter Lab和所有酷炫的笔记本工具一样。这就是Python。&lt;/p&gt;
+&lt;p&gt;数据科学并不具有这样的遗留代码库的故事。如果我想开始一个新项目探究某些广告活动或者科学结果，对旧的东西不要太大的依赖。模型和数据已过期，所以数据科学界更容易切换技术或保持最新状态。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）： 14:37&lt;/h3&gt;
+&lt;p&gt;这是个好主意。&lt;/p&gt;
+&lt;p&gt;迈克尔·肯尼迪（Michael Kennedy）： 
+是的，谢谢。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;是啊。而且似乎听来它不会很快停止增长。听起来像是要继续保持增长，而且势头还在不断增长。你认为什么会影响它最快，向前的增长？&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）： 14:52&lt;/h3&gt;
+&lt;p&gt;我觉得这就是个往下坡滚的球。我们有你能使用Python的所有库文件，包文件。我们现在有一个难以置信的数字。一两年前是100，000。现在已经是170，000个包或项目。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;哇&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）： 15:10&lt;/h3&gt;
+&lt;p&gt;你可能仅需要几行代码，哦，我喜欢这样做机器学习。有人在会议上给我门展示一个例子关于，给一些人脸数据，如何训练出一个机器学习系统推断他们有什么类型的眼睛。他们有的是圆眼，还是椭圆形的眼睛，像这样的东西。显然，这会驱动你拥有化妆品或者其他种类的化妆品。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;哦，哇&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;这个女性做了大量的陈述，然后她说，这就是训练这个模型的代码，随后问她一些问题。然而，从头到尾只有15行代码。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）： 15:40&lt;/h3&gt;
+&lt;p&gt;哇&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;随后你就能有一张图片，告诉你你的眼睛是什么样子。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;哦，我的天呐&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;那些类型的东西，这些小而超级强大的东西，你可以通过这些包带来真的是难以置信。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;哇，真的很酷&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;不疯狂吗？&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）： 15:56&lt;/h3&gt;
+&lt;p&gt;好的，让我们先暂停一会儿。我们接下来会从迈克尔那听到更多东西，但是我想回过头来并强调一些东西。那就是是什么可能使惊人的Python占据第一的位置？是Python社区。Python的成功的决定性一部分是巨大的，响应的社区。&lt;/p&gt;
+&lt;p&gt;与此同时，当我们看到范·罗素姆的离开，社区的规模依然庞大。在你身边一个完成语言的设想不得不打断。以某种方式上，想法做一个孤单的独裁者吸引如此庞大的社区是站不住脚的。范·罗素姆不需要为他的编程语言收到多大反应而准备，但是，几乎是自发地，社区成员将Python邮件列表，新闻组，网页，以及最终通过PEP讨论通过的编程语言更改过程汇集在一起。（PEP代表Python增强建议书）&lt;/p&gt;
+&lt;p&gt;所以，仅凭独裁者的称号，范·罗素姆已经建立起一种真的可以与之交谈的编程语言，一种用户可以帮助建立的编程语言。我打赌凭他离开之时所受的挫折，范·罗素姆知道一个充满活力的社区给予比拿走更重要。&lt;/p&gt;
+&lt;h3&gt;黛安·穆勒（Diane Mueller）： 17:25&lt;/h3&gt;
+&lt;p&gt;我叫黛安·穆勒。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;黛安是红帽公司云平台开发部的总监。在过去的三十年，他目睹了开源社区力量的强大进化，并且她对Python社区印象特别深刻。&lt;/p&gt;
+&lt;h3&gt;黛安·穆勒（Diane Mueller）：&lt;/h3&gt;
+&lt;p&gt;Python社区所做的事情实在了不起，他们带来了对于会议的行为守则，多样的奖学金，所有这类事情的概念。通过带入不同的声音和不同的远景，我们得到将存活更久，更好，更有创新性的项目，并希望为更多人更好的工作。&lt;/p&gt;
+&lt;p&gt;即使他们犯了错误，他们公开，透明地解决，在看到硅谷的和创业公司的兄弟文化有的枯萎之后通过社区合作，Python感觉像回到了我起步到地方，并且也回到了原来的社区。所以，这实在很鼓舞人心，实在太棒了。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;鼓舞人心的重要原因是Python重新定义了排在首位的那部分社区意味着什么。我提到吉多·范·罗素姆（Guido van Rossum）开始鼓励女性参加社区，即使他离开了。但是，他也帮助用普遍的方式扩大范围。&lt;/p&gt;
+&lt;h3&gt;黛安·穆勒（Diane Mueller）：&lt;/h3&gt;
+&lt;p&gt;个人比代码贡献给大家带来的东西更多。大多数社区管理者和项目领导着眼于使人为他们的项目做贡献，而在Python社区，人们真的高亢的鼓舞人心的去建立文档，帮助筹办会议，帮助提高多样化。作为Python社区的一部分，他们都做自己力所能力的一些事情。 &lt;br&gt;
+所以，那主意，那贡献不止事关代码，它是关于参与，关于学习和教育，更多关于文档，这就是为许多人进入社区的方式。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;当然了，我们还有很长的路要走。&lt;/p&gt;
+&lt;h3&gt;黛安·穆勒（Diane Mueller）：&lt;/h3&gt;
+&lt;p&gt;任人唯贤还是非常注重技术。这是无疑地。但我认为你会看到对社区管理和社区管理者的信心。我们是社区技术性的一部分，相反不仅是雇佣的为我们做事的人。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;对黛安，范·罗素姆正式退出他独裁者角色的决定是全球转移的一部分。它正从一个旧的，单一庞大的语言建设离开。 &lt;/p&gt;
+&lt;p&gt;我认为我们可以从这个模范身上继续，虽然偶尔我会听到有人说，我是这个项目仁慈的独裁者，而且我像，吖，我不这么认为。 &lt;/p&gt;
+&lt;p&gt;黛安·穆勒是红帽公司开发部门的总监。 &lt;/p&gt;
+&lt;p&gt;顺便说一下，吉多·范·罗素姆（Guido van Rossum）发送的这个令人瞠目结舌的“权利移交”备忘录，Python社区本身就是庞大的力量。项目在成长之时接受新的治理楷模，在多种方式上，正如我们看到的那样，这些人已经对掌管他们自己的语言做好准备。但是，我仍想知道，究竟是怎样做到的？在范·罗素姆离开后会发生什么？让我们继续和迈克尔·肯尼迪交流问问答案。
+抛开Python，在没有他之后社区会怎样？&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）： 21:05&lt;/h3&gt;
+&lt;p&gt;好吧，社区过去发展的不错，但是我们过去……在最高的水平上，有点停滞。运营和编程语言基本上进入一种迷茫的状态。那些有趣事情的提案，有时很复杂，但有时又真的简单。就像，嘿嘿，我们能每年而不是每18个月发送一次Python岂不是更好，至少有点可预测，绑定每年的会议，诸如这样的事情。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;当然，是的。&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;这并不能被决定，因为他离开之后没有方式做决策。他说，我去度假了。这取决于你们，你们不得不断定如何继续运行下去。我甚至不会告诉你如何决定，如何继续运行它。这现在是你们的问题了。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）： 21:48&lt;/h3&gt;
+&lt;p&gt;哇。听起来很有戏剧性，但仔细想想。记得Python增强建议书，PEPs允许社区给反馈吗？好吧，让PEPs来拯救。&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;他们尝试决定了一系列为Python社区的新的治理模式。他们决定之一的大事件，被称作协调理事会，有五个成员——我相信他们都有同样的表决权--而且他们最近已经选举了五个出来。因此，要想成为一个人的左膀右臂，必须由他们决定。 &lt;/p&gt;
+&lt;p&gt;我认为很好的一件事就是我们有吉多·范·罗素姆（Guido van Rossum）作为成员之一。他离开时说，我不能成为所有人想改变和反馈的压力唯一的来源……但是他仍然，没有从编程语言中完全脱离开。他仍然是核心开发者，他仍然在协调理事会。所以他仍然有些话语权，但是他不能完全决定，这真的很棒。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;我很好奇实际上是如何制定的，因为我觉得如果我在协调理事会而且我在编程语言的发明者身边，我可能取向于同意他所说的一切。&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;好吧，的确如此。在所有条件平等的条件下，更倾向于吉多。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;是的，的确。&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;我不知道。我知道几个在协调理事会的人，他们都是忠实的贡献者和开发者，可能即使在编程层面也要比吉多多15年。因此，他们也都紧密参与其中，也十分自以为是，那么……&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;对于投资呢？&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）： 23:25&lt;/h3&gt;
+&lt;p&gt;吖，对于投资。我感觉还不错。而且我觉得吉多的多半喜好，我仍想参与其中，但他可能给人们施加他的意愿，因为那会让他回到原来的状态。我认为他可能想呆在一个更轻松的位置上。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;好吧，我很好奇，你喜欢这个有仁慈的独裁者称号的偶像吗？这个在编程语言起始阶段必不可少的，为了使它成为发展，运行，为了使其激进并取得突破性进展的偶像吗？&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;当然了。我认为一些事，主要的设计是归委员会的，不是超级英雄的。而在几天前，很多决策关于，语言如何工作？是否使用分号？怎样做，做什么？所有这些事情委员会很难决定，但Python至今已经超过25岁了。有如此多的人加入其中，我现在认为，他是个非常好的偶像。
+他们甚至打败或者应该替换掉仁慈的独裁者，我们会选谁做为现在的统治者？但是他们决定反对。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;好吧，如果仁慈的独裁者地位如此重要，我好奇一个社区需要多久呢？听起来像吉多自己决定一样，嘿嘿，那就太多了。这不是长久之计，我也不会长久这样做。但是如果不是他来决定，我好奇的是是不是他离开的最佳时间，我们转向一点更民主的做法？&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;是的，过去的不是吗？我认为可能是。对一个人来说很难将社区，技术，新闻趋势的脉搏完整连接起来，可以说，40年也难出这样一个人。可能会极不相同，所以必须有此切换。我不是真的知道它在哪里，但是我感觉在有其他人比仁慈的独裁者做的更多之后产生。更多的核心贡献者和开发者，你曾经喜欢的，好吧，我休假了，而且看着这些新发生的事情，他幸存下来了。诸如此类的话。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）：&lt;/h3&gt;
+&lt;p&gt;是的，就好像社区将会告诉你何时它准备好了。&lt;/p&gt;
+&lt;h3&gt;迈克尔·肯尼迪（Michael Kennedy）：&lt;/h3&gt;
+&lt;p&gt;正确，的确如此。&lt;/p&gt;
+&lt;h3&gt;萨隆·伊特巴莱克（Saron Yitbarek）： 25:48&lt;/h3&gt;
+&lt;p&gt;Python社区仍然要为自己存活下去，所以现在我们先抛开他们。迈克尔·肯尼迪是两期播客的嘉宾，会在此期间继续跟踪他们的进展。你可以查看Talk Pyton to Me 和 Python Bytes两期节目。&lt;/p&gt;
+&lt;p&gt;你听过梭伦的故事吗，他以古雅典的立法者而闻名？非常了不起的一个人。在公认梭伦为雅典民主的贡献之后，他进入到一种自愿放流的状态。那是因为他知道如果他一直在权利之下就有成为暴君的危险。我猜测吉多·范·罗素姆（Guido van Rossum）就是梭伦的翻版，给我们几十年的标准做法，有点像宪法那样。这个人建立了优秀的编程语言，在这一个开源社区可以做他们自己的编程语言。然后，他也可以给他们权利移交，在此他告诉他们，你们只能靠你们自己了。我不再是你们的独裁者。 &lt;/p&gt;
+&lt;p&gt;他确信做的是社区，而不是自己，并带着Python披风向前。在某种方式上，吉多·范·罗素姆（Guido van Rossum）的“权利移交”备忘录是对开源世界所有编程语言的宣言，因为任何编程语言发展自己的社区，最后的挑战只有社区能解决。 &lt;/p&gt;
+&lt;p&gt;在第三季的《代码英雄》，我们深潜到编程语言的世界。编程语言获得影响力因为它们用强大的新方法解决新问题，在这季接下来的时间，我们将揭露JavaScript，Perl，COBOL，Go甚至更多语言成为超级大国的秘密。再插一句，我们将知道BASIC的故事，作为每个人的第一编程语言教会了我们什么。 &lt;/p&gt;
+&lt;p&gt;如果你想了解更多Python或者你其中听到的某些东西，可以前往 &lt;em&gt;redhat.com/commandlineheroes&lt;/em&gt;。&lt;/p&gt;
+&lt;p&gt;最后，我是萨隆·伊特巴莱克（Saron Yitbarek）。继续编程吧！&lt;/p&gt;</content><category term="IT"></category><category term="Tech"></category><category term="Code"></category><category term="python"></category></entry><entry><title>机器学习笔记</title><link href="https://leelongcrazy.github.io/ji-qi-xue-xi-bi-ji.html" rel="alternate"></link><published>2020-02-16T17:00:00+08:00</published><updated>2020-02-16T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2020-02-16:/ji-qi-xue-xi-bi-ji.html</id><summary type="html">&lt;p&gt;我为什么要接触机器学习？&lt;/p&gt;</summary><content type="html">&lt;h2&gt;我为什么要接触机器学习？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;深入了解前沿的计算机科学技术&lt;/li&gt;
+&lt;li&gt;通过人工智能给自己赋能&lt;/li&gt;
+&lt;li&gt;开阔思维，计算机的思维深深影响我对世界的认知&lt;/li&gt;
+&lt;li&gt;我一直在想以后会不会有一个AI程序能把一个人所有的社交资料信息和他在网络上的痕迹阅读一遍，能够写出一本关于这个人自传。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;所以我开始在学台大的机器学习课程。&lt;a href=""&gt;摘录了几句关于这门课程的报道&lt;/a&gt;：&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;「AI界網紅」台大電機系李宏毅：踏入AI研究，其實是因為曾經迷惘 &lt;br&gt;
+李宏毅從2015年起在台大開機器學習、深度學習的相關課程，現在的上課內容已經完全不同，「AI 技術發展的速度非常非常快，是以『週』為單位在改變，」李宏毅形容。「如果有人問我，『今天想學深度學習，該學哪一種程式語言？』我基本上傾向不回答，因為你今天才剛學好一個語言，很快又會被取代。」&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="李宏毅" src="https://imgkr.cn-bj.ufileos.com/119ca3c5-3a24-4406-8ccd-0d880c90a1af.png"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;AI時代 培養心理素質比學寫程式更重要&lt;/strong&gt; &lt;br&gt;
+面對 AI 時代，想給中小學生的父母哪些建議？李宏毅沒有建議學 coding、或學好數學，而是加強「任何時候都用得上的心理素質」。他分析，在學校裡老師給的作業都是有解的，但做研究、訓練機器時，中間有太多沒法控制的因素，結果不可預期。「我們太常面對失敗了，能不能承受得了打擊？能不能夠承受得了失敗？」他發現，很多台大學生既無法接受結果不如預期，也無法接受自己的成績因此不夠好。&lt;/p&gt;
+&lt;p&gt;會特別強調心理素質，也和李宏毅自身經歷有關。很難想像，講話幽默風趣的李宏毅在大二時，曾經「非常沮喪、非常迷惘」。那時他因為電機系上許多必修課感到困惑，「不確定學這些要做什麼？一度覺得念不下去，幾乎要放棄人生，想轉系或休學算了，」他回憶。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;「能不能讓機器像人類一樣學習？我們始終離這目標非常遠，現在我只是站在門邊而已，但我絕對不會小看技術的發展，」&lt;/strong&gt; 李宏毅正設法帶領研究團隊，跟上最前瞻的技術。但他也不忘提醒學生終身學習的重要，&lt;strong&gt;「你現在所學的東西絕對不是終點，畢業後更要不斷努力去跟上時代。」&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;他認為，「&lt;strong&gt;未來教育最重要的是，不斷學習最前瞻的技術。&lt;/strong&gt;」今天每個人都認同的結論很有可能幾個月後就被推翻，於是他總是提醒學生，「&lt;strong&gt;今天學到的這些東西，並不是終點，因為技術隨時都在改變。&lt;/strong&gt;」&lt;/p&gt;
+&lt;p&gt;AI時代下要培養學生什麼能力？李宏毅教授只有一個不變的答案，就是&lt;a href=""&gt;不斷求新與學習的能力。&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="IT"></category><category term="Tech"></category><category term="AI"></category></entry><entry><title>Python一行代码建立HTTP服务</title><link href="https://leelongcrazy.github.io/pythonyi-xing-dai-ma-jian-li-httpfu-wu.html" rel="alternate"></link><published>2019-06-17T17:00:00+08:00</published><updated>2019-06-17T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2019-06-17:/pythonyi-xing-dai-ma-jian-li-httpfu-wu.html</id><summary type="html">&lt;p&gt;在Python语言中有一条可在本机快速建立http服务的命令，可实现与他人分享存在你电脑的上的文件&lt;/p&gt;</summary><content type="html">&lt;h4&gt;在Python语言中有一条可在本机快速建立http服务的命令，可实现与他人分享存在你电脑的上的文件。&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python -m SimpleHTTPServer
+&lt;span class="c1"&gt;# 默认开启8000端口，后面可跟数字指定端口&lt;/span&gt;
+Serving HTTP on &lt;span class="m"&gt;0&lt;/span&gt;.0.0.0 port &lt;span class="m"&gt;8000&lt;/span&gt; ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;浏览器打开，IP：Port即可实现该目录下的浏览，文件下载。&lt;/h4&gt;
+&lt;hr&gt;
+&lt;h4&gt;今天配置&lt;code&gt;.ssh/config&lt;/code&gt;文件时候还犯了一个可笑的错误。在config文件中配置管理密钥的格式如下：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Hostname github.com
+User git
+IdentityFile ~/.ssh/github
+
+Host aliyun
+Hostname xx.xx.xx.xx
+User xxx
+IdentityFile ~/.ssh/aliyun
+
+Host linux
+Hostname localhost
+Port &lt;span class="m"&gt;9999&lt;/span&gt;
+User root
+IdentityFile ~/.ssh/linux
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;我将&lt;code&gt;IdentityFile&lt;/code&gt;错误的打成了&lt;code&gt;IdentifyFile&lt;/code&gt;，结果一直爆下面的错误：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;.ssh/config: line &lt;span class="m"&gt;40&lt;/span&gt;: Bad configuration option: identifyfile
+.ssh/config: terminating, &lt;span class="m"&gt;1&lt;/span&gt; bad configuration options
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;在网上搜索了好多结果，最终看到一文章提示有可能将单词打错导致的，才得以修正过来。原来&lt;code&gt;identity&lt;/code&gt;是 &lt;em&gt;身份&lt;/em&gt;的意思， &lt;code&gt;identify&lt;/code&gt;是 &lt;em&gt;鉴定，辨认&lt;/em&gt;的意思。配置中需要的是 &lt;code&gt;身份文件&lt;/code&gt;，而不是我理解的&lt;code&gt;鉴定文件&lt;/code&gt;。&lt;/h4&gt;</content><category term="IT"></category><category term="Code"></category><category term="Python"></category></entry><entry><title>GitHub配置SSH</title><link href="https://leelongcrazy.github.io/githubpei-zhi-ssh.html" rel="alternate"></link><published>2019-05-30T17:00:00+08:00</published><updated>2019-05-30T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2019-05-30:/githubpei-zhi-ssh.html</id><summary type="html">&lt;p&gt;对github账号配置ssh密钥对实现远程推送&lt;/p&gt;</summary><content type="html">&lt;h2&gt;GitHub配置SSH&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h3&gt;在使用GitHub配置ssh的时候吃了好多苦头，整理了下完整的操作过程&lt;/h3&gt;
+&lt;h4&gt;必备工具，操作是在Linux系统环境下完成的&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Bash&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;li&gt;GitHub账号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;在使用Git工具之前需要对&lt;code&gt;git config&lt;/code&gt;进行配置&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ git config --global user.email &lt;span class="s2"&gt;&amp;quot;xxx@xxx.com&amp;quot;&lt;/span&gt;
+$ git config --global user.name &lt;span class="s2"&gt;&amp;quot;user-name&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;在&lt;code&gt;~/.ssh/&lt;/code&gt;目录下创建一对公私密钥&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ssh-keygen
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;执行完后会在当前目录下生成两个新的文件，将后缀名.pub的公约内容复制到Github个人账号-&amp;gt; settings -&amp;gt; SSH and GPG Kyes -&amp;gt; New SSH key文本框中，点击&lt;code&gt;Add SSH key&lt;/code&gt;添加密钥；并对添加的公钥命个别名。&lt;/h4&gt;
+&lt;h4&gt;在终端执行下面命令：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ &lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;ssh-agent -s&lt;span class="sb"&gt;`&lt;/span&gt; &lt;span class="c1"&gt;#注意是反单引号&lt;/span&gt;
+$ ssh-add 私钥文件名
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;测试：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ssh -T git@github.com 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;测试成功显示：&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ Hi user-name! You&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;接着push代码，发现仍需要输入用户名和密码，执行下面的命令， &lt;strong&gt;注意连接域名和用户名之间的符号是 &lt;code&gt;:&lt;/code&gt;,而不是 &lt;code&gt;/&lt;/code&gt;&lt;/strong&gt;，删除远程仓库重新建立连接&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ git remote rm origin
+$ git remote add origin git@github.com:user-name/repository-name.git 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;接下来远程推送的时候不再需要输入的用户名和密码。&lt;/h4&gt;</content><category term="IT"></category><category term="Tech"></category><category term="Git"></category></entry><entry><title>Git使用指南</title><link href="https://leelongcrazy.github.io/gitshi-yong-zhi-nan.html" rel="alternate"></link><published>2019-05-28T17:00:00+08:00</published><updated>2019-05-28T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2019-05-28:/gitshi-yong-zhi-nan.html</id><summary type="html">&lt;p&gt;github常用命令解析&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Git使用指南&lt;/h1&gt;
+&lt;h2&gt;看懂Git命令，搞懂版本控制&lt;/h2&gt;
+&lt;h3&gt;Git，版本控制必备手段，程序员黑客Linus Benedict Torvalds发明了这个有名的版本控制工具，他还是Linux内核的发明人和这个计划的合作者。&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;git init&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;这是创建一个新的项目要做的第一件事，在项目文件目录下创建一个&lt;code&gt;.git&lt;/code&gt;的存储库（隐藏文件夹），存储库（repo）是你对项目文件的修改按照时间顺序存储的集合，记录下所有更改的记录。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git config&lt;/code&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$:git config --global user.name &lt;span class="s2"&gt;&amp;quot;Your name&amp;quot;&lt;/span&gt;
+$:git config --global user.email &lt;span class="s2"&gt;&amp;quot;YourEmail@xxx.com&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;用来设置你提交时候需要设置的信息，只在Git安装之后设置一次就可以了。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git add filename&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;可以添加任何你想添加的文件到暂存区（staging area）。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git add .&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;可以将项目文件夹下所有文件放到暂存区，而不用一个一个添加。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git status&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;显示所有你已经放进暂存区的文件，和进行了修改需要放进暂存区的文件。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git reset filename&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;从暂存区删除指定文件&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git rm --cached filename&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;从暂存区删除指定文件，并将其设置为未跟踪。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git commit -m "Description of the commit"&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;从暂存区获取文件，并将它们提交到本地存储库。引号部分为修改文件的描述，注意一定要写的简单清晰，不可省略。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;touch .gitignore&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;创建一个名叫.gitignore的文件，可以通过文本编辑的方式写下存储库需要忽略的文件名或文件夹名，运行时候这些被忽略的文件不会显示。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git branch branchName&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;创建一个代码分支，就是前一个分支代码库的直接副本。如果不加分支名字可以列出当前代码库的分支情况，前面带有&lt;code&gt;*&lt;/code&gt;号的分支即为你当前所在分支。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git checkout "branchName"&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;检查你创建的分支，并在这个分支上工作，通俗的讲就是分支切换。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git merge branchName&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;这个命令把分支&lt;code&gt;branchName&lt;/code&gt;合并到当前分支。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git remote add origin https://github.com/UserName/projectName.git&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;添加远程存储库的位置。在此之前的操作都是在本地完成，此步需要登录GitHub账号创建一个远程存储库，然后把本地存储库的文件放上去。创建远程存储库之后会生成一个链接，可以放在上面的命令中。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git remote&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;和项目关联的远程存储库列表。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git push -u origin master&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;将本地存储库推送到远程存储库，第一次执行命令时直接这样写就好。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git push&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;在执行完初始推送后把代码刚到GitHub上。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git clone https://github.com/userName/projectName.git&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;将项目远程仓库的代码clone到你本地计算机。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git clone -b branchName https://github.com/userName/projectName.git&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;将远程仓库&lt;code&gt;branchName&lt;/code&gt;分支的代码clone到本地计算机。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git add -A &amp;amp;&amp;amp; git commit -a -m "description" &amp;amp;&amp;amp; git push --all&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;一行命令搞定代码提交。&lt;/h4&gt;
+&lt;h3&gt;&lt;code&gt;git pull&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;如果你和别人用一样的代码库，这个命令可以让你从远程存储库获取最新版本，更新你的本地版本，这样就可以在别人的基础上继续写代码了。&lt;/h4&gt;</content><category term="IT"></category><category term="Tech"></category><category term="Git"></category></entry><entry><title>VIM注释代码与反注释</title><link href="https://leelongcrazy.github.io/vimzhu-shi-dai-ma-yu-fan-zhu-shi.html" rel="alternate"></link><published>2018-02-28T17:00:00+08:00</published><updated>2018-02-28T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2018-02-28:/vimzhu-shi-dai-ma-yu-fan-zhu-shi.html</id><summary type="html">&lt;p&gt;VIM注释代码与反注释&lt;/p&gt;</summary><content type="html">&lt;h2&gt;VIM注释代码与反注释&lt;/h2&gt;
+&lt;h3&gt;方法一： 块选择模式注释&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;按键“V”进入 &lt;em&gt;visual模式&lt;/em&gt;，选中需要注释的代码行；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + V&lt;/code&gt;  进去 &lt;em&gt;块选择模式&lt;/em&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;I&lt;/code&gt;进入插入模式，输入注释符号 “#” 或者 “//”...；&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;立即按下&lt;code&gt;ESC&lt;/code&gt;键两次，即可注释完成&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;取消注释&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + V&lt;/code&gt;  进去 &lt;em&gt;块选择模式&lt;/em&gt;；&lt;/li&gt;
+&lt;li&gt;选择要删除的注释符号，按&lt;code&gt;d&lt;/code&gt;删除即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;方法二：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;批量注释&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;：开始行号，结束行号/s/^/注释符号/g&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;取消注释&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;：开始行号，结束行号/s/^注释符号//g&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[参考链接：https://blog.csdn.net/xiajun07061225/article/details/8488210]（https://blog.csdn.net/xiajun07061225/article/details/8488210）&lt;/p&gt;</content><category term="IT"></category><category term="Vim"></category><category term="Code"></category></entry></feed>

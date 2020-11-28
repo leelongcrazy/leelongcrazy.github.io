@@ -2,26 +2,29 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
         <title>GitHub配置SSH</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="LeeLongCrazy's Blog RSS Feed" />
+        <link rel="stylesheet" href="https://leelongcrazy.github.io/theme/css/main.css" />
+        <link href="https://leelongcrazy.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="leelongcrazy's blog Atom Feed" />
+        <meta name="description" content="对github账号配置ssh密钥对实现远程推送" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">LeeLongCrazy's Blog </a></h1>
+                <h1><a href="https://leelongcrazy.github.io/">leelongcrazy's blog</a></h1>
                 <nav><ul>
-                    <li><a href="/category/ai.html">AI</a></li>
-                    <li><a href="/category/article.html">Article</a></li>
-                    <li class="active"><a href="/category/git.html">Git</a></li>
-                    <li><a href="/category/tech.html">TECH</a></li>
+                    <li><a href="https://leelongcrazy.github.io/category/article.html">Article</a></li>
+                    <li><a href="https://leelongcrazy.github.io/category/books.html">Books</a></li>
+                    <li class="active"><a href="https://leelongcrazy.github.io/category/it.html">IT</a></li>
+                    <li><a href="https://leelongcrazy.github.io/category/movie.html">Movie</a></li>
+                    <li><a href="https://leelongcrazy.github.io/category/tech.html">Tech</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="/githubpei-zhi-ssh.html" rel="bookmark"
+        <a href="https://leelongcrazy.github.io/githubpei-zhi-ssh.html" rel="bookmark"
            title="Permalink to GitHub配置SSH">GitHub配置SSH</a></h1>
     </header>
 
@@ -32,10 +35,10 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
+                By                         <a class="url fn" href="https://leelongcrazy.github.io/author/leelongcrazy.html">leelongcrazy</a>
         </address>
-<p>In <a href="/category/git.html">Git</a>.</p>
-<p>tags: <a href="/tag/tech.html">Tech</a> <a href="/tag/git.html">Git</a> </p>
+<p>In <a href="https://leelongcrazy.github.io/category/it.html">IT</a>.</p>
+<p>tags: <a href="https://leelongcrazy.github.io/tag/tech.html">Tech</a> <a href="https://leelongcrazy.github.io/tag/git.html">Git</a> </p>
 </footer><!-- /.post-info -->      <h2>GitHub配置SSH</h2>
 <hr>
 <h3>在使用GitHub配置ssh的时候吃了好多苦头，整理了下完整的操作过程</h3>
@@ -46,37 +49,37 @@
 <li>GitHub账号</li>
 </ul>
 <h4>在使用Git工具之前需要对<code>git config</code>进行配置</h4>
-<div class="highlight"><pre><span></span>$ git config --global user.email <span class="s2">&quot;xxx@xxx.com&quot;</span>
+<div class="highlight"><pre><span></span><code>$ git config --global user.email <span class="s2">&quot;xxx@xxx.com&quot;</span>
 $ git config --global user.name <span class="s2">&quot;user-name&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4>在<code>~/.ssh/</code>目录下创建一对公私密钥</h4>
-<div class="highlight"><pre><span></span>$ ssh-keygen
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ ssh-keygen
+</code></pre></div>
 
 
 <h4>执行完后会在当前目录下生成两个新的文件，将后缀名.pub的公约内容复制到Github个人账号-&gt; settings -&gt; SSH and GPG Kyes -&gt; New SSH key文本框中，点击<code>Add SSH key</code>添加密钥；并对添加的公钥命个别名。</h4>
 <h4>在终端执行下面命令：</h4>
-<div class="highlight"><pre><span></span>$ <span class="nb">eval</span> <span class="sb">`</span>ssh-agent -s<span class="sb">`</span> <span class="c1">#注意是反单引号</span>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">eval</span> <span class="sb">`</span>ssh-agent -s<span class="sb">`</span> <span class="c1">#注意是反单引号</span>
 $ ssh-add 私钥文件名
-</pre></div>
+</code></pre></div>
 
 
 <h4>测试：</h4>
-<div class="highlight"><pre><span></span>$ ssh -T git@github.com 
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ ssh -T git@github.com 
+</code></pre></div>
 
 
 <h4>测试成功显示：</h4>
-<div class="highlight"><pre><span></span>$ Hi user-name! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ Hi user-name! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div>
 
 
 <h4>接着push代码，发现仍需要输入用户名和密码，执行下面的命令， <strong>注意连接域名和用户名之间的符号是 <code>:</code>,而不是 <code>/</code></strong>，删除远程仓库重新建立连接</h4>
-<div class="highlight"><pre><span></span>$ git remote rm origin
+<div class="highlight"><pre><span></span><code>$ git remote rm origin
 $ git remote add origin git@github.com:user-name/repository-name.git 
-</pre></div>
+</code></pre></div>
 
 
 <h4>接下来远程推送的时候不再需要输入的用户名和密码。</h4>
@@ -88,29 +91,26 @@ $ git remote add origin git@github.com:user-name/repository-name.git
                 <div class="blogroll">
                         <h2>links</h2>
                         <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="https://github.com/">Github</a></li>
+                            <li><a href="http://leelongcrazy.com">LeeLongCrazy</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+                            <li><a href="https://leelongcrazy.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
-                            <li><a href="https://github.com/leelongcrazy">My Github</a></li>
-                            <li><a href="https://twitter.com/leelongcrazy">My Twitter</a></li>
+                            <li><a href="https://github.com/leelongcrazy">Github</a></li>
+                            <li><a href="https://twitter.com/leelongcrazy">Twitter</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->
 
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
                 </address><!-- /#about -->
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
         </footer><!-- /#contentinfo -->
 
 </body>

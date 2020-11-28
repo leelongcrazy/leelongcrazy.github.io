@@ -1,24 +1,25 @@
 Title: AI简述
 Date: 2019-7-16 17:00
-Category: AI
-Tags: Tech,AI 
+Category: TECH
+Tags: Tech,AI,it
 Authors: leelongcrazy
 Summary: 阅读AI笔记部分内容摘录
 
 AI简述
 ===
-## 
+![image](./images/image2.png)
+
 ### 广义的人工智能是指“通过计算机实现人类思维的效果，能从环境中获取感知并行动“ 的现象。
 ### 我们大致可以把广义人工智能分为弱人工智能和强人工智能。
 **弱人工智能**
 ### 处理特定的问题，并不具有人类感知能力。弱人工智能包含了机器学习，机器学习又包括了深度学习。
-![](./images/image2.png)
+
 **强人工智能**
 ### 是具备与人类同等智慧或超越人类的人工智能，能表现正常人类所具有的所有智能行为。
 ## 
 ## 计算机科学与软件工程的明显区别
 ### 下图展示了两者的区别：
-![](./images/image6.png)
+![image](./images/image6.png)
 ## 
 ## 学习AI建议
 - *有科学家素养的工程师*
