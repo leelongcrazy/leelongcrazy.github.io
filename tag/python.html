@@ -96,6 +96,66 @@ $ deactivate  <span class="c1"># 退出虚拟环境</span>
 
 <span class="o">#</span> <span class="mi">8</span><span class="p">.</span><span class="k">delete</span> <span class="n">the</span> <span class="n">virtualenv</span>
 <span class="err">$</span> <span class="n">rmvirtualenv</span> <span class="n">virtualenv</span><span class="o">-</span><span class="n">name</span>
+</code></pre></div>
+
+<h2>增加pyenv管理</h2>
+<ul>
+<li>安装：</li>
+</ul>
+<p><code>bash
+    brew install pyenv
+    # or 
+    apt install pyenv</code></p>
+<ul>
+<li>使用</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pyenv <span class="m">1</span>.2.21
+Usage: pyenv &lt;command&gt; <span class="o">[</span>&lt;args&gt;<span class="o">]</span>
+
+常用命令:
+   --version   显示版本信息
+   activate    激活虚拟环境
+   commands    列出所有可用pyenv命令
+   deactivate   退出虚拟环境
+   <span class="nb">exec</span>        按选定python版本运行
+   global      设置或显示全局python版本
+   <span class="nb">help</span>        帮助信息
+   hooks       List hook scripts <span class="k">for</span> a given pyenv <span class="nb">command</span>
+   init        Configure the shell environment <span class="k">for</span> pyenv
+   install     Install a Python version using python-build
+   <span class="nb">local</span>       Set or show the <span class="nb">local</span> application-specific Python version<span class="o">(</span>s<span class="o">)</span>
+   prefix      Display prefix <span class="k">for</span> a Python version
+sed: RE error: illegal byte sequence
+   rehash      Rehash pyenv shims <span class="o">(</span>run this after installing executables<span class="o">)</span>
+   root        Display the root directory where versions and shims are kept
+   shell       Set or show the shell-specific Python version
+   shims       List existing pyenv shims
+   uninstall   Uninstall a specific Python version
+   version     Show the current Python version<span class="o">(</span>s<span class="o">)</span> and its origin
+   version-file   Detect the file that sets the current pyenv version
+   version-name   Show the current Python version
+   version-origin   Explain how the current Python version is <span class="nb">set</span>
+   versions    List all Python versions available to pyenv
+   virtualenv   Create a Python virtualenv using the pyenv-virtualenv plugin
+   virtualenv-delete   Uninstall a specific Python virtualenv
+   virtualenv-init   Configure the shell environment <span class="k">for</span> pyenv-virtualenv
+   virtualenv-prefix   Display real_prefix <span class="k">for</span> a Python virtualenv version
+   virtualenvs   List all Python virtualenvs found in <span class="sb">`</span><span class="nv">$PYENV_ROOT</span>/versions/*<span class="sb">`</span>.
+   whence      List all Python versions that contain the given executable
+   which       Display the full path to an executable
+
+
+<span class="c1">## 示例：</span>
+<span class="c1"># 1.创建虚拟环境</span>
+pyenv virtualenv <span class="m">3</span>.8.6 virtualenv-name
+<span class="c1"># 2. 激活虚拟环境</span>
+pyenv activate virtualenv-name
+<span class="c1"># 3. 列出所有虚拟环境</span>
+pyenv virtualenvs
+<span class="c1"># 4. 删除虚拟环境</span>
+pyenv virtualenv-delete virtualenv-name
+<span class="c1"># 5. 推出虚拟环境</span>
+pyenv deactive
 </code></pre></div>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
@@ -170,10 +230,7 @@ $ deactivate  <span class="c1"># 退出虚拟环境</span>
                 <address id="about" class="vcard body">
                 &copy; 2020 leelongcrazy
                 &middot; Powered by
-                <a href="http://docs.getpelican.com/" target="_blank">Pelican</a> generator                </address><!-- /#about -->
-
-                <!-- <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p> -->
-        </footer><!-- /#contentinfo -->
+                <a href="http://docs.getpelican.com/" target="_blank">Pelican</a> generator        </footer><!-- /#contentinfo -->
 
 </body>
 </html>

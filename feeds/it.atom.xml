@@ -162,6 +162,66 @@ $ deactivate  &lt;span class="c1"&gt;# 退出虚拟环境&lt;/span&gt;
 
 &lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;
 &lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;rmvirtualenv&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;增加pyenv管理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;安装：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;bash
+    brew install pyenv
+    # or 
+    apt install pyenv&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pyenv &lt;span class="m"&gt;1&lt;/span&gt;.2.21
+Usage: pyenv &amp;lt;command&amp;gt; &lt;span class="o"&gt;[&lt;/span&gt;&amp;lt;args&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt;
+
+常用命令:
+   --version   显示版本信息
+   activate    激活虚拟环境
+   commands    列出所有可用pyenv命令
+   deactivate   退出虚拟环境
+   &lt;span class="nb"&gt;exec&lt;/span&gt;        按选定python版本运行
+   global      设置或显示全局python版本
+   &lt;span class="nb"&gt;help&lt;/span&gt;        帮助信息
+   hooks       List hook scripts &lt;span class="k"&gt;for&lt;/span&gt; a given pyenv &lt;span class="nb"&gt;command&lt;/span&gt;
+   init        Configure the shell environment &lt;span class="k"&gt;for&lt;/span&gt; pyenv
+   install     Install a Python version using python-build
+   &lt;span class="nb"&gt;local&lt;/span&gt;       Set or show the &lt;span class="nb"&gt;local&lt;/span&gt; application-specific Python version&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class="o"&gt;)&lt;/span&gt;
+   prefix      Display prefix &lt;span class="k"&gt;for&lt;/span&gt; a Python version
+sed: RE error: illegal byte sequence
+   rehash      Rehash pyenv shims &lt;span class="o"&gt;(&lt;/span&gt;run this after installing executables&lt;span class="o"&gt;)&lt;/span&gt;
+   root        Display the root directory where versions and shims are kept
+   shell       Set or show the shell-specific Python version
+   shims       List existing pyenv shims
+   uninstall   Uninstall a specific Python version
+   version     Show the current Python version&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class="o"&gt;)&lt;/span&gt; and its origin
+   version-file   Detect the file that sets the current pyenv version
+   version-name   Show the current Python version
+   version-origin   Explain how the current Python version is &lt;span class="nb"&gt;set&lt;/span&gt;
+   versions    List all Python versions available to pyenv
+   virtualenv   Create a Python virtualenv using the pyenv-virtualenv plugin
+   virtualenv-delete   Uninstall a specific Python virtualenv
+   virtualenv-init   Configure the shell environment &lt;span class="k"&gt;for&lt;/span&gt; pyenv-virtualenv
+   virtualenv-prefix   Display real_prefix &lt;span class="k"&gt;for&lt;/span&gt; a Python virtualenv version
+   virtualenvs   List all Python virtualenvs found in &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nv"&gt;$PYENV_ROOT&lt;/span&gt;/versions/*&lt;span class="sb"&gt;`&lt;/span&gt;.
+   whence      List all Python versions that contain the given executable
+   which       Display the full path to an executable
+
+
+&lt;span class="c1"&gt;## 示例：&lt;/span&gt;
+&lt;span class="c1"&gt;# 1.创建虚拟环境&lt;/span&gt;
+pyenv virtualenv &lt;span class="m"&gt;3&lt;/span&gt;.8.6 virtualenv-name
+&lt;span class="c1"&gt;# 2. 激活虚拟环境&lt;/span&gt;
+pyenv activate virtualenv-name
+&lt;span class="c1"&gt;# 3. 列出所有虚拟环境&lt;/span&gt;
+pyenv virtualenvs
+&lt;span class="c1"&gt;# 4. 删除虚拟环境&lt;/span&gt;
+pyenv virtualenv-delete virtualenv-name
+&lt;span class="c1"&gt;# 5. 推出虚拟环境&lt;/span&gt;
+pyenv deactive
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="IT"></category><category term="Python"></category><category term="Code"></category></entry><entry><title>oh my zsh &amp;&amp; git</title><link href="https://leelongcrazy.github.io/oh-my-zsh-git.html" rel="alternate"></link><published>2020-05-28T17:00:00+08:00</published><updated>2020-05-28T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2020-05-28:/oh-my-zsh-git.html</id><summary type="html">&lt;p&gt;oh my zsh下git命令别名&lt;/p&gt;</summary><content type="html">&lt;h2&gt;oh my zsh --- git.md&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;git
 &lt;span class="nv"&gt;ga&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git add&amp;#39;&lt;/span&gt;
