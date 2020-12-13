@@ -53,11 +53,9 @@
 $ git config --global user.name <span class="s2">&quot;user-name&quot;</span>
 </code></pre></div>
 
-
 <h4>在<code>~/.ssh/</code>目录下创建一对公私密钥</h4>
 <div class="highlight"><pre><span></span><code>$ ssh-keygen
 </code></pre></div>
-
 
 <h4>执行完后会在当前目录下生成两个新的文件，将后缀名.pub的公约内容复制到Github个人账号-&gt; settings -&gt; SSH and GPG Kyes -&gt; New SSH key文本框中，点击<code>Add SSH key</code>添加密钥；并对添加的公钥命个别名。</h4>
 <h4>在终端执行下面命令：</h4>
@@ -65,22 +63,18 @@ $ git config --global user.name <span class="s2">&quot;user-name&quot;</span>
 $ ssh-add 私钥文件名
 </code></pre></div>
 
-
 <h4>测试：</h4>
 <div class="highlight"><pre><span></span><code>$ ssh -T git@github.com 
 </code></pre></div>
-
 
 <h4>测试成功显示：</h4>
 <div class="highlight"><pre><span></span><code>$ Hi user-name! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
 </code></pre></div>
 
-
 <h4>接着push代码，发现仍需要输入用户名和密码，执行下面的命令， <strong>注意连接域名和用户名之间的符号是 <code>:</code>,而不是 <code>/</code></strong>，删除远程仓库重新建立连接</h4>
 <div class="highlight"><pre><span></span><code>$ git remote rm origin
 $ git remote add origin git@github.com:user-name/repository-name.git 
 </code></pre></div>
-
 
 <h4>接下来远程推送的时候不再需要输入的用户名和密码。</h4>
     </div><!-- /.entry-content -->
@@ -107,10 +101,11 @@ $ git remote add origin git@github.com:user-name/repository-name.git
 
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
-                </address><!-- /#about -->
+                &copy; 2020 leelongcrazy
+                &middot; Powered by
+                <a href="http://docs.getpelican.com/" target="_blank">Pelican</a> generator                </address><!-- /#about -->
 
-                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+                <!-- <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p> -->
         </footer><!-- /#contentinfo -->
 
 </body>

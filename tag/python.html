@@ -41,14 +41,12 @@
 <div class="highlight"><pre><span></span><code>$ pip3 install virtualenv
 </code></pre></div>
 
-
 <h5>创建虚拟环境，激活，退出：</h5>
 <div class="highlight"><pre><span></span><code>$ virtualenv test_env
 $ <span class="nb">cd</span> test_env  <span class="c1"># 进入虚拟环境目录</span>
 $ <span class="nb">source</span> bin/activate <span class="c1"># 激活虚拟环境</span>
 $ deactivate  <span class="c1"># 退出虚拟环境</span>
 </code></pre></div>
-
 
 <h3>安装virtualenvwrapper</h3>
 <h5>Virtaulenvwrapper是virtualenv的扩展包，可以更方便地新增，删除，复制，切换虚拟环境。</h5>
@@ -63,18 +61,15 @@ $ deactivate  <span class="c1"># 退出虚拟环境</span>
 <span class="err">$ vi .zshrc</span>
 </code></pre></div>
 
-
 <h5>在末尾添加下面的内容</h5>
 <div class="highlight"><pre><span></span><code><span class="err">export WORKON_HOME=&quot;~/.virtualenvs&quot;</span>
 <span class="err">export VIRTUALENVWRAPPER_PYTHON=&quot;/usr/local/bin/python3&quot;</span>
 <span class="err">source /usr/local/bin/virtualenvwrapper.sh</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="err"># 刷新shell</span>
 <span class="err">$ source .zshrc</span>
 </code></pre></div>
-
 
 <h5>virtualenvwrapper常用命令</h5>
 <div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="mi">1</span><span class="p">.</span><span class="n">list</span> <span class="n">the</span> <span class="n">virtualenv</span> <span class="n">environments</span>
@@ -173,10 +168,11 @@ $ deactivate  <span class="c1"># 退出虚拟环境</span>
 
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
-                </address><!-- /#about -->
+                &copy; 2020 leelongcrazy
+                &middot; Powered by
+                <a href="http://docs.getpelican.com/" target="_blank">Pelican</a> generator                </address><!-- /#about -->
 
-                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+                <!-- <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p> -->
         </footer><!-- /#contentinfo -->
 
 </body>

@@ -49,7 +49,6 @@ git log -p master..origin/master
 git merge origin/master
 </code></pre></div>
 
-
 <p>=&gt; </p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 通过建立临时分支实现更新</span>
 git fetch origin master:tmp <span class="c1"># 从远程的origin的master主分支下载最新的版本到tmp分支上</span>
@@ -57,7 +56,6 @@ git diff tmp <span class="c1"># 比较本地的master分支和tmp分支的差别
 git merge tmp <span class="c1"># 合并到本地分支</span>
 git branch -D tmp <span class="c1"># 删除本地临时分支</span>
 </code></pre></div>
-
 
 <ol>
 <li>不推荐使用git pull 进行代码更新操作，相当于从远程代码获取更新并合并到本地，容易发生覆盖本地文件的错误。</li>
@@ -88,10 +86,11 @@ git branch -D tmp <span class="c1"># 删除本地临时分支</span>
 
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
-                </address><!-- /#about -->
+                &copy; 2020 leelongcrazy
+                &middot; Powered by
+                <a href="http://docs.getpelican.com/" target="_blank">Pelican</a> generator                </address><!-- /#about -->
 
-                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+                <!-- <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p> -->
         </footer><!-- /#contentinfo -->
 
 </body>

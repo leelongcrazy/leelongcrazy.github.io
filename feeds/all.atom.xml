@@ -19,7 +19,6 @@
 /usr/bin/zsh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;ol&gt;
 &lt;li&gt;如果没有显示&lt;code&gt;/bin/zsh&lt;/code&gt;，则执行下面安装命令&lt;/li&gt;
 &lt;/ol&gt;
@@ -29,13 +28,11 @@ sudo apt-get install zsh
 brew install zsh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;ol&gt;
 &lt;li&gt;安装完成后切换SHELL&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo chsh -s /bin/zsh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;ol&gt;
 &lt;li&gt;重启操作系统生效&lt;/li&gt;
@@ -48,7 +45,6 @@ sh -c &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;
 sh -c &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;7.安装完成后可编辑&lt;code&gt;.zshrc&lt;/code&gt;进行自定义设置，另外注意，原来&lt;code&gt;.bashrc&lt;/code&gt;下的配置在&lt;code&gt;zsh&lt;/code&gt;下仍然可以使用，&lt;code&gt;zsh&lt;/code&gt;是完全兼容&lt;code&gt;bash&lt;/code&gt;的。&lt;/p&gt;</content><category term="IT"></category><category term="Bash"></category><category term="zsh"></category></entry><entry><title>从远程仓库更新到本地</title><link href="https://leelongcrazy.github.io/cong-yuan-cheng-cang-ku-geng-xin-dao-ben-di.html" rel="alternate"></link><published>2020-08-05T15:00:00+08:00</published><updated>2020-08-05T15:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2020-08-05:/cong-yuan-cheng-cang-ku-geng-xin-dao-ben-di.html</id><summary type="html">&lt;p&gt;从远程仓库更新到本地&lt;/p&gt;</summary><content type="html">&lt;h2&gt;从远程仓库更新到本地&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;使用git fetch更新，相当于是从远程获取最新版本到本地，不会自动merge，可以先查看更新情况，再决定是否更新。有以下两种方式进行更新：&lt;/li&gt;
@@ -59,7 +55,6 @@ git log -p master..origin/master
 git merge origin/master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;=&amp;gt; &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# 通过建立临时分支实现更新&lt;/span&gt;
 git fetch origin master:tmp &lt;span class="c1"&gt;# 从远程的origin的master主分支下载最新的版本到tmp分支上&lt;/span&gt;
@@ -67,7 +62,6 @@ git diff tmp &lt;span class="c1"&gt;# 比较本地的master分支和tmp分支的
 git merge tmp &lt;span class="c1"&gt;# 合并到本地分支&lt;/span&gt;
 git branch -D tmp &lt;span class="c1"&gt;# 删除本地临时分支&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;ol&gt;
 &lt;li&gt;不推荐使用git pull 进行代码更新操作，相当于从远程代码获取更新并合并到本地，容易发生覆盖本地文件的错误。&lt;/li&gt;
@@ -81,7 +75,6 @@ git branch -D tmp &lt;span class="c1"&gt;# 删除本地临时分支&lt;/span&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;brew --repo
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;ol&gt;
 &lt;li&gt;查看brew目前所使用的源&lt;/li&gt;
 &lt;/ol&gt;
@@ -89,7 +82,6 @@ git branch -D tmp &lt;span class="c1"&gt;# 删除本地临时分支&lt;/span&gt;
 git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt; homebrew/core&amp;quot;&lt;/span&gt; remote get-url origin
 git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt; homebrew/cask)&amp;quot;&lt;/span&gt; remote get-url origin
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;ol&gt;
 &lt;li&gt;更换为清华源&lt;/li&gt;
@@ -99,7 +91,6 @@ git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt
 git -C &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --repo homebrew/cask&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git
 brew update &lt;span class="c1"&gt;# 执行更新&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;ol&gt;
 &lt;li&gt;恢复默认源&lt;/li&gt;
@@ -116,14 +107,12 @@ brew update &lt;span class="c1"&gt;# 执行更新&lt;/span&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ pip3 install virtualenv
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h5&gt;创建虚拟环境，激活，退出：&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ virtualenv test_env
 $ &lt;span class="nb"&gt;cd&lt;/span&gt; test_env  &lt;span class="c1"&gt;# 进入虚拟环境目录&lt;/span&gt;
 $ &lt;span class="nb"&gt;source&lt;/span&gt; bin/activate &lt;span class="c1"&gt;# 激活虚拟环境&lt;/span&gt;
 $ deactivate  &lt;span class="c1"&gt;# 退出虚拟环境&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;h3&gt;安装virtualenvwrapper&lt;/h3&gt;
 &lt;h5&gt;Virtaulenvwrapper是virtualenv的扩展包，可以更方便地新增，删除，复制，切换虚拟环境。&lt;/h5&gt;
@@ -138,18 +127,15 @@ $ deactivate  &lt;span class="c1"&gt;# 退出虚拟环境&lt;/span&gt;
 &lt;span class="err"&gt;$ vi .zshrc&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h5&gt;在末尾添加下面的内容&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;export WORKON_HOME=&amp;quot;~/.virtualenvs&amp;quot;&lt;/span&gt;
 &lt;span class="err"&gt;export VIRTUALENVWRAPPER_PYTHON=&amp;quot;/usr/local/bin/python3&amp;quot;&lt;/span&gt;
 &lt;span class="err"&gt;source /usr/local/bin/virtualenvwrapper.sh&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;# 刷新shell&lt;/span&gt;
 &lt;span class="err"&gt;$ source .zshrc&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;h5&gt;virtualenvwrapper常用命令&lt;/h5&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;virtualenv&lt;/span&gt; &lt;span class="n"&gt;environments&lt;/span&gt;
@@ -724,7 +710,6 @@ git-svn-dcommit-push&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&
 Serving HTTP on &lt;span class="m"&gt;0&lt;/span&gt;.0.0.0 port &lt;span class="m"&gt;8000&lt;/span&gt; ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h4&gt;浏览器打开，IP：Port即可实现该目录下的浏览，文件下载。&lt;/h4&gt;
 &lt;hr&gt;
 &lt;h4&gt;今天配置&lt;code&gt;.ssh/config&lt;/code&gt;文件时候还犯了一个可笑的错误。在config文件中配置管理密钥的格式如下：&lt;/h4&gt;
@@ -744,12 +729,10 @@ User root
 IdentityFile ~/.ssh/linux
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h4&gt;我将&lt;code&gt;IdentityFile&lt;/code&gt;错误的打成了&lt;code&gt;IdentifyFile&lt;/code&gt;，结果一直爆下面的错误：&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;.ssh/config: line &lt;span class="m"&gt;40&lt;/span&gt;: Bad configuration option: identifyfile
 .ssh/config: terminating, &lt;span class="m"&gt;1&lt;/span&gt; bad configuration options
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;h4&gt;在网上搜索了好多结果，最终看到一文章提示有可能将单词打错导致的，才得以修正过来。原来&lt;code&gt;identity&lt;/code&gt;是 &lt;em&gt;身份&lt;/em&gt;的意思， &lt;code&gt;identify&lt;/code&gt;是 &lt;em&gt;鉴定，辨认&lt;/em&gt;的意思。配置中需要的是 &lt;code&gt;身份文件&lt;/code&gt;，而不是我理解的&lt;code&gt;鉴定文件&lt;/code&gt;。&lt;/h4&gt;</content><category term="IT"></category><category term="Code"></category><category term="Python"></category></entry><entry><title>俞军的PM12条方法论</title><link href="https://leelongcrazy.github.io/yu-jun-de-pm12tiao-fang-fa-lun.html" rel="alternate"></link><published>2019-06-11T18:00:00+08:00</published><updated>2019-06-11T18:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2019-06-11:/yu-jun-de-pm12tiao-fang-fa-lun.html</id><summary type="html">&lt;p&gt;滴滴俞军的PM12条方法论，收藏学习&lt;/p&gt;</summary><content type="html">&lt;h1&gt;俞军的PM12条方法论&lt;/h1&gt;
 &lt;h4&gt;俞军，百度贴吧之父，近期从滴滴离职，是滴滴产品的严格把关者。&lt;/h4&gt;
@@ -780,11 +763,9 @@ IdentityFile ~/.ssh/linux
 $ git config --global user.name &lt;span class="s2"&gt;&amp;quot;user-name&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h4&gt;在&lt;code&gt;~/.ssh/&lt;/code&gt;目录下创建一对公私密钥&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ssh-keygen
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;h4&gt;执行完后会在当前目录下生成两个新的文件，将后缀名.pub的公约内容复制到Github个人账号-&amp;gt; settings -&amp;gt; SSH and GPG Kyes -&amp;gt; New SSH key文本框中，点击&lt;code&gt;Add SSH key&lt;/code&gt;添加密钥；并对添加的公钥命个别名。&lt;/h4&gt;
 &lt;h4&gt;在终端执行下面命令：&lt;/h4&gt;
@@ -792,22 +773,18 @@ $ git config --global user.name &lt;span class="s2"&gt;&amp;quot;user-name&amp;q
 $ ssh-add 私钥文件名
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h4&gt;测试：&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ssh -T git@github.com 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;h4&gt;测试成功显示：&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ Hi user-name! You&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;ve successfully authenticated, but GitHub does not provide shell access.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h4&gt;接着push代码，发现仍需要输入用户名和密码，执行下面的命令， &lt;strong&gt;注意连接域名和用户名之间的符号是 &lt;code&gt;:&lt;/code&gt;,而不是 &lt;code&gt;/&lt;/code&gt;&lt;/strong&gt;，删除远程仓库重新建立连接&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ git remote rm origin
 $ git remote add origin git@github.com:user-name/repository-name.git 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;h4&gt;接下来远程推送的时候不再需要输入的用户名和密码。&lt;/h4&gt;</content><category term="IT"></category><category term="Tech"></category><category term="Git"></category></entry><entry><title>电影《绿皮书》观后感</title><link href="https://leelongcrazy.github.io/dian-ying-lu-pi-shu-guan-hou-gan.html" rel="alternate"></link><published>2019-05-28T17:00:00+08:00</published><updated>2019-05-28T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2019-05-28:/dian-ying-lu-pi-shu-guan-hou-gan.html</id><summary type="html">&lt;p&gt;观影后感&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Green Book&lt;/h1&gt;
 &lt;h2&gt;电影《绿皮书》观后感&lt;/h2&gt;
@@ -831,7 +808,6 @@ $ git remote add origin git@github.com:user-name/repository-name.git
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$:git config --global user.name &lt;span class="s2"&gt;&amp;quot;Your name&amp;quot;&lt;/span&gt;
 $:git config --global user.email &lt;span class="s2"&gt;&amp;quot;YourEmail@xxx.com&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;h4&gt;用来设置你提交时候需要设置的信息，只在Git安装之后设置一次就可以了。&lt;/h4&gt;
 &lt;h3&gt;&lt;code&gt;git add filename&lt;/code&gt;&lt;/h3&gt;

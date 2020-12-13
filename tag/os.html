@@ -41,7 +41,6 @@
 <div class="highlight"><pre><span></span><code>brew --repo
 </code></pre></div>
 
-
 <ol>
 <li>查看brew目前所使用的源</li>
 </ol>
@@ -49,7 +48,6 @@
 git -C <span class="s2">&quot;</span><span class="k">$(</span>brew --repo<span class="k">)</span><span class="s2"> homebrew/core&quot;</span> remote get-url origin
 git -C <span class="s2">&quot;</span><span class="k">$(</span>brew --repo<span class="k">)</span><span class="s2"> homebrew/cask)&quot;</span> remote get-url origin
 </code></pre></div>
-
 
 <ol>
 <li>更换为清华源</li>
@@ -59,7 +57,6 @@ git -C <span class="s2">&quot;</span><span class="k">$(</span>brew --repo<span c
 git -C <span class="s2">&quot;</span><span class="k">$(</span>brew --repo homebrew/cask<span class="k">)</span><span class="s2">&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git
 brew update <span class="c1"># 执行更新</span>
 </code></pre></div>
-
 
 <ol>
 <li>恢复默认源</li>
@@ -90,10 +87,11 @@ brew update <span class="c1"># 执行更新</span>
 
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
-                </address><!-- /#about -->
+                &copy; 2020 leelongcrazy
+                &middot; Powered by
+                <a href="http://docs.getpelican.com/" target="_blank">Pelican</a> generator                </address><!-- /#about -->
 
-                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+                <!-- <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p> -->
         </footer><!-- /#contentinfo -->
 
 </body>
