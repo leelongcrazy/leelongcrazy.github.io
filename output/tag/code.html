@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>leelongcrazy's blog - Code</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">leelongcrazy's blog</a></h1>
+                <nav><ul>
+                    <li><a href="/category/article.html">Article</a></li>
+                    <li><a href="/category/books.html">Books</a></li>
+                    <li><a href="/category/it.html">IT</a></li>
+                    <li><a href="/category/movie.html">Movie</a></li>
+                    <li><a href="/category/tech.html">Tech</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/Install-virtualenv-on-Mac.html">在Mac上安装python虚拟环境管理工具</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2020-05-29T17:00:00+08:00">
+                Published: Fri 29 May 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
+        </address>
+<p>In <a href="/category/it.html">IT</a>.</p>
+<p>tags: <a href="/tag/python.html">Python</a> <a href="/tag/code.html">Code</a> </p>
+</footer><!-- /.post-info --><h2>在Mac上安装python虚拟环境管理工具</h2>
+<h4>在Mac上安装完homebrew以后，测试下工具就安装python3，安装完以后发现和系统中的一些工具默认以python2执行的冲突了，执行命令的时候会报出多行错误信息，害得我一度认为我把Mac系统给玩坏了，后来重新安装了一遍python2 的pip工具，问题解决了。</h4>
+<p><a href="https://www.cnblogs.com/kaid/p/8227635.html" title="在Mac上搭建Python虚拟环境">避免以后安装的库文件和Mac系统环境的依赖库重叠，最好的办法莫过于多创建虚拟环境。</a></p>
+<h3>安装virtualenv</h3>
+<h5>安装执行：</h5>
+<div class="highlight"><pre><span></span><code>$ pip3 install virtualenv
+</code></pre></div>
+
+<h5>创建虚拟环境，激活，退出：</h5>
+<div class="highlight"><pre><span></span><code>$ virtualenv test_env
+$ <span class="nb">cd</span> test_env  <span class="c1"># 进入虚拟环境目录</span>
+$ <span class="nb">source</span> bin/activate <span class="c1"># 激活虚拟环境</span>
+$ deactivate  <span class="c1"># 退出虚拟环境</span>
+</code></pre></div>
+
+<h3>安装virtualenvwrapper</h3>
+<h5>Virtaulenvwrapper是virtualenv的扩展包，可以更方便地新增，删除，复制，切换虚拟环境。</h5>
+<div class="highlight"><pre><span></span><code><span class="err"># 安装</span>
+<span class="err">$ pip3 install virtualenvwrapper</span>
+<span class="err"># 创建一个隐藏文件夹用以存放虚拟环境</span>
+<span class="err">$ mkdir .virtualenvs</span>
+<span class="err"># 记住下面两个命令显示的路径</span>
+<span class="err">$ which virtualenvwrapper.sh</span>
+<span class="err">$ which python3</span>
+<span class="err"># 编辑zsh配置文件</span>
+<span class="err">$ vi .zshrc</span>
+</code></pre></div>
+
+<h5>在末尾添加下面的内容</h5>
+<div class="highlight"><pre><span></span><code><span class="err">export WORKON_HOME=&quot;~/.virtualenvs&quot;</span>
+<span class="err">export VIRTUALENVWRAPPER_PYTHON=&quot;/usr/local/bin/python3&quot;</span>
+<span class="err">source /usr/local/bin/virtualenvwrapper.sh</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="err"># 刷新shell</span>
+<span class="err">$ source .zshrc</span>
+</code></pre></div>
+
+<h5>virtualenvwrapper常用命令</h5>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="mi">1</span><span class="p">.</span><span class="n">list</span> <span class="n">the</span> <span class="n">virtualenv</span> <span class="n">environments</span>
+<span class="err">$</span> <span class="n">lsvirtualenv</span> <span class="o">-</span><span class="n">b</span>
+
+<span class="o">#</span> <span class="mi">2</span><span class="p">.</span><span class="n">change</span> <span class="n">virtualenv</span>
+<span class="err">$</span> <span class="n">workon</span> <span class="n">virtualenv</span><span class="o">-</span><span class="n">name</span>
+
+<span class="o">#</span> <span class="mi">3</span><span class="p">.</span><span class="n">list</span> <span class="n">the</span> <span class="n">installed</span> <span class="n">packages</span>
+<span class="o">#</span> <span class="n">lssitepackages</span>
+
+<span class="o">#</span> <span class="mi">4</span><span class="p">.</span><span class="n">enter</span> <span class="n">the</span> <span class="k">current</span> <span class="n">virtualenv</span><span class="s1">&#39;s path</span>
+<span class="s1">$ cdvirtualenv</span>
+
+<span class="s1"># 5.enter the current virtualenv&#39;</span><span class="n">s</span> <span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span>
+<span class="err">$</span> <span class="n">cdsitepackages</span>
+
+<span class="o">#</span> <span class="mi">6</span><span class="p">.</span><span class="k">copy</span> <span class="n">virtualenv</span>
+<span class="err">$</span> <span class="n">cpvirtualenv</span> <span class="n">env1</span> <span class="n">env2</span>
+<span class="n">Copying</span> <span class="n">env1</span> <span class="k">as</span> <span class="n">env2</span><span class="p">...</span>
+
+<span class="o">#</span> <span class="mi">7</span><span class="p">.</span><span class="n">exit</span> <span class="n">the</span> <span class="n">virtualenv</span>
+<span class="err">$</span> <span class="n">deactivate</span>
+
+<span class="o">#</span> <span class="mi">8</span><span class="p">.</span><span class="k">delete</span> <span class="n">the</span> <span class="n">virtualenv</span>
+<span class="err">$</span> <span class="n">rmvirtualenv</span> <span class="n">virtualenv</span><span class="o">-</span><span class="n">name</span>
+</code></pre></div>
+
+<h2>增加pyenv管理</h2>
+<ul>
+<li>安装：</li>
+</ul>
+<p><code>bash
+    brew install pyenv
+    # or 
+    apt install pyenv</code></p>
+<ul>
+<li>使用</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pyenv <span class="m">1</span>.2.21
+Usage: pyenv &lt;command&gt; <span class="o">[</span>&lt;args&gt;<span class="o">]</span>
+
+常用命令:
+   --version   显示版本信息
+   activate    激活虚拟环境
+   commands    列出所有可用pyenv命令
+   deactivate   退出虚拟环境
+   <span class="nb">exec</span>        按选定python版本运行
+   global      设置或显示全局python版本
+   <span class="nb">help</span>        帮助信息
+   hooks       List hook scripts <span class="k">for</span> a given pyenv <span class="nb">command</span>
+   init        Configure the shell environment <span class="k">for</span> pyenv
+   install     Install a Python version using python-build
+   <span class="nb">local</span>       Set or show the <span class="nb">local</span> application-specific Python version<span class="o">(</span>s<span class="o">)</span>
+   prefix      Display prefix <span class="k">for</span> a Python version
+sed: RE error: illegal byte sequence
+   rehash      Rehash pyenv shims <span class="o">(</span>run this after installing executables<span class="o">)</span>
+   root        Display the root directory where versions and shims are kept
+   shell       Set or show the shell-specific Python version
+   shims       List existing pyenv shims
+   uninstall   Uninstall a specific Python version
+   version     Show the current Python version<span class="o">(</span>s<span class="o">)</span> and its origin
+   version-file   Detect the file that sets the current pyenv version
+   version-name   Show the current Python version
+   version-origin   Explain how the current Python version is <span class="nb">set</span>
+   versions    List all Python versions available to pyenv
+   virtualenv   Create a Python virtualenv using the pyenv-virtualenv plugin
+   virtualenv-delete   Uninstall a specific Python virtualenv
+   virtualenv-init   Configure the shell environment <span class="k">for</span> pyenv-virtualenv
+   virtualenv-prefix   Display real_prefix <span class="k">for</span> a Python virtualenv version
+   virtualenvs   List all Python virtualenvs found in <span class="sb">`</span><span class="nv">$PYENV_ROOT</span>/versions/*<span class="sb">`</span>.
+   whence      List all Python versions that contain the given executable
+   which       Display the full path to an executable
+
+
+<span class="c1">## 示例：</span>
+<span class="c1"># 1.创建虚拟环境</span>
+pyenv virtualenv <span class="m">3</span>.8.6 virtualenv-name
+<span class="c1"># 2. 激活虚拟环境</span>
+pyenv activate virtualenv-name
+<span class="c1"># 3. 列出所有虚拟环境</span>
+pyenv virtualenvs
+<span class="c1"># 4. 删除虚拟环境</span>
+pyenv virtualenv-delete virtualenv-name
+<span class="c1"># 5. 推出虚拟环境</span>
+pyenv deactive
+</code></pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/pythonde-gu-shi-pythons-tale.html" rel="bookmark"
+                           title="Permalink to Python的故事 （Python‘s Tale)">Python的故事 （Python‘s Tale)</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-02-28T17:00:00+08:00">
+                Published: Fri 28 February 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
+        </address>
+<p>In <a href="/category/it.html">IT</a>.</p>
+<p>tags: <a href="/tag/tech.html">Tech</a> <a href="/tag/code.html">Code</a> <a href="/tag/python.html">python</a> </p>
+</footer><!-- /.post-info -->                <p>Python的故事 （Python‘s Tale)翻译</p>
+                <a class="readmore" href="/pythonde-gu-shi-pythons-tale.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/pythonyi-xing-dai-ma-jian-li-httpfu-wu.html" rel="bookmark"
+                           title="Permalink to Python一行代码建立HTTP服务">Python一行代码建立HTTP服务</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-06-17T17:00:00+08:00">
+                Published: Mon 17 June 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
+        </address>
+<p>In <a href="/category/it.html">IT</a>.</p>
+<p>tags: <a href="/tag/code.html">Code</a> <a href="/tag/python.html">Python</a> </p>
+</footer><!-- /.post-info -->                <p>在Python语言中有一条可在本机快速建立http服务的命令，可实现与他人分享存在你电脑的上的文件</p>
+                <a class="readmore" href="/pythonyi-xing-dai-ma-jian-li-httpfu-wu.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/vimzhu-shi-dai-ma-yu-fan-zhu-shi.html" rel="bookmark"
+                           title="Permalink to VIM注释代码与反注释">VIM注释代码与反注释</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-02-28T17:00:00+08:00">
+                Published: Wed 28 February 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
+        </address>
+<p>In <a href="/category/it.html">IT</a>.</p>
+<p>tags: <a href="/tag/vim.html">Vim</a> <a href="/tag/code.html">Code</a> </p>
+</footer><!-- /.post-info -->                <p>VIM注释代码与反注释</p>
+                <a class="readmore" href="/vimzhu-shi-dai-ma-yu-fan-zhu-shi.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://leelongcrazy.com">LeeLongCrazy</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/leelongcrazy">Github</a></li>
+                            <li><a href="https://twitter.com/leelongcrazy">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
