@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>在Mac上安装python虚拟环境管理工具</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="如果熟悉Linux系统，一定要打交道的就是SHELL语言，掌握使用SHELL的高效方法，做起很多事情来得心应手，最开始我只熟悉bash，当我安装完zsh,并使用oh my zsh套件以后，太震撼了。" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">leelongcrazy's blog</a></h1>
+                <nav><ul>
+                    <li><a href="/category/article.html">Article</a></li>
+                    <li><a href="/category/books.html">Books</a></li>
+                    <li class="active"><a href="/category/it.html">IT</a></li>
+                    <li><a href="/category/movie.html">Movie</a></li>
+                    <li><a href="/category/tech.html">Tech</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/zai-macshang-an-zhuang-pythonxu-ni-huan-jing-guan-li-gong-ju.html" rel="bookmark"
+           title="Permalink to 在Mac上安装python虚拟环境管理工具">在Mac上安装python虚拟环境管理工具</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-08-29T17:00:00+08:00">
+                Published: Sat 29 August 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
+        </address>
+<p>In <a href="/category/it.html">IT</a>.</p>
+<p>tags: <a href="/tag/bash.html">Bash</a> <a href="/tag/zsh.html">zsh</a> </p>
+</footer><!-- /.post-info -->      <h2>如果熟悉Linux系统，一定要打交道的就是SHELL语言，掌握使用SHELL的高效方法，做起很多事情来得心应手，最开始我只熟悉bash，当我安装完zsh,并使用oh my zsh套件以后，太震撼了。</h2>
+<h3>前些天拿出吃了很久灰的树莓派，借这次安装zsh的机会，整理出来了安装的过程。</h3>
+<ol>
+<li>查看当前使用SHELL，和已经安装的shell</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="nv">$SHELL</span> <span class="c1"># 查看当前使用SHELL</span>
+➜ cat /etc/shells  <span class="c1"># 列出已经安装的shell</span>
+/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/bin/dash
+/usr/bin/dash
+/usr/bin/tmux
+/usr/bin/screen
+/bin/zsh
+/usr/bin/zsh
+</code></pre></div>
+
+<ol>
+<li>如果没有显示<code>/bin/zsh</code>，则执行下面安装命令</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># 我在Debian环境下安装的</span>
+sudo apt-get install zsh
+<span class="c1"># os x 下安装</span>
+brew install zsh
+</code></pre></div>
+
+<ol>
+<li>安装完成后切换SHELL</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo chsh -s /bin/zsh
+</code></pre></div>
+
+<ol>
+<li>重启操作系统生效</li>
+<li>可再次查看当前SHELL<code>echo $SHELL</code></li>
+<li>安装oh my zsh 有两种方式：<code>curl</code>和<code>wget</code>，<a href="https://github.com/ohmyzsh/ohmyzsh">官方安装指导</a></li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># use curl</span>
+sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+<span class="c1"># or use wget</span>
+sh -c <span class="s2">&quot;</span><span class="k">$(</span>wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p>7.安装完成后可编辑<code>.zshrc</code>进行自定义设置，另外注意，原来<code>.bashrc</code>下的配置在<code>zsh</code>下仍然可以使用，<code>zsh</code>是完全兼容<code>bash</code>的。</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://leelongcrazy.com">LeeLongCrazy</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/leelongcrazy">Github</a></li>
+                            <li><a href="https://twitter.com/leelongcrazy">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                &copy; 2020 leelongcrazy
+                &middot; Powered by
+                <a href="http://docs.getpelican.com/" target="_blank">Pelican</a> generator                </address><!-- /#about -->
+
+                <!-- <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p> -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

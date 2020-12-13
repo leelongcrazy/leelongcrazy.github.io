@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Python一行代码建立HTTP服务</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="在Python语言中有一条可在本机快速建立http服务的命令，可实现与他人分享存在你电脑的上的文件" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">leelongcrazy's blog</a></h1>
+                <nav><ul>
+                    <li><a href="/category/article.html">Article</a></li>
+                    <li><a href="/category/books.html">Books</a></li>
+                    <li class="active"><a href="/category/it.html">IT</a></li>
+                    <li><a href="/category/movie.html">Movie</a></li>
+                    <li><a href="/category/tech.html">Tech</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/pythonyi-xing-dai-ma-jian-li-httpfu-wu.html" rel="bookmark"
+           title="Permalink to Python一行代码建立HTTP服务">Python一行代码建立HTTP服务</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-06-17T17:00:00+08:00">
+                Published: Mon 17 June 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/leelongcrazy.html">leelongcrazy</a>
+        </address>
+<p>In <a href="/category/it.html">IT</a>.</p>
+<p>tags: <a href="/tag/code.html">Code</a> <a href="/tag/python.html">Python</a> </p>
+</footer><!-- /.post-info -->      <h4>在Python语言中有一条可在本机快速建立http服务的命令，可实现与他人分享存在你电脑的上的文件。</h4>
+<div class="highlight"><pre><span></span><code>python -m SimpleHTTPServer
+<span class="c1"># 默认开启8000端口，后面可跟数字指定端口</span>
+Serving HTTP on <span class="m">0</span>.0.0.0 port <span class="m">8000</span> ...
+</code></pre></div>
+
+<h4>浏览器打开，IP：Port即可实现该目录下的浏览，文件下载。</h4>
+<hr>
+<h4>今天配置<code>.ssh/config</code>文件时候还犯了一个可笑的错误。在config文件中配置管理密钥的格式如下：</h4>
+<div class="highlight"><pre><span></span><code>Hostname github.com
+User git
+IdentityFile ~/.ssh/github
+
+Host aliyun
+Hostname xx.xx.xx.xx
+User xxx
+IdentityFile ~/.ssh/aliyun
+
+Host linux
+Hostname localhost
+Port <span class="m">9999</span>
+User root
+IdentityFile ~/.ssh/linux
+</code></pre></div>
+
+<h4>我将<code>IdentityFile</code>错误的打成了<code>IdentifyFile</code>，结果一直爆下面的错误：</h4>
+<div class="highlight"><pre><span></span><code>.ssh/config: line <span class="m">40</span>: Bad configuration option: identifyfile
+.ssh/config: terminating, <span class="m">1</span> bad configuration options
+</code></pre></div>
+
+<h4>在网上搜索了好多结果，最终看到一文章提示有可能将单词打错导致的，才得以修正过来。原来<code>identity</code>是 <em>身份</em>的意思， <code>identify</code>是 <em>鉴定，辨认</em>的意思。配置中需要的是 <code>身份文件</code>，而不是我理解的<code>鉴定文件</code>。</h4>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://leelongcrazy.com">LeeLongCrazy</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/leelongcrazy">Github</a></li>
+                            <li><a href="https://twitter.com/leelongcrazy">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                &copy; 2020 leelongcrazy
+                &middot; Powered by
+                <a href="http://docs.getpelican.com/" target="_blank">Pelican</a> generator                </address><!-- /#about -->
+
+                <!-- <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p> -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
