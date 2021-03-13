@@ -1,45 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-        <meta charset="utf-8" />
-        <meta name="generator" content="Pelican" />
-        <title>GitHub配置SSH</title>
-        <link rel="stylesheet" href="https://leelongcrazy.github.io/theme/css/main.css" />
-        <link href="https://leelongcrazy.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="leelongcrazy's blog Atom Feed" />
-        <meta name="description" content="对github账号配置ssh密钥对实现远程推送" />
+  <meta charset="utf-8">
+  <title>GitHub配置SSH &mdash; leelongcrazy's blog</title>
+  <meta name="author" content="leelongcrazy">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://leelongcrazy.github.io/favicon.png" rel="icon">
+
+  <link href="https://leelongcrazy.github.io/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://leelongcrazy.github.io/">leelongcrazy's blog</a></h1>
-                <nav><ul>
-                    <li><a href="https://leelongcrazy.github.io/category/article.html">Article</a></li>
-                    <li><a href="https://leelongcrazy.github.io/category/books.html">Books</a></li>
-                    <li class="active"><a href="https://leelongcrazy.github.io/category/it.html">IT</a></li>
-                    <li><a href="https://leelongcrazy.github.io/category/movie.html">Movie</a></li>
-                    <li><a href="https://leelongcrazy.github.io/category/tech.html">Tech</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="https://leelongcrazy.github.io/githubpei-zhi-ssh.html" rel="bookmark"
-           title="Permalink to GitHub配置SSH">GitHub配置SSH</a></h1>
-    </header>
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="https://leelongcrazy.github.io/">leelongcrazy's blog</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
 
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-05-30T17:00:00+08:00">
-                Published: Thu 30 May 2019
-        </abbr>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://leelongcrazy.github.io/author/leelongcrazy.html">leelongcrazy</a>
-        </address>
-<p>In <a href="https://leelongcrazy.github.io/category/it.html">IT</a>.</p>
-<p>tags: <a href="https://leelongcrazy.github.io/tag/tech.html">Tech</a> <a href="https://leelongcrazy.github.io/tag/git.html">Git</a> </p>
-</footer><!-- /.post-info -->      <h2>GitHub配置SSH</h2>
+<ul class="main-navigation">
+      <li >
+        <a href="https://leelongcrazy.github.io/category/article.html">Article</a>
+      </li>
+      <li >
+        <a href="https://leelongcrazy.github.io/category/books.html">Books</a>
+      </li>
+      <li >
+        <a href="https://leelongcrazy.github.io/category/cpp.html">Cpp</a>
+      </li>
+      <li class="active">
+        <a href="https://leelongcrazy.github.io/category/it.html">It</a>
+      </li>
+      <li >
+        <a href="https://leelongcrazy.github.io/category/movie.html">Movie</a>
+      </li>
+      <li >
+        <a href="https://leelongcrazy.github.io/category/software.html">Software</a>
+      </li>
+      <li >
+        <a href="https://leelongcrazy.github.io/category/tech.html">Tech</a>
+      </li>
+      <li >
+        <a href="https://leelongcrazy.github.io/category/web.html">Web</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">GitHub配置SSH</h1>
+    <p class="meta">
+<time datetime="2019-05-30T17:00:00+08:00" pubdate>Thu 30 May 2019</time>    </p>
+</header>
+
+  <div class="entry-content"><h2>GitHub配置SSH</h2>
 <hr>
 <h3>在使用GitHub配置ssh的时候吃了好多苦头，整理了下完整的操作过程</h3>
 <h4>必备工具，操作是在Linux系统环境下完成的</h4>
@@ -53,9 +87,11 @@
 $ git config --global user.name <span class="s2">&quot;user-name&quot;</span>
 </code></pre></div>
 
+
 <h4>在<code>~/.ssh/</code>目录下创建一对公私密钥</h4>
 <div class="highlight"><pre><span></span><code>$ ssh-keygen
 </code></pre></div>
+
 
 <h4>执行完后会在当前目录下生成两个新的文件，将后缀名.pub的公约内容复制到Github个人账号-&gt; settings -&gt; SSH and GPG Kyes -&gt; New SSH key文本框中，点击<code>Add SSH key</code>添加密钥；并对添加的公钥命个别名。</h4>
 <h4>在终端执行下面命令：</h4>
@@ -63,47 +99,105 @@ $ git config --global user.name <span class="s2">&quot;user-name&quot;</span>
 $ ssh-add 私钥文件名
 </code></pre></div>
 
+
 <h4>测试：</h4>
 <div class="highlight"><pre><span></span><code>$ ssh -T git@github.com 
 </code></pre></div>
 
+
 <h4>测试成功显示：</h4>
 <div class="highlight"><pre><span></span><code>$ Hi user-name! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
 </code></pre></div>
+
 
 <h4>接着push代码，发现仍需要输入用户名和密码，执行下面的命令， <strong>注意连接域名和用户名之间的符号是 <code>:</code>,而不是 <code>/</code></strong>，删除远程仓库重新建立连接</h4>
 <div class="highlight"><pre><span></span><code>$ git remote rm origin
 $ git remote add origin git@github.com:user-name/repository-name.git 
 </code></pre></div>
 
-<h4>接下来远程推送的时候不再需要输入的用户名和密码。</h4>
-    </div><!-- /.entry-content -->
 
+<h4>接下来远程推送的时候不再需要输入的用户名和密码。</h4></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        leelongcrazy
+    </span>
+  </span>
+<time datetime="2019-05-30T17:00:00+08:00" pubdate>Thu 30 May 2019</time>  <span class="categories">
+    <a class='category' href='https://leelongcrazy.github.io/category/it.html'>IT</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="https://leelongcrazy.github.io/tag/tech.html">Tech</a>,    <a class="category" href="https://leelongcrazy.github.io/tag/git.html">Git</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
   </article>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://leelongcrazy.com">LeeLongCrazy</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://leelongcrazy.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
-                            <li><a href="https://github.com/leelongcrazy">Github</a></li>
-                            <li><a href="https://twitter.com/leelongcrazy">Twitter</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="https://leelongcrazy.github.io/mfckuang-jia-bi-ji.html">MFC框架笔记</a>
+      </li>
+      <li class="post">
+          <a href="https://leelongcrazy.github.io/cbi-ji.html">C++笔记</a>
+      </li>
+      <li class="post">
+          <a href="https://leelongcrazy.github.io/visual-studioshi-yong-kuai-jie-jian.html">Visual Studio使用快捷键</a>
+      </li>
+      <li class="post">
+          <a href="https://leelongcrazy.github.io/vuexue-xi-bi-ji.html">VUE学习笔记</a>
+      </li>
+      <li class="post">
+          <a href="https://leelongcrazy.github.io/oh-my-zshshi-yong-zhi-nan.html">oh-my-zsh使用指南</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="https://leelongcrazy.github.io/category/article.html">Article</a></li>
+        <li><a href="https://leelongcrazy.github.io/category/books.html">Books</a></li>
+        <li><a href="https://leelongcrazy.github.io/category/cpp.html">CPP</a></li>
+        <li><a href="https://leelongcrazy.github.io/category/it.html">IT</a></li>
+        <li><a href="https://leelongcrazy.github.io/category/movie.html">Movie</a></li>
+        <li><a href="https://leelongcrazy.github.io/category/software.html">Software</a></li>
+        <li><a href="https://leelongcrazy.github.io/category/tech.html">Tech</a></li>
+        <li><a href="https://leelongcrazy.github.io/category/web.html">Web</a></li>
+    </ul>
+  </section>
+ 
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                &copy; 2020 leelongcrazy
-                &middot; Powered by
-                <a href="http://docs.getpelican.com/" target="_blank">Pelican</a> generator        </footer><!-- /#contentinfo -->
+  <section>
+  <h1>Tags</h1>
+    <a href="https://leelongcrazy.github.io/tag/mfc.html">MFC</a>,    <a href="https://leelongcrazy.github.io/tag/programe.html">Programe</a>,    <a href="https://leelongcrazy.github.io/tag/tech.html">Tech</a>,    <a href="https://leelongcrazy.github.io/tag/vue.html">VUE</a>,    <a href="https://leelongcrazy.github.io/tag/bash.html">Bash</a>,    <a href="https://leelongcrazy.github.io/tag/zsh.html">zsh</a>,    <a href="https://leelongcrazy.github.io/tag/github.html">Github</a>,    <a href="https://leelongcrazy.github.io/tag/git.html">Git</a>,    <a href="https://leelongcrazy.github.io/tag/os.html">os</a>,    <a href="https://leelongcrazy.github.io/tag/python.html">Python</a>,    <a href="https://leelongcrazy.github.io/tag/code.html">Code</a>,    <a href="https://leelongcrazy.github.io/tag/gitzsh.html">Git，zsh</a>,    <a href="https://leelongcrazy.github.io/tag/iot.html">Iot</a>,    <a href="https://leelongcrazy.github.io/tag/ai.html">AI</a>,    <a href="https://leelongcrazy.github.io/tag/movie.html">Movie</a>,    <a href="https://leelongcrazy.github.io/tag/article.html">Article</a>,    <a href="https://leelongcrazy.github.io/tag/it.html">it</a>,    <a href="https://leelongcrazy.github.io/tag/vim.html">Vim</a>  </section>
 
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://github.com/leelongcrazy" target="_blank">Github</a></li>
+            <li><a href="https://twitter.com/leelongcrazy" target="_blank">Twitter</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="http://leelongcrazy.com" target="_blank">LeeLongCrazy</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2017&ndash;2021  leelongcrazy &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="https://leelongcrazy.github.io/theme/js/modernizr-2.0.js"></script>
+  <script src="https://leelongcrazy.github.io/theme/js/ender.js"></script>
+  <script src="https://leelongcrazy.github.io/theme/js/octopress.js" type="text/javascript"></script>
 </body>
 </html>

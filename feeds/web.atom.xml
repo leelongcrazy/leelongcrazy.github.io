@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>leelongcrazy's blog - Web</title><link href="https://leelongcrazy.github.io/" rel="alternate"></link><link href="https://leelongcrazy.github.io/feeds/web.atom.xml" rel="self"></link><id>https://leelongcrazy.github.io/</id><updated>2020-12-23T17:00:00+08:00</updated><entry><title>VUE学习笔记</title><link href="https://leelongcrazy.github.io/vuexue-xi-bi-ji.html" rel="alternate"></link><published>2020-12-23T17:00:00+08:00</published><updated>2020-12-23T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2020-12-23:/vuexue-xi-bi-ji.html</id><summary type="html">&lt;p&gt;VUE学习笔记&lt;/p&gt;</summary><content type="html">&lt;h1&gt;VUE学习笔记&lt;/h1&gt;
+&lt;h2&gt;Vue 对象&lt;/h2&gt;
+&lt;h5&gt;new Vue()产生实例时传入的常用的选项&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;el: 通过CSS选择器或者HTMLElement实例的方式，提供一个在页面上已存在的DOM元素作为Vue实例的挂在目标。&lt;/li&gt;
+&lt;li&gt;data：用于定义属性&lt;/li&gt;
+&lt;li&gt;methods：用于定义函数。Vue实例的事件，用于事件绑定&lt;/li&gt;
+&lt;li&gt;template : 字符串模板，将会替换挂载的元素&lt;/li&gt;
+&lt;li&gt;render : 字符串模板的代替方案&lt;/li&gt;
+&lt;li&gt;props : 用于接收来自父组件的数据&lt;/li&gt;
+&lt;li&gt;computed : 计算属性，用于简化模板的复杂数据计算&lt;/li&gt;
+&lt;li&gt;watch : 观察Vue实例变化的一个表达式或计算属性函数&lt;/li&gt;
+&lt;li&gt;directives : 自定义命令&lt;/li&gt;
+&lt;li&gt;filters : 过滤器&lt;/li&gt;
+&lt;li&gt;components : 组件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;vm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Vue&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="c1"&gt;// ...一些选项&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 获取 data&lt;/span&gt;
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$props&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 获取 props&lt;/span&gt;
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$el&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 获取挂载元素&lt;/span&gt;
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$options&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 获取 Vue 实例的初始选项&lt;/span&gt;
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$parent&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 获取父实例&lt;/span&gt;
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$root&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 获取根实例&lt;/span&gt;
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$children&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 获取当前实例的直接子组件&lt;/span&gt;
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$refs&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 获取持有注册过 ref 特性 的所有 DOM 元素和组件实例&lt;/span&gt;
+
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$watch&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 观察 Vue 实例变化的一个表达式或计算属性函数&lt;/span&gt;
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$set&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 向响应式对象中添加一个属性，并确保这个新属性同样是响应式的，且触发视图更新&lt;/span&gt;
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$delete&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 删除对象的属性。如果对象是响应式的，确保删除能触发更新视图&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;模板语法&lt;/h2&gt;
+&lt;h3&gt;插值&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;文本 {{ }}&lt;/li&gt;
+&lt;li&gt;html: 使用v-html 指令用于输出HTML&lt;/li&gt;
+&lt;li&gt;属性：使用v-bind 指令用于绑定HTML属性中的值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;表达式： 支持JS表达式&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;指令： &lt;/li&gt;
+&lt;li&gt;v-if&lt;/li&gt;
+&lt;li&gt;v-on     它用于监听 DOM 事件&lt;/li&gt;
+&lt;li&gt;v-for&lt;/li&gt;
+&lt;li&gt;v-bind   属性值绑定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;用户输入 ：v-model 指令来实现双向数据绑定&lt;/h3&gt;
+&lt;h3&gt;过滤器：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;{{ message | filterA | filterB }} // &lt;/li&gt;
+&lt;li&gt;{{ message | filterA('arg1', arg2) }}  过滤器是JavaScript函数，可以接受参数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;缩写&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;v-bind的缩写：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;html
+    &amp;lt;!-- 完整语法 --&amp;gt;
+    &amp;lt;a v-bind:href="url"&amp;gt;&amp;lt;/a&amp;gt;
+    &amp;lt;!-- 缩写 --&amp;gt;
+    &amp;lt;a :href="url"&amp;gt;&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;v-on 的缩写：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;html
+    &amp;lt;!-- 完整语法 --&amp;gt;
+    &amp;lt;a v-on:click="doSomething"&amp;gt;&amp;lt;/a&amp;gt;
+    &amp;lt;!-- 缩写 --&amp;gt;
+    &amp;lt;a @click="doSomething"&amp;gt;&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;条件与循环&lt;/h2&gt;
+&lt;h3&gt;条件语句&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;v-if&lt;/li&gt;
+&lt;li&gt;v-else&lt;/li&gt;
+&lt;li&gt;v-else-if&lt;/li&gt;
+&lt;li&gt;v-show: 可以根据条件展示元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;循环语句&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;v-for&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第一个参数为数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第二个参数为键名&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第三个参数为索引&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;html
+    &amp;lt;div id="app"&amp;gt;
+      &amp;lt;ul&amp;gt;
+        &amp;lt;li v-for="(value, key, index) in object"&amp;gt;
+         {{ index }}. {{ key }} : {{ value }}
+        &amp;lt;/li&amp;gt;
+      &amp;lt;/ul&amp;gt;
+    &amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;计算属性&lt;/h2&gt;
+&lt;p&gt;计算属性关键词：computed，在处理一些复杂逻辑时是很有用的。&lt;/p&gt;
+&lt;p&gt;利用计算属性实现字符串的翻转：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;app&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;原始字符串: {{ message }}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;计算后反转字符串: {{ reversedMessage }}&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;vm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Vue&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Runoob!&amp;#39;&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="nx"&gt;computed&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// 计算属性的 getter&lt;/span&gt;
+    &lt;span class="nx"&gt;reversedMessage&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="c1"&gt;// `this` 指向 vm 实例&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h6&gt;computed vs methods&lt;/h6&gt;
+&lt;p&gt;可以用methods来替代computed，效果都是一样的，但是 computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行。&lt;/p&gt;
+&lt;h2&gt;监听属性&lt;/h2&gt;
+&lt;h3&gt;watch&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;目的是响应数据的变化&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;深度监听：deep: true &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;样式绑定&lt;/h2&gt;
+&lt;h3&gt;class属性绑定&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;html 
+  &amp;lt;div v-bind:class="{ 'active': isActive }"&amp;gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;事件处理器&lt;/h2&gt;
+&lt;p&gt;v-on&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;&amp;lt;!-- 同上 --&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;input&lt;/span&gt; &lt;span class="na"&gt;v-on:keyup&lt;/span&gt;&lt;span class="err"&gt;.&lt;/span&gt;&lt;span class="na"&gt;enter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;submit&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="c"&gt;&amp;lt;!-- 缩写语法 --&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;input&lt;/span&gt; &lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="na"&gt;keyup&lt;/span&gt;&lt;span class="err"&gt;.&lt;/span&gt;&lt;span class="na"&gt;enter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;submit&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;事件修饰符：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.stop&lt;/code&gt; - 阻止冒泡&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.prevent&lt;/code&gt; - 阻止默认事件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.capture&lt;/code&gt; - 阻止捕获&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.self&lt;/code&gt; - 只监听触发该元素的事件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.once&lt;/code&gt; - 只触发一次&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.left&lt;/code&gt; - 左键事件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.right&lt;/code&gt; - 右键事件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.middle&lt;/code&gt; - 中间滚轮事件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;监听键盘事件时添加按键修饰符，以下是按键别名：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.enter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.tab&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.delete&lt;/code&gt; (捕获 "删除" 和 "退格" 键)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.esc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.space&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.up&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.down&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.left&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.right&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.ctrl&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.alt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.shift&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.meta&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;表单的处理&lt;/h2&gt;
+&lt;h3&gt;v-model&lt;/h3&gt;
+&lt;p&gt;修饰符：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.lazy&lt;/code&gt;  输入框在change事件中变化&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.number&lt;/code&gt;  将输入值转换为Number类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.trim&lt;/code&gt;  自动过滤输入的首尾空格&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;VUE 组件&lt;/h2&gt;
+&lt;p&gt;组件（component）是VUE.js最强大的功能之一。&lt;/p&gt;
+&lt;p&gt;组件可以扩展HTML元素，封装可重用的代码。&lt;/p&gt;
+&lt;p&gt;注册全局组件语法格式：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Vue.component(tagName, options)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;tagName为组件名，options为配置选项。&lt;/p&gt;
+&lt;p&gt;组件的调用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;tagName&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;tagName&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;分类：全局组件和局部组件&lt;/p&gt;
+&lt;h3&gt;自定义事件&lt;/h3&gt;
+&lt;p&gt;组件中的 data 不是一个对象，而是一个函数，这样的好处就是每个实例可以维护一份被返回对象的独立的拷贝，如果 data 是一个对象则会影响到其他实例&lt;/p&gt;
+&lt;h3&gt;自定义指令&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;div&lt;/span&gt; &lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;app&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nx"&gt;页面载入时&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="nx"&gt;input&lt;/span&gt; &lt;span class="nx"&gt;元素自动获取焦点&lt;/span&gt;&lt;span class="err"&gt;：&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;input&lt;/span&gt; &lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;focus&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/div&amp;gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="c1"&gt;// 注册一个全局自定义指令 v-focus&lt;/span&gt;
+&lt;span class="nx"&gt;Vue&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;directive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;focus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// 当绑定元素插入到 DOM 中。&lt;/span&gt;
+  &lt;span class="nx"&gt;inserted&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// 聚焦元素&lt;/span&gt;
+    &lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;focus&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="c1"&gt;// 创建根实例&lt;/span&gt;
+&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Vue&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;消息传递&lt;/h2&gt;
+&lt;p&gt;父组件可以使用 props 把数据传给子组件&lt;/p&gt;
+&lt;p&gt;子组件可以使用 $emit 触发父组件的自定义事件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$emit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;arg&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;//触发当前实例上的事件&lt;/span&gt;
+
+&lt;span class="nx"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;$on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;fn&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="c1"&gt;//监听event事件后运行 fn&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;VUE 的过渡和动画&lt;/h2&gt;
+&lt;p&gt;实现过渡效果的组件：transition&lt;/p&gt;
+&lt;h2&gt;Vue.js Ajax(axios)&lt;/h2&gt;
+&lt;p&gt;Vue.js 2.0 版本推荐使用 axios 来完成 ajax 请求。&lt;/p&gt;
+&lt;p&gt;Axios 是一个基于 Promise 的 HTTP 库，可以用在浏览器和 node.js 中。&lt;/p&gt;
+&lt;p&gt;Github开源地址： https://github.com/axios/axios&lt;/p&gt;
+&lt;p&gt;使用：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdn.staticfile.org/axios/0.18.0/axios.min.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Web"></category><category term="VUE"></category></entry></feed>
