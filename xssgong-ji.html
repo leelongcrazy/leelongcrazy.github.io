@@ -4,8 +4,10 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Web &mdash; leelongcrazy's blog</title>
+  <title>XSS攻击 &mdash; leelongcrazy's blog</title>
   <meta name="author" content="leelongcrazy">
+
+
 
 
 
@@ -64,60 +66,48 @@
   <div id="main">
     <div id="content">
 <div>
-	<article role="article">
-    	<header>
-    		<h1 class="entry-title">Category: Web</h1>
-    	</header>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">XSS攻击</h1>
+    <p class="meta">
+<time datetime="2021-03-14T18:00:00+08:00" pubdate>Sun 14 March 2021</time>    </p>
+</header>
 
-    	<div id="blog-archives">
-            <h2>2021</h2>
-                    <article>
-                        <h1><a href="https://leelongcrazy.github.io/weban-quan-xue-xi-bi-ji.html">web安全学习笔记</a></h1>
-                        <time datetime="2021-03-14 18:00:00+08:00" pubdate>
-                            <span class="month">Mar</span>
-                            <span class="day">14</span>
-                            <span class="year">2021</span>
-                        </time>
-                        <footer>
-                            <span class="categories">posted in
-                                <a class='category' href='https://leelongcrazy.github.io/category/web.html'>Web</a>
-                            </span>
-                        </footer>
-                    </article>
-                    <article>
-                        <h1><a href="https://leelongcrazy.github.io/xssgong-ji.html">XSS攻击</a></h1>
-                        <time datetime="2021-03-14 18:00:00+08:00" pubdate>
-                            <span class="month">Mar</span>
-                            <span class="day">14</span>
-                            <span class="year">2021</span>
-                        </time>
-                        <footer>
-                            <span class="categories">posted in
-                                <a class='category' href='https://leelongcrazy.github.io/category/web.html'>Web</a>
-                            </span>
-                        </footer>
-                    </article>
-            <h2>2020</h2>
-                    <article>
-                        <h1><a href="https://leelongcrazy.github.io/vuexue-xi-bi-ji.html">VUE学习笔记</a></h1>
-                        <time datetime="2020-12-23 17:00:00+08:00" pubdate>
-                            <span class="month">Dec</span>
-                            <span class="day">23</span>
-                            <span class="year">2020</span>
-                        </time>
-                        <footer>
-                            <span class="categories">posted in
-                                <a class='category' href='https://leelongcrazy.github.io/category/web.html'>Web</a>
-                            </span>
-                        </footer>
-                    </article>
-	    </div>
-    </article>
+  <div class="entry-content"><h1>XSS攻击</h1>
+<h3>反射型XSS</h3>
+<p>请求代码出现在URL中，作为输入提交到服务器，服务器解析后响应，响应内容中出现这段XSS代码，最后在浏览器解析执行，达到攻击效果。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 常用攻击payload</span>
+<span class="s1">&#39; onclick=alert(1)//</span>
+<span class="s1">&#39;</span><span class="err">&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;&lt;script&gt;alert(1)&lt;/script&gt;//</span>
+</code></pre></div>
+
+
+<h3>存储型XSS</h3>
+<h3>DOM型XSS</h3></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        leelongcrazy
+    </span>
+  </span>
+<time datetime="2021-03-14T18:00:00+08:00" pubdate>Sun 14 March 2021</time>  <span class="categories">
+    <a class='category' href='https://leelongcrazy.github.io/category/web.html'>Web</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="https://leelongcrazy.github.io/tag/websec.html">WebSec</a>,    <a class="category" href="https://leelongcrazy.github.io/tag/pwn.html">PWN</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
 </div>
 <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://leelongcrazy.github.io/guan-yu-wo.html">关于我</a>
+      </li>
       <li class="post">
           <a href="https://leelongcrazy.github.io/weban-quan-xue-xi-bi-ji.html">web安全学习笔记</a>
       </li>
@@ -125,7 +115,10 @@
           <a href="https://leelongcrazy.github.io/xssgong-ji.html">XSS攻击</a>
       </li>
       <li class="post">
-          <a href="https://leelongcrazy.github.io/vuexue-xi-bi-ji.html">VUE学习笔记</a>
+          <a href="https://leelongcrazy.github.io/mfckuang-jia-bi-ji.html">MFC框架笔记</a>
+      </li>
+      <li class="post">
+          <a href="https://leelongcrazy.github.io/cbi-ji.html">C++笔记</a>
       </li>
     </ul>
   </section>
@@ -167,7 +160,7 @@
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-    Copyright &copy;  2020&ndash;2021  leelongcrazy &mdash;
+    Copyright &copy;  2017&ndash;2021  leelongcrazy &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
   <script src="https://leelongcrazy.github.io/theme/js/modernizr-2.0.js"></script>
