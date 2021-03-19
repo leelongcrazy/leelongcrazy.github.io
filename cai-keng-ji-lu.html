@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>oh-my-zsh使用指南 &mdash; leelongcrazy's blog</title>
+  <title>踩坑记录 &mdash; leelongcrazy's blog</title>
   <meta name="author" content="leelongcrazy">
 
 
@@ -68,62 +68,51 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">oh-my-zsh使用指南</h1>
+      <h1 class="entry-title">踩坑记录</h1>
     <p class="meta">
-<time datetime="2020-08-29T17:00:00+08:00" pubdate>Sat 29 August 2020</time>    </p>
+<time datetime="2021-03-18T17:00:00+08:00" pubdate>Thu 18 March 2021</time>    </p>
 </header>
 
-  <div class="entry-content"><h2>如果熟悉Linux系统，一定要打交道的就是SHELL语言，掌握使用SHELL的高效方法，做起很多事情来得心应手，最开始我只熟悉bash，当我安装完zsh,并使用oh my zsh套件以后，太震撼了。</h2>
-<h3>前些天拿出吃了很久灰的树莓派，借这次安装zsh的机会，整理出来了安装的过程。</h3>
-<ol>
-<li>查看当前使用SHELL，和已经安装的shell</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="nv">$SHELL</span> <span class="c1"># 查看当前使用SHELL</span>
-➜ cat /etc/shells  <span class="c1"># 列出已经安装的shell</span>
-/bin/sh
-/bin/bash
-/usr/bin/bash
-/bin/rbash
-/usr/bin/rbash
-/bin/dash
-/usr/bin/dash
-/usr/bin/tmux
-/usr/bin/screen
-/bin/zsh
-/usr/bin/zsh
+  <div class="entry-content"><h2>踩坑记录</h2>
+<h1>Centos7安装uwsgi出现关于SSL错误的问题</h1>
+<p>系统中安装了两个版本的OpenSSL，冲突了导致uwsgi安装一直不成功。
+pip install uwsgi # 不成功
+源码编译安装也不成功</p>
+<div class="highlight"><pre><span></span><code><span class="err">core/subscription.o: In function `uwsgi_remove_subscribe_node&#39;:</span>
+<span class="err">subscription.c:(.text+0x942): undefined reference to `EVP_MD_CTX_free&#39;</span>
+<span class="err">subscription.c:(.text+0x991): undefined reference to `EVP_MD_CTX_free&#39;</span>
+<span class="err">core/subscription.o: In function `subscription_new_sign_ctx&#39;:</span>
+<span class="err">subscription.c:(.text+0x13c5): undefined reference to `EVP_MD_CTX_new&#39;</span>
+<span class="err">subscription.c:(.text+0x1456): undefined reference to `EVP_MD_CTX_free&#39;</span>
+<span class="err">core/ssl.o: In function `uwsgi_ssl_init&#39;:</span>
+<span class="err">ssl.c:(.text+0xa9): undefined reference to `OPENSSL_init_ssl&#39;</span>
+<span class="err">ssl.c:(.text+0xb5): undefined reference to `OPENSSL_init_ssl&#39;</span>
+<span class="err">ssl.c:(.text+0xc1): undefined reference to `OPENSSL_init_crypto&#39;</span>
+<span class="err">core/ssl.o: In function `uwsgi_ssl_new_server_context&#39;:</span>
+<span class="err">ssl.c:(.text+0x200): undefined reference to `TLS_server_method&#39;</span>
+<span class="err">ssl.c:(.text+0x2e5): undefined reference to `SSL_CTX_set_options&#39;</span>
+<span class="err">ssl.c:(.text+0x321): undefined reference to `SSL_CTX_set_options&#39;</span>
+<span class="err">ssl.c:(.text+0x53e): undefined reference to `SSL_CTX_set_options&#39;</span>
+<span class="err">core/ssl.o: In function `uwsgi_rsa_sign&#39;:</span>
+<span class="err">ssl.c:(.text+0x7ac): undefined reference to `EVP_MD_CTX_new&#39;</span>
+<span class="err">ssl.c:(.text+0x832): undefined reference to `EVP_MD_CTX_free&#39;</span>
+<span class="err">ssl.c:(.text+0x955): undefined reference to `EVP_MD_CTX_free&#39;</span>
+<span class="err">core/ssl.o: In function `uwsgi_sni_cb&#39;:</span>
+<span class="err">ssl.c:(.text+0xe1b): undefined reference to `SSL_CTX_get_options&#39;</span>
+<span class="err">ssl.c:(.text+0xe26): undefined reference to `SSL_set_options&#39;</span>
+<span class="c">collect2: error: ld returned 1 exit status</span>
+<span class="err">*** error linking uWSGI ***</span>
 </code></pre></div>
 
 
-<ol>
-<li>如果没有显示<code>/bin/zsh</code>，则执行下面安装命令</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="c1"># 我在Debian环境下安装的</span>
-sudo apt-get install zsh
-<span class="c1"># os x 下安装</span>
-brew install zsh
-</code></pre></div>
-
-
-<ol>
-<li>安装完成后切换SHELL</li>
-</ol>
-<div class="highlight"><pre><span></span><code>sudo chsh -s /bin/zsh
-</code></pre></div>
-
-
-<ol>
-<li>重启操作系统生效</li>
-<li>可再次查看当前SHELL<code>echo $SHELL</code></li>
-<li>安装oh my zsh 有两种方式：<code>curl</code>和<code>wget</code>，<a href="https://github.com/ohmyzsh/ohmyzsh">官方安装指导</a></li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="c1"># use curl</span>
-sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
-<span class="c1"># or use wget</span>
-sh -c <span class="s2">&quot;</span><span class="k">$(</span>wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
-</code></pre></div>
-
-
-<p>7.安装完成后可编辑<code>.zshrc</code>进行自定义设置，另外注意，原来<code>.bashrc</code>下的配置在<code>zsh</code>下仍然可以使用，<code>zsh</code>是完全兼容<code>bash</code>的。</p></div>
+<p>根据出错信息定位到大概是OpenSSL出了问题，一直在网上寻找编译指定OpenSSL路径到方法，最后在网上找到这篇文章。
+<code>yum remove openssl-devel</code>
+问题解决了。</p>
+<p><a href="https://blog.csdn.net/rongDang/article/details/102871874">参考文章</a></p>
+<h1>nginx安装</h1>
+<h4>nginx服务程序安装成功后，网站需要增设https支持功能，编译的nginx没有添加对应https服务的<code>--with-http_stub_status_module --with-http_ssl_module</code>这两个模块，重装编译的过程历尽艰辛，后来又重新安装编译了更新版本的openssl 模块，因为没有指定对openssl路径的问题，在编译nginx过程中频繁出错，改目录，改编译配置文件都没有成功，失败的次数越多对编译的流程越来越熟悉，最终还是成功的把nginx服务编译成功了。</h4>
+<p>直接上图。
+<img alt="nginx.png" src="./images/nginx.png"></p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -131,11 +120,11 @@ sh -c <span class="s2">&quot;</span><span class="k">$(</span>wget -O- https://ra
         leelongcrazy
     </span>
   </span>
-<time datetime="2020-08-29T17:00:00+08:00" pubdate>Sat 29 August 2020</time>  <span class="categories">
+<time datetime="2021-03-18T17:00:00+08:00" pubdate>Thu 18 March 2021</time>  <span class="categories">
     <a class='category' href='/category/it.html'>IT</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/bash.html">Bash</a>,    <a class="category" href="/tag/zsh.html">zsh</a>  </span>
+    <a class="category" href="/tag/linux.html">Linux</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>

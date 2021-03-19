@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>oh-my-zsh使用指南 &mdash; leelongcrazy's blog</title>
+  <title>知 情 意 &mdash; leelongcrazy's blog</title>
   <meta name="author" content="leelongcrazy">
 
 
@@ -38,7 +38,7 @@
 
 
 <ul class="main-navigation">
-      <li >
+      <li class="active">
         <a href="/category/article.html">Article</a>
       </li>
       <li >
@@ -47,7 +47,7 @@
       <li >
         <a href="/category/cpp.html">Cpp</a>
       </li>
-      <li class="active">
+      <li >
         <a href="/category/it.html">It</a>
       </li>
       <li >
@@ -68,62 +68,44 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">oh-my-zsh使用指南</h1>
+      <h1 class="entry-title">知 情 意</h1>
     <p class="meta">
-<time datetime="2020-08-29T17:00:00+08:00" pubdate>Sat 29 August 2020</time>    </p>
+<time datetime="2021-03-19T17:00:00+08:00" pubdate>Fri 19 March 2021</time>    </p>
 </header>
 
-  <div class="entry-content"><h2>如果熟悉Linux系统，一定要打交道的就是SHELL语言，掌握使用SHELL的高效方法，做起很多事情来得心应手，最开始我只熟悉bash，当我安装完zsh,并使用oh my zsh套件以后，太震撼了。</h2>
-<h3>前些天拿出吃了很久灰的树莓派，借这次安装zsh的机会，整理出来了安装的过程。</h3>
-<ol>
-<li>查看当前使用SHELL，和已经安装的shell</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="nv">$SHELL</span> <span class="c1"># 查看当前使用SHELL</span>
-➜ cat /etc/shells  <span class="c1"># 列出已经安装的shell</span>
-/bin/sh
-/bin/bash
-/usr/bin/bash
-/bin/rbash
-/usr/bin/rbash
-/bin/dash
-/usr/bin/dash
-/usr/bin/tmux
-/usr/bin/screen
-/bin/zsh
-/usr/bin/zsh
-</code></pre></div>
-
-
-<ol>
-<li>如果没有显示<code>/bin/zsh</code>，则执行下面安装命令</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="c1"># 我在Debian环境下安装的</span>
-sudo apt-get install zsh
-<span class="c1"># os x 下安装</span>
-brew install zsh
-</code></pre></div>
-
-
-<ol>
-<li>安装完成后切换SHELL</li>
-</ol>
-<div class="highlight"><pre><span></span><code>sudo chsh -s /bin/zsh
-</code></pre></div>
-
-
-<ol>
-<li>重启操作系统生效</li>
-<li>可再次查看当前SHELL<code>echo $SHELL</code></li>
-<li>安装oh my zsh 有两种方式：<code>curl</code>和<code>wget</code>，<a href="https://github.com/ohmyzsh/ohmyzsh">官方安装指导</a></li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="c1"># use curl</span>
-sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
-<span class="c1"># or use wget</span>
-sh -c <span class="s2">&quot;</span><span class="k">$(</span>wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
-</code></pre></div>
-
-
-<p>7.安装完成后可编辑<code>.zshrc</code>进行自定义设置，另外注意，原来<code>.bashrc</code>下的配置在<code>zsh</code>下仍然可以使用，<code>zsh</code>是完全兼容<code>bash</code>的。</p></div>
+  <div class="entry-content"><h5>这两天看到两篇文章都出现了三个字，觉得很有必要深入的挖掘一下深层次的意思。</h5>
+<blockquote>
+<p>以下两篇文章：</p>
+</blockquote>
+<p><a href="https://mp.weixin.qq.com/s?src=11&amp;timestamp=1614087428&amp;ver=2908&amp;signature=ZCWtaJCI7i6TOaF5IA2CyA7OIUGriTyikmFRPddB5cmgMGBPg7ZCztsU8zpOSQSyg1*kqEL4Zd7MmgszXTZPC-AxEiPF9maVvrJQGsV5YwNokH-qQ-ykv6gjtLhfAIqJ&amp;new=1">【傅佩荣：一命二运三风水四积阴德五读书，你的人生究竟由何决定？】</a><br><strong>知、情、意</strong></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzIxNTAxMTEzMg==&amp;mid=2655237179&amp;idx=1&amp;sn=a6c63415ffa5f80ce414dcbebd68519f&amp;chksm=8c29ce68bb5e477e9e240c0ad0520cefd47fad47968364d1f607e7386a8f81b074a910f60be1&amp;mpshare=1&amp;scene=1&amp;srcid=022347lZUyCQ68ugVf1ULEGL&amp;sharer_sharetime=1614087122538&amp;sharer_shareid=a2fc7058daf9a68735a33e68755c5b32#rd">【闪耀三不朽：梅贻琦和他的老师张伯苓（下）】</a><br><strong>知、情、志</strong></p>
+<blockquote>
+<p>一个人的品德结构包括知、情、意、行四个要素。知识性的东西可以教，但人的情感、意志和行为是与生活紧密依存、不能剥离的，它们也不可能有一个统一的答案或模式，但课堂教不来道德。<br></p>
+</blockquote>
+<h4>在网上找到的关于 <em>知 情 意</em> 的描述，有所出入：</h4>
+<blockquote>
+<p>我们的心的作用，普通心理学家分为知、情、意三种。知是知识，情是感情，意是意欲。对于一事物明了它是什么，与别的事物有什么关系，这是知的作用。对于一事物，发生喜悦、愤怒或悲哀，这是情的作用。对于一事物，要想把它怎样处置，这是意的作用。
+<br><br><br>
+在心理学上，知、情、意分别是指认知、情感和意志。它是指一个人心理活动的三种基本形式。
+认知：是指人类对客观事物的感觉、知觉和表象。即对某一真实、普遍事物的感觉、认识、觉察以及在脑海中形成的该事物的各种形象。
+情感：是指人对于客观事物是否符合人的需要而产生的态度的体验。比如爱情、幸福、仇恨、厌恶、美感等。
+意志：是指人自觉地确定目的，然后根据目的来调节和支配自身的行动，克服困难，实现预定目标的心理过程。</p>
+</blockquote>
+<h4>没想到这三个字竟然还可以和美育联系在一起。蔡元培有一本自传，名字就叫《美育人生》。</h4>
+<blockquote>
+<p>知情意分立思想是西方思想的核心范畴，自近代被译介入中国思想</p>
+<p>知：经验科学，理论问题<br>
+情：自律艺术，审美问题<br>
+意：道德理论，法律理论，道德-实践<br></p>
+<p>严复尝言：东西古哲之言曰：人道之所贵，一曰诚，二曰善，三曰美。<br>
+“吾国有最乏而宜讲求，然犹未暇讲求者，则美术是也。夫美术何者？凡可以娱官神耳目，而所接在感情，不必关于理者是已。”<br></p>
+<p>徐维则的《增版东西学书录》评论《心灵学》即曰：“西人论脑气作用之说愈出愈精，大凡知觉为一纲，情欲为一纲，志决为一纲。”<br></p>
+<p>知情意三种认知能力对应知行思、真善美。<br>
+“能使知成为真知者靠知学，能使行成为善者要靠名教，能使思成为美者要靠佳趣论”</p>
+<p>“人生之作用，区之为三：一曰智，是致知之学所以律之也；二曰意，是道德之学所以范之也；三曰情，是美妙之论所以悉之也。是以此三学，取源乎性理一学，而开流于人事诸学，所以成哲学之全躯也。”<br></p>
+<p>王国维《哲学辨惑》<br>
+“今夫人之心意，有知力，有意志，有感情。此三者之理想，曰真曰善曰美。哲学实综合此三者而论其原理者也。教育之宗旨宜不外造就真善美之人物，故谓教育学上之理想即哲学上之理想，无不可也。”</p>
+</blockquote></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -131,11 +113,9 @@ sh -c <span class="s2">&quot;</span><span class="k">$(</span>wget -O- https://ra
         leelongcrazy
     </span>
   </span>
-<time datetime="2020-08-29T17:00:00+08:00" pubdate>Sat 29 August 2020</time>  <span class="categories">
-    <a class='category' href='/category/it.html'>IT</a>
+<time datetime="2021-03-19T17:00:00+08:00" pubdate>Fri 19 March 2021</time>  <span class="categories">
+    <a class='category' href='/category/article.html'>Article</a>
   </span>
-  <span class="categories">
-    <a class="category" href="/tag/bash.html">Bash</a>,    <a class="category" href="/tag/zsh.html">zsh</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
