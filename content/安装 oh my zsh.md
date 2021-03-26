@@ -1,4 +1,4 @@
-Title: 在Mac上安装python虚拟环境管理工具
+Title: oh-my-zsh使用指南
 Date: 2020-8-29 17:00
 Category: IT
 Tags: Bash,zsh

@@ -16,6 +16,7 @@ LOCALE = 'en_US.UTF-8'
 STATIC_PATHS = ['images']
 
 # THEME='pelican-bootstrap3'
+THEME='/Users/leelong/Github/pelican-themes/octopress'
 
 PLUGIN_PATHS = ['/Users/leelong/Github/pelican-plugins']
 PLUGINS = ['liquid_tags',

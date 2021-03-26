@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>oh-my-zsh使用指南 &mdash; leelongcrazy's blog</title>
+  <meta name="author" content="leelongcrazy">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">leelongcrazy's blog</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/article.html">Article</a>
+      </li>
+      <li >
+        <a href="/category/books.html">Books</a>
+      </li>
+      <li >
+        <a href="/category/cpp.html">Cpp</a>
+      </li>
+      <li class="active">
+        <a href="/category/it.html">It</a>
+      </li>
+      <li >
+        <a href="/category/movie.html">Movie</a>
+      </li>
+      <li >
+        <a href="/category/software.html">Software</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+      <li >
+        <a href="/category/web.html">Web</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">oh-my-zsh使用指南</h1>
+    <p class="meta">
+<time datetime="2020-08-29T17:00:00+08:00" pubdate>Sat 29 August 2020</time>    </p>
+</header>
+
+  <div class="entry-content"><h2>如果熟悉Linux系统，一定要打交道的就是SHELL语言，掌握使用SHELL的高效方法，做起很多事情来得心应手，最开始我只熟悉bash，当我安装完zsh,并使用oh my zsh套件以后，太震撼了。</h2>
+<h3>前些天拿出吃了很久灰的树莓派，借这次安装zsh的机会，整理出来了安装的过程。</h3>
+<ol>
+<li>查看当前使用SHELL，和已经安装的shell</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="nv">$SHELL</span> <span class="c1"># 查看当前使用SHELL</span>
+➜ cat /etc/shells  <span class="c1"># 列出已经安装的shell</span>
+/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/bin/dash
+/usr/bin/dash
+/usr/bin/tmux
+/usr/bin/screen
+/bin/zsh
+/usr/bin/zsh
+</code></pre></div>
+
+
+<ol>
+<li>如果没有显示<code>/bin/zsh</code>，则执行下面安装命令</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># 我在Debian环境下安装的</span>
+sudo apt-get install zsh
+<span class="c1"># os x 下安装</span>
+brew install zsh
+</code></pre></div>
+
+
+<ol>
+<li>安装完成后切换SHELL</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo chsh -s /bin/zsh
+</code></pre></div>
+
+
+<ol>
+<li>重启操作系统生效</li>
+<li>可再次查看当前SHELL<code>echo $SHELL</code></li>
+<li>安装oh my zsh 有两种方式：<code>curl</code>和<code>wget</code>，<a href="https://github.com/ohmyzsh/ohmyzsh">官方安装指导</a></li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># use curl</span>
+sh -c <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+<span class="c1"># or use wget</span>
+sh -c <span class="s2">&quot;</span><span class="k">$(</span>wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+
+<p>7.安装完成后可编辑<code>.zshrc</code>进行自定义设置，另外注意，原来<code>.bashrc</code>下的配置在<code>zsh</code>下仍然可以使用，<code>zsh</code>是完全兼容<code>bash</code>的。</p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        leelongcrazy
+    </span>
+  </span>
+<time datetime="2020-08-29T17:00:00+08:00" pubdate>Sat 29 August 2020</time>  <span class="categories">
+    <a class='category' href='/category/it.html'>IT</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/bash.html">Bash</a>,    <a class="category" href="/tag/zsh.html">zsh</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/vbsjiao-ben-xue-xi.html">VBS脚本学习</a>
+      </li>
+      <li class="post">
+          <a href="/vimduo-wen-jian-bian-ji.html">vim多文件编辑</a>
+      </li>
+      <li class="post">
+          <a href="/zhi-qing-yi.html">知 情 意</a>
+      </li>
+      <li class="post">
+          <a href="/cai-keng-ji-lu.html">踩坑记录</a>
+      </li>
+      <li class="post">
+          <a href="/guan-yu-wo.html">关于我</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/article.html">Article</a></li>
+        <li><a href="/category/books.html">Books</a></li>
+        <li><a href="/category/cpp.html">CPP</a></li>
+        <li><a href="/category/it.html">IT</a></li>
+        <li><a href="/category/movie.html">Movie</a></li>
+        <li><a href="/category/software.html">Software</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+        <li><a href="/category/web.html">Web</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/vim.html">Vim</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/websec.html">WebSec</a>,    <a href="/tag/pwn.html">PWN</a>,    <a href="/tag/mfc.html">MFC</a>,    <a href="/tag/programe.html">Programe</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/vue.html">VUE</a>,    <a href="/tag/bash.html">Bash</a>,    <a href="/tag/zsh.html">zsh</a>,    <a href="/tag/github.html">Github</a>,    <a href="/tag/git.html">Git</a>,    <a href="/tag/os.html">os</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/code.html">Code</a>,    <a href="/tag/iot.html">Iot</a>,    <a href="/tag/ai.html">AI</a>,    <a href="/tag/movie.html">Movie</a>,    <a href="/tag/article.html">Article</a>,    <a href="/tag/it.html">it</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://github.com/leelongcrazy" target="_blank">Github</a></li>
+            <li><a href="https://twitter.com/leelongcrazy" target="_blank">Twitter</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="http://leelongcrazy.com" target="_blank">LeeLongCrazy</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2017&ndash;2021  leelongcrazy &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

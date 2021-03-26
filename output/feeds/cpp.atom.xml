@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>leelongcrazy's blog - CPP</title><link href="https://leelongcrazy.github.io/" rel="alternate"></link><link href="https://leelongcrazy.github.io/feeds/cpp.atom.xml" rel="self"></link><id>https://leelongcrazy.github.io/</id><updated>2021-03-02T17:00:00+08:00</updated><entry><title>MFC框架笔记</title><link href="https://leelongcrazy.github.io/mfckuang-jia-bi-ji.html" rel="alternate"></link><published>2021-03-02T17:00:00+08:00</published><updated>2021-03-02T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2021-03-02:/mfckuang-jia-bi-ji.html</id><summary type="html">&lt;p&gt;MFC框架学习笔记&lt;/p&gt;</summary><content type="html">&lt;h1&gt;学习MFC前技术基础&lt;/h1&gt;
+&lt;h2&gt;WIN32程序概念：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;message based: 文档基础&lt;/li&gt;
+&lt;li&gt;event driven: 事件驱动&lt;/li&gt;
+&lt;li&gt;multitasking: 多任务&lt;/li&gt;
+&lt;li&gt;multithreading:多线程&lt;/li&gt;
+&lt;li&gt;console programing:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;C++基础：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;类和对象&lt;/li&gt;
+&lt;li&gt;this指针和继承&lt;/li&gt;
+&lt;li&gt;静态成员&lt;/li&gt;
+&lt;li&gt;虚函数与多态&lt;/li&gt;
+&lt;li&gt;模板（template）类&lt;/li&gt;
+&lt;li&gt;异常处理（exception handling）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;MFC重点：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;CWinApp类：&lt;/li&gt;
+&lt;li&gt;CFrameWnd类：&lt;/li&gt;
+&lt;li&gt;CPaintDC类&lt;/li&gt;
+&lt;li&gt;消息映射机制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;框架 MFC简介&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;微软基础类库（Microsoft Foundation Class），是微软公司提供的一个类库，以c++类的形式封装了win32 API，并且包含了一个应用程序框架。所以，MFC其实一个库和框架的混合体。&lt;/li&gt;
+&lt;li&gt;库包含了类、对象和方法等已供程序员直接使用，而Framework则包含了更多的东西，如多种不同的库，资源等。并且库和框架之间还有一个调用上的不同 &lt;a href="https://martinfowler.com/bliki/InversionOfControl.html"&gt;详细&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;桌面程序需要实现的两大功能&lt;/li&gt;
+&lt;li&gt;窗口创建&lt;/li&gt;
+&lt;li&gt;消息处理&lt;/li&gt;
+&lt;li&gt;MFC完成功能实现的基本流程&lt;/li&gt;
+&lt;li&gt;设计窗口类&lt;/li&gt;
+&lt;li&gt;注册窗口类&lt;/li&gt;
+&lt;li&gt;创建窗口&lt;/li&gt;
+&lt;li&gt;显示和更新窗口&lt;/li&gt;
+&lt;li&gt;消息获取&lt;/li&gt;
+&lt;li&gt;消息处理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;MFC&lt;/h1&gt;
+&lt;h2&gt;基础：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;UINT类型是由unsigned int类型派生出来的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;字符串与数值类型之间的转换&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="c1"&gt;//字符串变为数字.通用版.&lt;/span&gt;
+    &lt;span class="n"&gt;nNum1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_ttoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ch1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  
+
+    &lt;span class="c1"&gt;//数字转为字符串.设置到编辑框三种.&lt;/span&gt;
+    &lt;span class="n"&gt;_itot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nNum3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ch3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//十进制转换.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;afx_msg&lt;/h2&gt;
+&lt;p&gt;是应用框架产生的消息映射函数。&lt;/p&gt;
+&lt;p&gt;afx_msg为消息标志，向系统声明：有消息映射到函数实现体；而在map宏定义中，就有具体消息和此函数的映射定义。&lt;/p&gt;
+&lt;p&gt;在类头中增加消息声明；在类实现文件中增加消息定义和执行函数。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="messages" src="./images/wm_messages.png"&gt;&lt;/p&gt;
+&lt;h2&gt;文档/视图体系结构&lt;/h2&gt;
+&lt;p&gt;依靠文档保存应用程序的数据，依靠视图对象控制视图中显示的数据。&lt;/p&gt;
+&lt;h2&gt;视图：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;用户视角，视图就是一个普通的窗口&lt;/li&gt;
+&lt;li&gt;程序员的视角，视图是一个个C++ 对象，派生自MFC中CView类&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;消息映射&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="" src="content/images/message_map.png"&gt;&lt;/p&gt;
+&lt;h2&gt;资源编辑器（.rc）&lt;/h2&gt;
+&lt;h2&gt;MFC基础：&lt;/h2&gt;
+&lt;h3&gt;画图：CPaintDC类响应WM_PAINT消息，允许你在窗口客户区画图。&lt;/h3&gt;
+&lt;h3&gt;鼠标和键盘：&lt;/h3&gt;
+&lt;h4&gt;客户区鼠标消息&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="mouse_message" src="./images/mouse_message.png"&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;afx_msg&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;OnMsgName&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UINT&lt;/span&gt; &lt;span class="n"&gt;nFlags&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;CPoint&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;// point 指出光标的位置； nFlags指出消息产生时鼠标键以及shift键和Ctrl键的状态&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="nflags" src="./images/nflags.png"&gt;&lt;/p&gt;
+&lt;h5&gt;从键盘获取输入&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;输入焦点的概念：&lt;/li&gt;
+&lt;li&gt;获取击键码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;菜单&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;创建菜单：在资源描述文件（.rc）中添加&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;加载并显示菜单：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;c++
+    CMainWindow::CMainWindow()
+    {
+        Create(NULL, _T("The Hello Application"), WS_OVERLAPPEDWINDOW | WS_VSCROLL | WS_HSCROLL | WS_SYSMENU | WS_CAPTION,
+            CRect(400, 100, 1200, 1000), NULL, MAKEINTRESOURCE(IDR_MAINFRAME));
+    }&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MAKEINTRESOURCE(IDR_MAINFRAME)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;MFC集合类&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;数组&lt;/li&gt;
+&lt;li&gt;列表&lt;/li&gt;
+&lt;li&gt;映射表：设计映射表的目的是给定一个关键字，可以很快在表中找到响应的项目，通常只查找一次。&lt;/li&gt;
+&lt;li&gt;类型指针类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;文件的I/O及序列化&lt;/h2&gt;
+&lt;h2&gt;控件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;传统控件：6个预定义的WNDCLASS&lt;/li&gt;
+&lt;li&gt;&lt;img alt="" src="./images/winclass.png"&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;对话框&lt;/h2&gt;
+&lt;p&gt;创建对话框的步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建对话框资源：创建新的对话框模板、设置对话框属性和为对话框添加各种控件&lt;/li&gt;
+&lt;li&gt;生成对话框类：新建对话框类、添加控件变量和控件的消息处理函数等&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在资源视图页面：Ctrl+D可以更改tab顺序数字，按ESC键退出&lt;/p&gt;
+&lt;p&gt;对话框分为两类：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;模态对话框：当它弹出后，本应用程序其他窗口将不再接受用户输入，只有该对话框响应用户输入，在对它进行相应操作退出后，其他窗口才能继续与用户交互&lt;/li&gt;
+&lt;li&gt;非模态对话框：它弹出后，本程序其他窗口仍能响应用户输入。非模态对话框一般用来显示提示信息等。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;关闭对话框的方式：&lt;/h4&gt;
+&lt;p&gt;``` C ++
+// 退出程序
+    AfxGetMainWnd-&amp;gt;SendMessage(WM_CLOSE);
+// 关闭当前窗口
+    DestoryWindow();
+// 关闭模式对话框
+    EndDialog(0);&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;对话框：消息对话框&lt;/span&gt;
+
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;CWnd&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;MessageBox&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;CWnd&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;AfxMessageBox&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="err"&gt;用例：&lt;/span&gt;
+
+&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="o"&gt;```&lt;/span&gt; &lt;span class="k"&gt;C&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;
+   &lt;span class="n"&gt;res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MessageBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_T&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;您确定要进行乘法计算吗？&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;_T&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;乘法计算器&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;MB_OKCANCEL&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;MB_ICONQUESTION&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AfxMessageBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_T&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;您确定要进行乘法计算吗？&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;MB_OKCANCEL&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;MB_ICONASTERISK&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+   &lt;span class="o"&gt;```&lt;/span&gt;
+
+&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; 
+
+&lt;span class="o"&gt;##&lt;/span&gt; &lt;span class="err"&gt;编辑控制（&lt;/span&gt;&lt;span class="n"&gt;CEdit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="err"&gt;两种类别：&lt;/span&gt;&lt;span class="n"&gt;Control&lt;/span&gt; &lt;span class="err"&gt;和&lt;/span&gt; &lt;span class="n"&gt;Value&lt;/span&gt;
+
+&lt;span class="err"&gt;变量类型为：&lt;/span&gt;
+
+&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;CEdit&lt;/span&gt;  
+&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;CString&lt;/span&gt;
+
+&lt;span class="o"&gt;```&lt;/span&gt; &lt;span class="k"&gt;C&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;CEdit&lt;/span&gt;
+    &lt;span class="n"&gt;c_edit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GetWindowText&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;获取变量值&lt;/span&gt; &lt;span class="n"&gt;CString类型&lt;/span&gt;
+    &lt;span class="n"&gt;c_edit&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SetWindowText&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;设置变量值&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;Cstring&lt;/span&gt;
+    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;直接对变量赋&lt;/span&gt; &lt;span class="n"&gt;CString类型&lt;/span&gt;
+        &lt;span class="n"&gt;c_edit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;
+        &lt;span class="n"&gt;SetDlgItemText&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IDC_EDIT1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nb"&gt;Int&lt;/span&gt;
+        &lt;span class="n"&gt;SetDlgItemInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IDC_EDIT1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;组合框控件&lt;/h2&gt;
+&lt;p&gt;CComboBox类&lt;/p&gt;
+&lt;p&gt;主要成员函数：&lt;/p&gt;
+&lt;p&gt;int GetCount( ) const;
+       获取组合框控件的列表框中列表项的数量。&lt;/p&gt;
+&lt;p&gt;int GetCurSel( ) const;
+   获取组合框控件的列表框中选中项的索引，如果没有选中任何项，该函数返回CB_ERR。&lt;/p&gt;
+&lt;p&gt;int SetCurSel(int nSelect);
+   在组合框控件的列表框中选择某项。nSelect参数指定了要选择的列表项的索引，如果为-1则列表框中当前选择项被取消选中，编辑框也被清空。&lt;/p&gt;
+&lt;p&gt;void GetLBText(int nIndex,CString&amp;amp; rString) const;
+       从组合框控件的列表框中获取某项的字符串。nIndex参数指定要获取字符串的列表项的索引，CString参数用于接收取到的字符串。&lt;/p&gt;
+&lt;p&gt;int GetLBTextLen(int nIndex) const;
+       获取组合框控件的列表框中某项的字符串长度。nIndex参数指定要获取字符串长度的列表项的索引。  &lt;/p&gt;
+&lt;p&gt;int AddString(LPCTSTR lpszString);
+   为组合框控件中的列表框添加新的列表项。lpszString参数是指向要添加的字符串的指针。该函数的返回值如果大于等于0，那么它就是新列表项的索引，而如果有错误发生则会返回CB_ERR，如果没有足够的内存存放新字符串则返回CB_ERRSPACE。&lt;/p&gt;
+&lt;p&gt;int DeleteString(UINT nIndex);
+   删除组合框中某指定位置的列表项。nIndex参数指定了要删除的列表项的索引。该函数的返回值如果大于等于0，那么它就是组合框中剩余列表项的数量。如果nIndex指定的索引超出了列表项的数量则返回CB_ERR。&lt;/p&gt;
+&lt;p&gt;int FindString(int nStartAfter,LPCTSTR lpszString) const;
+   在组合框控件的列表框中查找但不选中第一个包含指定前缀的列表项。nStartAfter参数指定了第一个要查找的列表项之前的那个列表项的索引。lpszString指向包含要查找的前缀的字符串。该函数的返回值如果大于等于0，那么它是匹配列表项的索引，如果查找失败则返回CB_ERR。&lt;/p&gt;
+&lt;p&gt;int InsertString(int nIndex,LPCTSTR lpszString);
+   向组合框控件的列表框中插入一个列表项。nIndex参数指定了要插入列表项的位置，lpszString参数则指定了要插入的字符串。该函数返回字符串被插入的位置，如果有错误发生则会返回CB_ERR，如果没有足够的内存存放新字符串则返回CB_ERRSPACE。&lt;/p&gt;
+&lt;p&gt;int SelectString(int nStartAfter,LPCTSTR lpszString);
+   在组合框控件的列表框中查找一个字符串，如果查找到则选中它，并将其显示到编辑框中。参数同FindString。如果字符串被查找到则返回此列表项的索引，如果查找失败则返回CB_ERR，并且当前选择项不改变。&lt;/p&gt;
+&lt;p&gt;使用步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在DlgClass::OnInitDialog()中初始化ComboBox内容；可指定默认第一选项；&lt;/li&gt;
+&lt;li&gt;定义CBN_SELCHANGE消息的处理函数；获取组合框的选中索引，根据索引获取组合框中的对应值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;滚动条控件&lt;/h2&gt;
+&lt;p&gt;CSrollBar类&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;// 滚动条条拖动状态&lt;/span&gt;
+&lt;span class="n"&gt;SB_LINEUP&lt;/span&gt;           &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;SB_LINELEFT&lt;/span&gt;         &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;SB_LINEDOWN&lt;/span&gt;         &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;SB_LINERIGHT&lt;/span&gt;        &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;SB_PAGEUP&lt;/span&gt;           &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;SB_PAGELEFT&lt;/span&gt;         &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;SB_PAGEDOWN&lt;/span&gt;         &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="n"&gt;SB_PAGERIGHT&lt;/span&gt;        &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="n"&gt;SB_THUMBPOSITION&lt;/span&gt;    &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="n"&gt;SB_THUMBTRACK&lt;/span&gt;       &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="n"&gt;SB_TOP&lt;/span&gt;              &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="n"&gt;SB_LEFT&lt;/span&gt;             &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="n"&gt;SB_BOTTOM&lt;/span&gt;           &lt;span class="mi"&gt;7&lt;/span&gt;
+&lt;span class="n"&gt;SB_RIGHT&lt;/span&gt;            &lt;span class="mi"&gt;7&lt;/span&gt;
+&lt;span class="n"&gt;SB_ENDSCROLL&lt;/span&gt;        &lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;列表视图控件&lt;/h2&gt;
+&lt;p&gt;CListCtrl类内部的成员函数：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;UINT GetSelectedCount( ) const;&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;该函数返回列表视图控件中被选择列表项的数量。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;POSITION GetFirstSelectedItemPosition( ) const;&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;获取列表视图控件中第一个被选择项的位置。返回的POSITION值可以用来迭代来获取其他选择项，可以当作参数传入下面的GetNextSelectedItem函数来获得选择项的索引。如果没有被选择项则返回NULL。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;int GetNextSelectedItem(POSITION&amp;amp; pos) const;&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;该函数获取由pos指定的列表项的索引，然后将pos设置为下一个位置的POSITION值。参数pos为之前调用GetNextSelectedItem或GetFirstSelectedItemPosition得到的POSITION值的引用。返回值就是pos指定列表项的索引。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;int GetItemCount( ) const;&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;获取列表视图控件中列表项的数量。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;int InsertColumn(int nCol,const LVCOLUMN* pColumn );&lt;/strong&gt;
+&lt;strong&gt;int InsertColumn(int nCol,LPCTSTR lpszColumnHeading,int nFormat = LVCFMT_LEFT,int nWidth = -1,int nSubItem = -1 );&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;这两个函数用于在报表式列表视图控件中插入列。第一个函数中，nCol参数为插入列的索引，pColumn参数指向LVCOLUMN结构，其中包含了插入列的属性。第二个函数中，nCol参数也是插入列的索引，lpszColumnHeading参数为列标题字符串，nFormat参数为列中文本的对齐方式，可以是LVCFMT_LEFT、LVCFMT_RIGHT或LVCFMT_CENTER，nWidth参数为列宽，nSubItem为插入列对应列表子项的索引。两个函数在成功时都返回新列的索引，失败都返回-1。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;BOOL DeleteColumn(int nCol);&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;   该函数用于删除列表视图控件中的某列。参数nCol为删除列的索引。删除成功则返回TRUE，失败返回FALSE。&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;int InsertItem(int nItem,LPCTSTR lpszItem);&lt;/strong&gt; &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;向列表视图控件中插入新的列表项。参数nItem为要插入项的索引，参数lpszItem为要插入项的标签字符串。如果插入成功则返回新列表项的索引，否则返回-1。 &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;BOOL DeleteItem(int nItem);&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;从列表视图控件中删除某个列表项。参数nItem指定了要删除的列表项的索引。删除成功则返回TRUE，否则返回FALSE。 &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;CString GetItemText(int nItem,int nSubItem) const;&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;获取指定列表项或列表子项的显示文本。参数nItem指定了列表项的索引，参数nSubItem指定了列表子项的索引。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;BOOL SetItemText(int nItem,int nSubItem,LPCTSTR lpszText);&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设置指定列表项或列表子项的显示文本。参数nItem和nSubItem同GetItemText。参数lpszText为要设置的显示文本字符串。如果设置成功则返回TRUE，否则返回FALSE。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;DWORD_PTR GetItemData(int nItem) const;&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;该函数用于获取指定列表项的附加32位数据。参数nItem为列表项的索引。返回值就是由nItem指定列表项的附加32位数据。   &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;BOOL SetItemData(int nItem,DWORD_PTR dwData);&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;该函数用于为指定列表项设置附加32位是数据。参数nItem为列表项的索引，参数dwData为列表项的附加32位数据。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;ListCtrlBox&lt;/p&gt;
+&lt;p&gt;View属性有4种风格：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;icon：图标风格&lt;/li&gt;
+&lt;li&gt;Small icon：小图标风格&lt;/li&gt;
+&lt;li&gt;List：列表风格&lt;/li&gt;
+&lt;li&gt;Report：报表风格（表格视图）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;CListCtrl::SetExtendedStyle&lt;/p&gt;
+&lt;p&gt;列表视图控件用法：&lt;/p&gt;
+&lt;p&gt;``` C ++
+m_ProgramList.SetExtendedStyle(m_ProgramList.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_CHECKBOXES);&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;列表视图控件的风格类型:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;LVS_EX_GRIDLINES //绘制表格,网格线。
+　　LVS_EX_SUBITEMIMAGES//子项目图标列表
+　　LVS_EX_CHECKBOXES //带复选框
+　　LVS_EX_TRACKSELECT //自动换行
+　　LVS_EX_HEADERDRAGDROP//报表头可以拖拽
+　　LVS_EX_FULLROWSELECT //选择整行，允许选择整行。
+   LVS_EX_ONECLICKACTIVATE//单击激活单击选中项目。
+　　LVS_EX_TWOCLICKACTIVATE//双击激活
+　　LVS_EX_FLATSB//扁平滚动条
+　　LVS_EX_REGIONAL
+　　LVS_EX_INFOTIP
+　　LVS_EX_UNDERLINEHOT
+　　LVS_EX_UNDERLINECOLD
+　　LVS_EX_MULTIWORKAREAS//多工作区
+```&lt;/p&gt;
+&lt;h1&gt;相关资料：&lt;/h1&gt;
+&lt;p&gt;网站：&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.jizhuomi.com/software/257.html"&gt;鸡啄米--VS2010/MFC编程入门教程之目录和总结&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;书籍：&lt;/p&gt;
+&lt;p&gt;《基于visual C++ MFC编程》&lt;/p&gt;
+&lt;p&gt;《MFC Windows程序设计 第2版》&lt;/p&gt;</content><category term="CPP"></category><category term="MFC"></category><category term="Programe"></category></entry><entry><title>C++笔记</title><link href="https://leelongcrazy.github.io/cbi-ji.html" rel="alternate"></link><published>2021-02-28T17:00:00+08:00</published><updated>2021-02-28T17:00:00+08:00</updated><author><name>leelongcrazy</name></author><id>tag:leelongcrazy.github.io,2021-02-28:/cbi-ji.html</id><summary type="html">&lt;p&gt;C++学习笔记&lt;/p&gt;</summary><content type="html">&lt;h1&gt;神奇的用法：&lt;/h1&gt;
+&lt;h3&gt;#pragma&lt;/h3&gt;
+&lt;p&gt;在所有的预处理指令中，#pragma 指令可能是最复杂的了，它的作用是设定编译器的状态或者是指示编译器完成一些特定的动作。#pragma指令对每个编译器给出了一个方法，在保持与C和C++语言完全兼容的情况下，给出主机或操作系统专有的特征。依据定义，编译指示是机器或操作系统专有的，且对于每个编译器都是不同的。   #pragma once   只要在头文件的最开始加入这条指令就能够保证头文件被编译一次&lt;/p&gt;
+&lt;h1&gt;ifndef，#define，#endif这个是C++语言相关，这是C++语言中的宏定义，通过宏定义避免文件多次编译。所以在所有支持C++语言的编译器上都是有效的，如果写的程序要跨平台，最好使用这种方式（被称为预处理指令）&lt;/h1&gt;
+&lt;h1&gt;pragma comment&lt;/h1&gt;
+&lt;p&gt;该指令将一个注释记录放入一个对象文件或可执行文件中。
+常用的lib关键字，可以帮我们连入一个库文件。&lt;/p&gt;
+&lt;h1&gt;C++基础&lt;/h1&gt;
+&lt;h2&gt;一些概念：&lt;/h2&gt;
+&lt;h4&gt;指针&lt;/h4&gt;
+&lt;p&gt;指针的值（即地址）应属于下列4种状态之一：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;指向一个对象&lt;/li&gt;
+&lt;li&gt;指向紧邻对象所占空间的下一个位置；&lt;/li&gt;
+&lt;li&gt;空指针，意味着指针没有指向任何对象&lt;/li&gt;
+&lt;li&gt;无效指针，上述情况之外的其他值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;标准异常&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="error" src="./images/errors.png"&gt;&lt;/p&gt;
+&lt;h2&gt;数据类型&lt;/h2&gt;
+&lt;h3&gt;向量Vector: 向量是一个具有相同类型对象的集合。与数组相比，在初定义时可以不指定大小。&lt;/h3&gt;
+&lt;h2&gt;C++ 中的一些关键字&lt;/h2&gt;
+&lt;h3&gt;const&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;修饰变量，变量不可以被修改；&lt;/li&gt;
+&lt;li&gt;修饰指针，分为指向常量的指针和自身是常量的指针（常量指针）&lt;/li&gt;
+&lt;li&gt;修饰引用，指向常量的引用，用于形参类型，避免拷贝，又避免楼函数对值的修改；&lt;/li&gt;
+&lt;li&gt;修饰成员函数，说明该成员函数内不能修改成员的变量&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h6&gt;conset的指针和引用&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;指针&lt;/li&gt;
+&lt;li&gt;指向常量的指针&lt;/li&gt;
+&lt;li&gt;自身是常量指针（常量指针）&lt;/li&gt;
+&lt;li&gt;引用&lt;/li&gt;
+&lt;li&gt;指向常量的引用&lt;/li&gt;
+&lt;li&gt;没有 const reference ，因为引用本身就是const pointer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;被 const 修饰（在 const 后面）的值不可改变&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;static&lt;/h3&gt;
+&lt;p&gt;作用:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修饰普通变量，修改变量的存储区域和声明周期，使变量存储在静态区，在main函数运行前就分配楼空间，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它。&lt;/li&gt;
+&lt;li&gt;修饰普通函数， 表明函数的作用范围，仅在定义该函数的文件内才能使用。在多人开发项目时，为了防止与他人命名空间里的函数重名，可以将函数定位为 static。&lt;/li&gt;
+&lt;li&gt;修饰成员变量， 修饰成员变量使所有的对象只保存一个该变量，而且不需要生成对象就可以访问该成员。&lt;/li&gt;
+&lt;li&gt;修饰成员函数， 修饰成员函数使得不需要生成对象就可以访问该函数，但是在static函数内不能访问非静态成员。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;this指针&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;this指针&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;inline 内联函数&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;相当于把内联函数里面的内容写在调用内联函数处；&lt;/li&gt;
+&lt;li&gt;相当于不用执行进入函数的步骤，直接执行函数体；&lt;/li&gt;
+&lt;li&gt;相当于宏，比宏多了类型检查，真正具有函数特性；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;virtual 虚函数&lt;/h3&gt;
+&lt;h4&gt;虚函数（virtual）可以是内联函数（inline）吗？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;虚函数可以是内联函数，内联是可以修饰虚函数的，但是当虚函数表现多态性的时候，不能内联。&lt;/li&gt;
+&lt;li&gt;内联是在编译器建议编译器内联，而虚函数的多态性在运行期，编译器无法知道运行期调用哪个代码，因此虚函数表现为多态性时（运行期）不可以内联。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;volatile&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;volatile关键字是一种类型修饰符，用它声明的类型变量表示可以被某些编译器未知的因素（操作系统，硬件，其他线程等）更改。所以使用volatile告诉编译器不应对这样的对象进行优化。&lt;/li&gt;
+&lt;li&gt;volatile声明的变量，每次访问时都必须从内存中取出值（没有被volatile修饰的变量，可能由于编译器的优化，从CPU寄存器中取值）&lt;/li&gt;
+&lt;li&gt;指针可以是 volatile&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;assert（）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;断言，是宏，而非函数。&lt;/li&gt;
+&lt;li&gt;assert 宏的原型定义在 &lt;strong&gt;&lt;assert.h&gt;&lt;/strong&gt;（C）、&lt;strong&gt;&lt;cassert&gt;&lt;/strong&gt;（C++）中，其作用是如果它的条件返回错误，则终止程序执行。可以通过定义 &lt;strong&gt;NDEBUG&lt;/strong&gt; 来关闭assert， 但是需要在源代码开头， &lt;strong&gt;include &lt;assert.h&gt;&lt;/strong&gt; 之前。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;sizeof()&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;获得对象所占空间大小&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;auto&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;auto可以在声明变量的时候根据变量初始值的类型自动为此变量选择匹配的类型，类似的关键字还有decltype&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;goto&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;goto 的标志符号后面的字符为&lt;strong&gt;分号 (:)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#pragma pack(n)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;设定结构体、联合以及类成员变量以n字节方式对齐&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;memset()&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;可以对数组中的每一个元素赋同样的值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;C++
+  int a[5] = {1,2,3,4,5};
+  memset(a, 0, sizeof(a)); // a = {0, 0, 0, 0, 0}
+  memset(a, -1, sizeof(a)); // a = {-1, -1, -1, -1, -1}&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;extern "C"&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;被extern限定的函数或变量是extern 类型的&lt;/li&gt;
+&lt;li&gt;被&lt;strong&gt;extern "C"&lt;/strong&gt;修饰的变量和函数是按照C语言的方式编译和链接的&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;extern "C"&lt;/strong&gt; 的作用是让C++ 编译器将  extern "C" 声明的代码当做 C 语言代码处理，可以避免C++ 因符号修饰导致代码不能和C语言库中的符号进行链接的问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;struct 和 typedef struct&lt;/h3&gt;
+&lt;h4&gt;C 中&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;// C&lt;/span&gt;
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Student&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;// 等价于&lt;/span&gt;
+&lt;span class="c1"&gt;// C&lt;/span&gt;
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Student&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Student&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;// 此时的 S 等价于 struct Student ,但是两个标识符名称空间不相同。另外还可以定义与 struct Student 不冲突的 void Student(){}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;C ++ 中&lt;/h4&gt;
+&lt;h6&gt;由于编译器定位符号的规则（搜索规则）改变，导致不同于C语言。&lt;/h6&gt;
+&lt;ol&gt;
+&lt;li&gt;如果在类标识符空间定义了 struct Student{...}; ,使用 Student me; 时，编译器将搜索全局标识符表， Student 未找到，则在类标识符内搜索。即表现为可以使用 Student 也可以使用 struct Student , 如下&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;``` C++
+   // cpp
+   struct Student
+   {
+       int age;
+   };&lt;/p&gt;
+&lt;p&gt;void f( Student me); // "struct" 关键字可以省略
+   ```&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;若定义了 与 Student 同名函数后， 则 Student 只代表函数， 不代表结构体，如下&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;C++
+   typedef struct Student
+   {
+       int age;
+   }S;
+   void Student(){} // 定义后，Student 只代表此函数
+   // void S(){} // 错误， 符号 “S”已经被定义为一个 “struct Student” 的别名
+   int main()
+   {
+       Student();
+       struct Student me; // ==&amp;gt; 或者 “S me”
+       return 0;
+   }&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;C ++ 中的 struct 和 class&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;struct更适合看成一个数据结构的实现体，class更适合看成是一个对象的实现体&lt;/li&gt;
+&lt;li&gt;区别：&lt;/li&gt;
+&lt;li&gt;最本质的区别就是默认的访问控制&lt;ul&gt;
+&lt;li&gt;默认的继承访问权限。struct 是public的， class是private的。&lt;/li&gt;
+&lt;li&gt;struct 作为数据结构的实现体，它默认的数据访问控制是public的，而class作为对象的实现体，它默认的成员变量访问控制是private的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;union联合&lt;/h3&gt;
+&lt;h3&gt;explicit （显式）关键字&lt;/h3&gt;
+&lt;h3&gt;using&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;using 声明 : &lt;strong&gt;using namespace_name::name;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;using 指示 : &lt;strong&gt;using namespace_name name;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;尽量少使用 using指示（减少污染命名空间），应该多使用 using 声明，&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;::&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;分类&lt;/li&gt;
+&lt;li&gt;全局作用域符（::name）&lt;/li&gt;
+&lt;li&gt;类作用域符（class::name）&lt;/li&gt;
+&lt;li&gt;命名空间作用域符（namespace::name）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;enum 枚举类型&lt;/h3&gt;
+&lt;p&gt;``` C ++ 
+// 限定作用域的枚举类型
+enum class open_modes { input, output, append };&lt;/p&gt;
+&lt;p&gt;// 不限定作用域的枚举类型
+enum color { red yellow, green };
+enum { floatPrec=6, doublePrec=10 };
+```&lt;/p&gt;
+&lt;h3&gt;decltype&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;该关键字用于检查实体的声明类型或表达式的类型及值分类。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;引用&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;左值引用：常规引用，一般表示对象的身份&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;右值引用：右值引用必须绑定到右值（一个临时对象、将要销毁的对象）的引用，一般表示对象的值。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;右值引用可实现转移语义和精确传递，它的主要目的有两个方面：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;能够更简洁明确地定义泛型函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;引用折叠&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;引用即别名&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;宏&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;宏定义可以实现类似于函数的功能，但是他终归不是函数，而宏定义中括弧中的“参数”也不是真的参数，在宏展开的时候对“参数”进行的是一对一的替换。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;成员初始化列表&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;好处：&lt;/li&gt;
+&lt;li&gt;更高效&lt;/li&gt;
+&lt;li&gt;有些场合必须要用初始化列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;面向对象&lt;/h3&gt;
+&lt;h5&gt;面向对象程序设计是种具有对象概念的程序编程典范，同是也是一种程序开发的抽象方针。&lt;/h5&gt;
+&lt;h5&gt;面向对象的三大特征：封装、继承、多态。&lt;/h5&gt;
+&lt;p&gt;&lt;img alt="面向对象基本特征" src="面向对象基本特征.png"&gt;&lt;/p&gt;
+&lt;h2&gt;封装&lt;/h2&gt;
+&lt;h5&gt;把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的信息隐藏。&lt;/h5&gt;
+&lt;h5&gt;关键字：public, protected, private。不写默认为 private。&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;public: 可以被任意实体访问&lt;/li&gt;
+&lt;li&gt;protected: 只允许被子类及本类的成员函数访问&lt;/li&gt;
+&lt;li&gt;private: 只允许被本类的成员函数、友元类或友元函数访问&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;继承&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;基类（父类）---&amp;gt; 派生类（子类）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;多态&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;多态，多种状态&lt;/li&gt;
+&lt;li&gt;多态是以封装和继承为基础的&lt;/li&gt;
+&lt;li&gt;C++ 多态分类及实现：&lt;ol&gt;
+&lt;li&gt;重载多态：函数重载，运算符重载&lt;/li&gt;
+&lt;li&gt;子类型多态：虚函数&lt;/li&gt;
+&lt;li&gt;参数多态性：类模板，函数模板&lt;/li&gt;
+&lt;li&gt;强制多态：基本类型转换，自定义类型转换&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;静态多态--》函数重载&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;同一个名字可以定义多个函数，只要这些函数的形参数量或形参类型不同就行。根据调用时所使用的实参，编译器可以自动的选择被调用的函数。&lt;strong&gt;选取最佳函数的过程被称为函数匹配&lt;/strong&gt;（best match）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;动态多态--》虚函数&lt;/p&gt;
+&lt;h2&gt;C++ 类&amp;amp;对象&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;类的基本思想是&lt;strong&gt;数据抽象&lt;/strong&gt;和&lt;strong&gt;封装&lt;/strong&gt;。数据抽象是一种依赖&lt;strong&gt;接口&lt;/strong&gt;和&lt;strong&gt;实现&lt;/strong&gt;分离的编程设计技术。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;类的两项基本能力：1是数据抽象，即定义数据成员和函数成员的能力，二是封装，即保护类的成员不能被随意访问的能力。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;以关键字class开头&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;定义了类的对象包括什么，以及可以在这个对象上执行哪些操作（即成员变量，成员函数）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;访问数据成员&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;类对象的公共（public）数据成员可以使用直接成员访问运算符（.）来访问。&lt;/li&gt;
+&lt;li&gt;私有的成员和受保护的成员不能使用直接成员访问运算符（.）来直接访问。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;类相关概念：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;类成员函数：把定义和原型写在类定义内部的函数，就像类中的其他变量。&lt;/li&gt;
+&lt;li&gt;类访问修饰符：类成员可以被定义为public、private、protected。默认情况下为private。&lt;/li&gt;
+&lt;li&gt;构造函数&amp;amp;析构函数： 创建类要提供一种或几种&lt;em&gt;成员函数来控制其对象初始化的过程&lt;/em&gt;，这种特殊的成员函数就是 &lt;em&gt;构造函数&lt;/em&gt; 。构造函数在创建新对象时调用，析构函数在删除所创建对象时调用。&lt;/li&gt;
+&lt;li&gt;构造函数的定义：&lt;/li&gt;
+&lt;li&gt;构造函数的名字和类名字相同&lt;/li&gt;
+&lt;li&gt;没有返回值&lt;/li&gt;
+&lt;li&gt;不能声明为const&lt;/li&gt;
+&lt;li&gt;C++拷贝构造函数：是一种特殊的构造函数，在创建对象时，是使用同一类中之前创建的对象来初始化新创建的对象。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;友元类：在A类中声明B类是它的朋友，B类中定义A类的对象，那么在B类中通过该对象可以实现对A类私有数据的访问。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;C++友元函数：可以在类的外部通过对象使用类的私有数据成员。可以访问private和protected成员。&lt;em&gt;一般来说，最好在类定义开始或者结束前的位置中集中声明友元&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;C++ 内联函数&lt;/li&gt;
+&lt;li&gt;C++中的this指针：每个对象都有一个特殊的指针this，指向对象本身。&lt;/li&gt;
+&lt;li&gt;C++中指向类的指针：如同指向结构的指针。实际上类可以看成是一个带有函数的结构。&lt;/li&gt;
+&lt;li&gt;C++类的静态成员：类的数据成员和函数成员都可以被声明为静态的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="friend_class" src=".\images\friend_class.png"&gt;&lt;/p&gt;
+&lt;h4&gt;函数的返回值类型是类的引用类型，在成员函数内部可以直接使用类的数据成员。&lt;/h4&gt;
+&lt;h2&gt;C++ 模板&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;模板是泛型编程的基础，泛型编程即以一种独立于任何特定类型的方式编写代码。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;模板是编写泛型类或函数的蓝图或公式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;函数模板：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;模板函数的定义一般形式：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;c++
+    template &amp;lt;typename type&amp;gt; ret-type func-name(parameter list)
+    {
+        // 函数主体
+    }&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;类模板：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;类模板的一般定义形式：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;C++
+    template &amp;lt;class type&amp;gt; class class-name
+    {
+        // 代码
+    }&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;C++ STL（标准模板库）&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;C++ 标准模板库的核心包括以下三个组件：容器，算法，迭代器。&lt;/li&gt;
+&lt;li&gt;容器：用来管理某一类对象的集合，例如deque、list、vector、map等。&lt;/li&gt;
+&lt;li&gt;算法：作用于容器。提供了执行各种操作的方式，包括对容器内容执行初始化、排序、搜索和转换等操作。&lt;/li&gt;
+&lt;li&gt;迭代器：用于遍历对象集合的元素。这些集合可能是容器，也可能是容器的子集。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;C++ 标准库&lt;/h2&gt;
+&lt;p&gt;C++标准库包含了所有的C标准库，为了支持安全类型安全，做了一定的添加和修改&lt;/p&gt;
+&lt;p&gt;分为两个部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;标准函数库：由通用的、独立的、不属于任何类的函数组成。函数库继承自C语言。（以下是分类）&lt;/li&gt;
+&lt;li&gt;输入/输出 I/O&lt;/li&gt;
+&lt;li&gt;字符串和字符处理&lt;/li&gt;
+&lt;li&gt;数学&lt;/li&gt;
+&lt;li&gt;时间、日期和本地化&lt;/li&gt;
+&lt;li&gt;动态分配&lt;/li&gt;
+&lt;li&gt;其他&lt;/li&gt;
+&lt;li&gt;宽字符函数&lt;/li&gt;
+&lt;li&gt;面向对象类库：是类及其相关函数的集合。&lt;/li&gt;
+&lt;li&gt;标准的C++ I/O类&lt;/li&gt;
+&lt;li&gt;String类&lt;/li&gt;
+&lt;li&gt;数值类&lt;/li&gt;
+&lt;li&gt;STL容器类&lt;/li&gt;
+&lt;li&gt;STL算法&lt;/li&gt;
+&lt;li&gt;STL函数对象&lt;/li&gt;
+&lt;li&gt;STL迭代器&lt;/li&gt;
+&lt;li&gt;STL分配器&lt;/li&gt;
+&lt;li&gt;本地化类&lt;/li&gt;
+&lt;li&gt;异常处理类&lt;/li&gt;
+&lt;li&gt;杂项支持类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;宽字符版本的类型和函数以一个w开始。&lt;/h3&gt;
+&lt;h2&gt;顺序容器&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;顺序容器为程序员提供了控制元素存储和访问顺序的能力。&lt;/li&gt;
+&lt;li&gt;提供了快速顺序访问元素的能力&lt;/li&gt;
+&lt;li&gt;性能折中：&lt;/li&gt;
+&lt;li&gt;向容器添加或从容器中删除元素的代价&lt;/li&gt;
+&lt;li&gt;非顺序访问容器中元素的代价&lt;/li&gt;
+&lt;li&gt;顺序容器类型：&lt;/li&gt;
+&lt;li&gt;vector：&lt;/li&gt;
+&lt;li&gt;deque:&lt;/li&gt;
+&lt;li&gt;list:&lt;/li&gt;
+&lt;li&gt;forward_list:&lt;/li&gt;
+&lt;li&gt;array:&lt;/li&gt;
+&lt;li&gt;string:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;关联容器&lt;/h2&gt;
+&lt;p&gt;关联容器和顺序容器有着根本的不同：关联容器中的元素是按关键字来保存和访问的。&lt;/p&gt;
+&lt;p&gt;与之相对，顺序容器中的元素是按它们在容器中的位置来顺序保存和访问的。&lt;/p&gt;
+&lt;p&gt;类型分类：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有序&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;map：key-value&lt;/li&gt;
+&lt;li&gt;set：关键字即值&lt;/li&gt;
+&lt;li&gt;multimap: 关键字可以重复出现的map&lt;/li&gt;
+&lt;li&gt;multiset: 关键字可以重复出现的set&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;无序关联容器&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;unordered_map&lt;/li&gt;
+&lt;li&gt;unordered_set&lt;/li&gt;
+&lt;li&gt;unordered_multimap&lt;/li&gt;
+&lt;li&gt;unordered_multiset&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;容器操作-》类型别名 -&amp;gt; const_iterator：可以读取元素，但不能修改元素的迭代器类型。&lt;/h3&gt;
+&lt;h2&gt;获取迭代器&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;c.begin(), c.end() : 返回指向c的首元素和尾元素之后位置的迭代器&lt;/li&gt;
+&lt;li&gt;c.cbegin(), c.cend() :返回 const_iterator&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;C++ 4种编程风格：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;C风格&lt;/li&gt;
+&lt;li&gt;基于对象&lt;/li&gt;
+&lt;li&gt;面向对象&lt;/li&gt;
+&lt;li&gt;泛型&lt;/li&gt;
+&lt;li&gt;“基于组件”的风格&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;动态内存与智能指针：&lt;/h2&gt;
+&lt;h1&gt;C语言&lt;/h1&gt;
+&lt;p&gt;自由的代价永远是警惕。&lt;/p&gt;
+&lt;h1&gt;基础十问&lt;/h1&gt;
+&lt;p&gt;1、C与C++的关系是什么？&lt;/p&gt;
+&lt;p&gt;C是C++ 的一部分，C++是C的超集。&lt;/p&gt;
+&lt;p&gt;2、面向对象与C++的关系是什么？&lt;/p&gt;
+&lt;p&gt;3、面向对象的方法与面向对象编程的关系是什么？&lt;/p&gt;
+&lt;p&gt;4、面向对象编程的优势（优点、特性）是什么？&lt;/p&gt;
+&lt;p&gt;5、什么是对象，什么是类，它们的关系如何？&lt;/p&gt;
+&lt;p&gt;6、类的定义、初始化、赋值、构造和析构的具体操作方法。成员、方法、const 和this指针。&lt;/p&gt;
+&lt;p&gt;7、重载与类模板的使用。类继承、多重继承的方法。&lt;/p&gt;
+&lt;p&gt;8、什么是多态性，C++如何实现？&lt;/p&gt;
+&lt;p&gt;9、如何在C++面向对象编程中体现“数据抽象”？&lt;/p&gt;
+&lt;p&gt;10、如何用OOP实现更好的数据封装与代码重用？&lt;/p&gt;</content><category term="CPP"></category><category term="Tech"></category><category term="Programe"></category></entry></feed>

@@ -1,7 +1,7 @@
 Title: oh my zsh && git
 Date: 2020-5-28 17:00
 Category: IT
-Tags: Tech,Git，zsh
+Tags:  Git, zsh
 Authors: leelongcrazy
 Summary: oh my zsh下git命令别名
 

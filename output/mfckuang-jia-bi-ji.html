@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>MFC框架笔记 &mdash; leelongcrazy's blog</title>
+  <meta name="author" content="leelongcrazy">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">leelongcrazy's blog</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/article.html">Article</a>
+      </li>
+      <li >
+        <a href="/category/books.html">Books</a>
+      </li>
+      <li class="active">
+        <a href="/category/cpp.html">Cpp</a>
+      </li>
+      <li >
+        <a href="/category/it.html">It</a>
+      </li>
+      <li >
+        <a href="/category/movie.html">Movie</a>
+      </li>
+      <li >
+        <a href="/category/software.html">Software</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+      <li >
+        <a href="/category/web.html">Web</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">MFC框架笔记</h1>
+    <p class="meta">
+<time datetime="2021-03-02T17:00:00+08:00" pubdate>Tue 02 March 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><h1>学习MFC前技术基础</h1>
+<h2>WIN32程序概念：</h2>
+<ul>
+<li>message based: 文档基础</li>
+<li>event driven: 事件驱动</li>
+<li>multitasking: 多任务</li>
+<li>multithreading:多线程</li>
+<li>console programing:</li>
+</ul>
+<h2>C++基础：</h2>
+<ul>
+<li>类和对象</li>
+<li>this指针和继承</li>
+<li>静态成员</li>
+<li>虚函数与多态</li>
+<li>模板（template）类</li>
+<li>异常处理（exception handling）</li>
+</ul>
+<h2>MFC重点：</h2>
+<ul>
+<li>CWinApp类：</li>
+<li>CFrameWnd类：</li>
+<li>CPaintDC类</li>
+<li>消息映射机制</li>
+</ul>
+<h2>框架 MFC简介</h2>
+<ul>
+<li>微软基础类库（Microsoft Foundation Class），是微软公司提供的一个类库，以c++类的形式封装了win32 API，并且包含了一个应用程序框架。所以，MFC其实一个库和框架的混合体。</li>
+<li>库包含了类、对象和方法等已供程序员直接使用，而Framework则包含了更多的东西，如多种不同的库，资源等。并且库和框架之间还有一个调用上的不同 <a href="https://martinfowler.com/bliki/InversionOfControl.html">详细</a></li>
+<li>桌面程序需要实现的两大功能</li>
+<li>窗口创建</li>
+<li>消息处理</li>
+<li>MFC完成功能实现的基本流程</li>
+<li>设计窗口类</li>
+<li>注册窗口类</li>
+<li>创建窗口</li>
+<li>显示和更新窗口</li>
+<li>消息获取</li>
+<li>消息处理</li>
+</ul>
+<h1>MFC</h1>
+<h2>基础：</h2>
+<ul>
+<li>UINT类型是由unsigned int类型派生出来的</li>
+</ul>
+<h2>字符串与数值类型之间的转换</h2>
+<div class="highlight"><pre><span></span><code>    <span class="c1">//字符串变为数字.通用版.</span>
+    <span class="n">nNum1</span> <span class="o">=</span> <span class="n">_ttoi</span><span class="p">(</span><span class="n">ch1</span><span class="p">);</span>  
+
+    <span class="c1">//数字转为字符串.设置到编辑框三种.</span>
+    <span class="n">_itot</span><span class="p">(</span><span class="n">nNum3</span><span class="p">,</span> <span class="n">ch3</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">//十进制转换.</span>
+</code></pre></div>
+
+
+<h2>afx_msg</h2>
+<p>是应用框架产生的消息映射函数。</p>
+<p>afx_msg为消息标志，向系统声明：有消息映射到函数实现体；而在map宏定义中，就有具体消息和此函数的映射定义。</p>
+<p>在类头中增加消息声明；在类实现文件中增加消息定义和执行函数。</p>
+<p><img alt="messages" src="./images/wm_messages.png"></p>
+<h2>文档/视图体系结构</h2>
+<p>依靠文档保存应用程序的数据，依靠视图对象控制视图中显示的数据。</p>
+<h2>视图：</h2>
+<ul>
+<li>用户视角，视图就是一个普通的窗口</li>
+<li>程序员的视角，视图是一个个C++ 对象，派生自MFC中CView类</li>
+<li></li>
+</ul>
+<h2>消息映射</h2>
+<p><img alt="" src="content/images/message_map.png"></p>
+<h2>资源编辑器（.rc）</h2>
+<h2>MFC基础：</h2>
+<h3>画图：CPaintDC类响应WM_PAINT消息，允许你在窗口客户区画图。</h3>
+<h3>鼠标和键盘：</h3>
+<h4>客户区鼠标消息</h4>
+<p><img alt="mouse_message" src="./images/mouse_message.png"></p>
+<div class="highlight"><pre><span></span><code><span class="n">afx_msg</span> <span class="kt">void</span> <span class="n">OnMsgName</span> <span class="p">(</span><span class="n">UINT</span> <span class="n">nFlags</span><span class="p">,</span> <span class="n">CPoint</span> <span class="n">point</span><span class="p">)</span>
+    <span class="c1">// point 指出光标的位置； nFlags指出消息产生时鼠标键以及shift键和Ctrl键的状态</span>
+</code></pre></div>
+
+
+<p><img alt="nflags" src="./images/nflags.png"></p>
+<h5>从键盘获取输入</h5>
+<ul>
+<li>输入焦点的概念：</li>
+<li>获取击键码：</li>
+</ul>
+<h4>菜单</h4>
+<ul>
+<li>
+<p>创建菜单：在资源描述文件（.rc）中添加</p>
+</li>
+<li>
+<p>加载并显示菜单：</p>
+</li>
+<li>
+<p><code>c++
+    CMainWindow::CMainWindow()
+    {
+        Create(NULL, _T("The Hello Application"), WS_OVERLAPPEDWINDOW | WS_VSCROLL | WS_HSCROLL | WS_SYSMENU | WS_CAPTION,
+            CRect(400, 100, 1200, 1000), NULL, MAKEINTRESOURCE(IDR_MAINFRAME));
+    }</code></p>
+</li>
+<li>
+<p>MAKEINTRESOURCE(IDR_MAINFRAME)</p>
+</li>
+</ul>
+<h2>MFC集合类</h2>
+<ul>
+<li>数组</li>
+<li>列表</li>
+<li>映射表：设计映射表的目的是给定一个关键字，可以很快在表中找到响应的项目，通常只查找一次。</li>
+<li>类型指针类</li>
+</ul>
+<h2>文件的I/O及序列化</h2>
+<h2>控件</h2>
+<ul>
+<li>传统控件：6个预定义的WNDCLASS</li>
+<li><img alt="" src="./images/winclass.png"></li>
+<li></li>
+</ul>
+<h2>对话框</h2>
+<p>创建对话框的步骤：</p>
+<ol>
+<li>创建对话框资源：创建新的对话框模板、设置对话框属性和为对话框添加各种控件</li>
+<li>生成对话框类：新建对话框类、添加控件变量和控件的消息处理函数等</li>
+</ol>
+<p>在资源视图页面：Ctrl+D可以更改tab顺序数字，按ESC键退出</p>
+<p>对话框分为两类：</p>
+<ol>
+<li>模态对话框：当它弹出后，本应用程序其他窗口将不再接受用户输入，只有该对话框响应用户输入，在对它进行相应操作退出后，其他窗口才能继续与用户交互</li>
+<li>非模态对话框：它弹出后，本程序其他窗口仍能响应用户输入。非模态对话框一般用来显示提示信息等。</li>
+</ol>
+<h4>关闭对话框的方式：</h4>
+<p>``` C ++
+// 退出程序
+    AfxGetMainWnd-&gt;SendMessage(WM_CLOSE);
+// 关闭当前窗口
+    DestoryWindow();
+// 关闭模式对话框
+    EndDialog(0);</p>
+<div class="highlight"><pre><span></span><code><span class="err">对话框：消息对话框</span>
+
+<span class="mi">1</span><span class="p">.</span> <span class="n">CWnd</span><span class="p">::</span><span class="n">MessageBox</span><span class="p">()</span>
+
+<span class="mi">2</span><span class="p">.</span> <span class="n">CWnd</span><span class="p">::</span><span class="n">AfxMessageBox</span><span class="p">()</span>
+
+<span class="mi">3</span><span class="p">.</span> <span class="err">用例：</span>
+
+<span class="mi">4</span><span class="p">.</span> <span class="o">```</span> <span class="k">C</span><span class="o">++</span>
+   <span class="n">res</span> <span class="o">=</span> <span class="n">MessageBox</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="ss">&quot;您确定要进行乘法计算吗？&quot;</span><span class="p">),</span> <span class="n">_T</span><span class="p">(</span><span class="ss">&quot;乘法计算器&quot;</span><span class="p">),</span> <span class="n">MB_OKCANCEL</span> <span class="o">|</span> <span class="n">MB_ICONQUESTION</span><span class="p">);</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">AfxMessageBox</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="ss">&quot;您确定要进行乘法计算吗？&quot;</span><span class="p">),</span> <span class="n">MB_OKCANCEL</span> <span class="o">|</span> <span class="n">MB_ICONASTERISK</span><span class="p">);</span>
+   <span class="o">```</span>
+
+<span class="mi">5</span><span class="p">.</span> 
+
+<span class="o">##</span> <span class="err">编辑控制（</span><span class="n">CEdit</span><span class="p">)</span>
+
+<span class="err">两种类别：</span><span class="n">Control</span> <span class="err">和</span> <span class="n">Value</span>
+
+<span class="err">变量类型为：</span>
+
+<span class="o">*</span> <span class="n">CEdit</span>  
+<span class="o">*</span> <span class="n">CString</span>
+
+<span class="o">```</span> <span class="k">C</span><span class="o">++</span>
+<span class="o">//</span> <span class="n">CEdit</span>
+    <span class="n">c_edit</span><span class="p">.</span><span class="n">GetWindowText</span><span class="p">()</span> <span class="o">//</span> <span class="err">获取变量值</span> <span class="n">CString类型</span>
+    <span class="n">c_edit</span><span class="p">.</span><span class="n">SetWindowText</span><span class="p">()</span> <span class="o">//</span> <span class="err">设置变量值</span>
+<span class="o">//</span> <span class="n">Cstring</span>
+    <span class="o">//</span> <span class="err">直接对变量赋</span> <span class="n">CString类型</span>
+        <span class="n">c_edit</span> <span class="o">=</span> <span class="n">str</span>
+        <span class="n">SetDlgItemText</span><span class="p">(</span><span class="n">IDC_EDIT1</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+<span class="o">//</span> <span class="nb">Int</span>
+        <span class="n">SetDlgItemInt</span><span class="p">(</span><span class="n">IDC_EDIT1</span><span class="p">,</span> <span class="nb">int</span><span class="p">);</span>
+</code></pre></div>
+
+
+<h2>组合框控件</h2>
+<p>CComboBox类</p>
+<p>主要成员函数：</p>
+<p>int GetCount( ) const;
+       获取组合框控件的列表框中列表项的数量。</p>
+<p>int GetCurSel( ) const;
+   获取组合框控件的列表框中选中项的索引，如果没有选中任何项，该函数返回CB_ERR。</p>
+<p>int SetCurSel(int nSelect);
+   在组合框控件的列表框中选择某项。nSelect参数指定了要选择的列表项的索引，如果为-1则列表框中当前选择项被取消选中，编辑框也被清空。</p>
+<p>void GetLBText(int nIndex,CString&amp; rString) const;
+       从组合框控件的列表框中获取某项的字符串。nIndex参数指定要获取字符串的列表项的索引，CString参数用于接收取到的字符串。</p>
+<p>int GetLBTextLen(int nIndex) const;
+       获取组合框控件的列表框中某项的字符串长度。nIndex参数指定要获取字符串长度的列表项的索引。  </p>
+<p>int AddString(LPCTSTR lpszString);
+   为组合框控件中的列表框添加新的列表项。lpszString参数是指向要添加的字符串的指针。该函数的返回值如果大于等于0，那么它就是新列表项的索引，而如果有错误发生则会返回CB_ERR，如果没有足够的内存存放新字符串则返回CB_ERRSPACE。</p>
+<p>int DeleteString(UINT nIndex);
+   删除组合框中某指定位置的列表项。nIndex参数指定了要删除的列表项的索引。该函数的返回值如果大于等于0，那么它就是组合框中剩余列表项的数量。如果nIndex指定的索引超出了列表项的数量则返回CB_ERR。</p>
+<p>int FindString(int nStartAfter,LPCTSTR lpszString) const;
+   在组合框控件的列表框中查找但不选中第一个包含指定前缀的列表项。nStartAfter参数指定了第一个要查找的列表项之前的那个列表项的索引。lpszString指向包含要查找的前缀的字符串。该函数的返回值如果大于等于0，那么它是匹配列表项的索引，如果查找失败则返回CB_ERR。</p>
+<p>int InsertString(int nIndex,LPCTSTR lpszString);
+   向组合框控件的列表框中插入一个列表项。nIndex参数指定了要插入列表项的位置，lpszString参数则指定了要插入的字符串。该函数返回字符串被插入的位置，如果有错误发生则会返回CB_ERR，如果没有足够的内存存放新字符串则返回CB_ERRSPACE。</p>
+<p>int SelectString(int nStartAfter,LPCTSTR lpszString);
+   在组合框控件的列表框中查找一个字符串，如果查找到则选中它，并将其显示到编辑框中。参数同FindString。如果字符串被查找到则返回此列表项的索引，如果查找失败则返回CB_ERR，并且当前选择项不改变。</p>
+<p>使用步骤：</p>
+<ol>
+<li>在DlgClass::OnInitDialog()中初始化ComboBox内容；可指定默认第一选项；</li>
+<li>定义CBN_SELCHANGE消息的处理函数；获取组合框的选中索引，根据索引获取组合框中的对应值</li>
+</ol>
+<h2>滚动条控件</h2>
+<p>CSrollBar类</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 滚动条条拖动状态</span>
+<span class="n">SB_LINEUP</span>           <span class="mi">0</span>
+<span class="n">SB_LINELEFT</span>         <span class="mi">0</span>
+<span class="n">SB_LINEDOWN</span>         <span class="mi">1</span>
+<span class="n">SB_LINERIGHT</span>        <span class="mi">1</span>
+<span class="n">SB_PAGEUP</span>           <span class="mi">2</span>
+<span class="n">SB_PAGELEFT</span>         <span class="mi">2</span>
+<span class="n">SB_PAGEDOWN</span>         <span class="mi">3</span>
+<span class="n">SB_PAGERIGHT</span>        <span class="mi">3</span>
+<span class="n">SB_THUMBPOSITION</span>    <span class="mi">4</span>
+<span class="n">SB_THUMBTRACK</span>       <span class="mi">5</span>
+<span class="n">SB_TOP</span>              <span class="mi">6</span>
+<span class="n">SB_LEFT</span>             <span class="mi">6</span>
+<span class="n">SB_BOTTOM</span>           <span class="mi">7</span>
+<span class="n">SB_RIGHT</span>            <span class="mi">7</span>
+<span class="n">SB_ENDSCROLL</span>        <span class="mi">8</span>
+</code></pre></div>
+
+
+<h2>列表视图控件</h2>
+<p>CListCtrl类内部的成员函数：</p>
+<p><strong>UINT GetSelectedCount( ) const;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="err">该函数返回列表视图控件中被选择列表项的数量。</span>
+</code></pre></div>
+
+
+<p><strong>POSITION GetFirstSelectedItemPosition( ) const;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="err">获取列表视图控件中第一个被选择项的位置。返回的POSITION值可以用来迭代来获取其他选择项，可以当作参数传入下面的GetNextSelectedItem函数来获得选择项的索引。如果没有被选择项则返回NULL。</span>
+</code></pre></div>
+
+
+<p><strong>int GetNextSelectedItem(POSITION&amp; pos) const;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="err">该函数获取由pos指定的列表项的索引，然后将pos设置为下一个位置的POSITION值。参数pos为之前调用GetNextSelectedItem或GetFirstSelectedItemPosition得到的POSITION值的引用。返回值就是pos指定列表项的索引。</span>
+</code></pre></div>
+
+
+<p><strong>int GetItemCount( ) const;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="err">获取列表视图控件中列表项的数量。</span>
+</code></pre></div>
+
+
+<p><strong>int InsertColumn(int nCol,const LVCOLUMN* pColumn );</strong>
+<strong>int InsertColumn(int nCol,LPCTSTR lpszColumnHeading,int nFormat = LVCFMT_LEFT,int nWidth = -1,int nSubItem = -1 );</strong></p>
+<div class="highlight"><pre><span></span><code><span class="err">这两个函数用于在报表式列表视图控件中插入列。第一个函数中，nCol参数为插入列的索引，pColumn参数指向LVCOLUMN结构，其中包含了插入列的属性。第二个函数中，nCol参数也是插入列的索引，lpszColumnHeading参数为列标题字符串，nFormat参数为列中文本的对齐方式，可以是LVCFMT_LEFT、LVCFMT_RIGHT或LVCFMT_CENTER，nWidth参数为列宽，nSubItem为插入列对应列表子项的索引。两个函数在成功时都返回新列的索引，失败都返回-1。</span>
+</code></pre></div>
+
+
+<p><strong>BOOL DeleteColumn(int nCol);</strong></p>
+<div class="highlight"><pre><span></span><code><span class="err">   该函数用于删除列表视图控件中的某列。参数nCol为删除列的索引。删除成功则返回TRUE，失败返回FALSE。</span>
+</code></pre></div>
+
+
+<p><strong>int InsertItem(int nItem,LPCTSTR lpszItem);</strong> </p>
+<blockquote>
+<p>向列表视图控件中插入新的列表项。参数nItem为要插入项的索引，参数lpszItem为要插入项的标签字符串。如果插入成功则返回新列表项的索引，否则返回-1。 </p>
+</blockquote>
+<p><strong>BOOL DeleteItem(int nItem);</strong></p>
+<blockquote>
+<p>从列表视图控件中删除某个列表项。参数nItem指定了要删除的列表项的索引。删除成功则返回TRUE，否则返回FALSE。 </p>
+</blockquote>
+<p><strong>CString GetItemText(int nItem,int nSubItem) const;</strong></p>
+<blockquote>
+<p>获取指定列表项或列表子项的显示文本。参数nItem指定了列表项的索引，参数nSubItem指定了列表子项的索引。</p>
+</blockquote>
+<p><strong>BOOL SetItemText(int nItem,int nSubItem,LPCTSTR lpszText);</strong></p>
+<blockquote>
+<p>设置指定列表项或列表子项的显示文本。参数nItem和nSubItem同GetItemText。参数lpszText为要设置的显示文本字符串。如果设置成功则返回TRUE，否则返回FALSE。</p>
+</blockquote>
+<p><strong>DWORD_PTR GetItemData(int nItem) const;</strong></p>
+<blockquote>
+<p>该函数用于获取指定列表项的附加32位数据。参数nItem为列表项的索引。返回值就是由nItem指定列表项的附加32位数据。   </p>
+</blockquote>
+<p><strong>BOOL SetItemData(int nItem,DWORD_PTR dwData);</strong></p>
+<blockquote>
+<p>该函数用于为指定列表项设置附加32位是数据。参数nItem为列表项的索引，参数dwData为列表项的附加32位数据。</p>
+</blockquote>
+<p>ListCtrlBox</p>
+<p>View属性有4种风格：</p>
+<ol>
+<li>icon：图标风格</li>
+<li>Small icon：小图标风格</li>
+<li>List：列表风格</li>
+<li>Report：报表风格（表格视图）</li>
+</ol>
+<p>CListCtrl::SetExtendedStyle</p>
+<p>列表视图控件用法：</p>
+<p>``` C ++
+m_ProgramList.SetExtendedStyle(m_ProgramList.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_CHECKBOXES);</p>
+<div class="highlight"><pre><span></span><code><span class="c">列表视图控件的风格类型:</span>
+</code></pre></div>
+
+
+<p>LVS_EX_GRIDLINES //绘制表格,网格线。
+　　LVS_EX_SUBITEMIMAGES//子项目图标列表
+　　LVS_EX_CHECKBOXES //带复选框
+　　LVS_EX_TRACKSELECT //自动换行
+　　LVS_EX_HEADERDRAGDROP//报表头可以拖拽
+　　LVS_EX_FULLROWSELECT //选择整行，允许选择整行。
+   LVS_EX_ONECLICKACTIVATE//单击激活单击选中项目。
+　　LVS_EX_TWOCLICKACTIVATE//双击激活
+　　LVS_EX_FLATSB//扁平滚动条
+　　LVS_EX_REGIONAL
+　　LVS_EX_INFOTIP
+　　LVS_EX_UNDERLINEHOT
+　　LVS_EX_UNDERLINECOLD
+　　LVS_EX_MULTIWORKAREAS//多工作区
+```</p>
+<h1>相关资料：</h1>
+<p>网站：</p>
+<p><a href="http://www.jizhuomi.com/software/257.html">鸡啄米--VS2010/MFC编程入门教程之目录和总结</a></p>
+<p>书籍：</p>
+<p>《基于visual C++ MFC编程》</p>
+<p>《MFC Windows程序设计 第2版》</p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        leelongcrazy
+    </span>
+  </span>
+<time datetime="2021-03-02T17:00:00+08:00" pubdate>Tue 02 March 2021</time>  <span class="categories">
+    <a class='category' href='/category/cpp.html'>CPP</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/mfc.html">MFC</a>,    <a class="category" href="/tag/programe.html">Programe</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/vbsjiao-ben-xue-xi.html">VBS脚本学习</a>
+      </li>
+      <li class="post">
+          <a href="/vimduo-wen-jian-bian-ji.html">vim多文件编辑</a>
+      </li>
+      <li class="post">
+          <a href="/zhi-qing-yi.html">知 情 意</a>
+      </li>
+      <li class="post">
+          <a href="/cai-keng-ji-lu.html">踩坑记录</a>
+      </li>
+      <li class="post">
+          <a href="/guan-yu-wo.html">关于我</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/article.html">Article</a></li>
+        <li><a href="/category/books.html">Books</a></li>
+        <li><a href="/category/cpp.html">CPP</a></li>
+        <li><a href="/category/it.html">IT</a></li>
+        <li><a href="/category/movie.html">Movie</a></li>
+        <li><a href="/category/software.html">Software</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+        <li><a href="/category/web.html">Web</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/vim.html">Vim</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/websec.html">WebSec</a>,    <a href="/tag/pwn.html">PWN</a>,    <a href="/tag/mfc.html">MFC</a>,    <a href="/tag/programe.html">Programe</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/vue.html">VUE</a>,    <a href="/tag/bash.html">Bash</a>,    <a href="/tag/zsh.html">zsh</a>,    <a href="/tag/github.html">Github</a>,    <a href="/tag/git.html">Git</a>,    <a href="/tag/os.html">os</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/code.html">Code</a>,    <a href="/tag/iot.html">Iot</a>,    <a href="/tag/ai.html">AI</a>,    <a href="/tag/movie.html">Movie</a>,    <a href="/tag/article.html">Article</a>,    <a href="/tag/it.html">it</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://github.com/leelongcrazy" target="_blank">Github</a></li>
+            <li><a href="https://twitter.com/leelongcrazy" target="_blank">Twitter</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="http://leelongcrazy.com" target="_blank">LeeLongCrazy</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2017&ndash;2021  leelongcrazy &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>XSS攻击 &mdash; leelongcrazy's blog</title>
+  <meta name="author" content="leelongcrazy">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">leelongcrazy's blog</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/article.html">Article</a>
+      </li>
+      <li >
+        <a href="/category/books.html">Books</a>
+      </li>
+      <li >
+        <a href="/category/cpp.html">Cpp</a>
+      </li>
+      <li >
+        <a href="/category/it.html">It</a>
+      </li>
+      <li >
+        <a href="/category/movie.html">Movie</a>
+      </li>
+      <li >
+        <a href="/category/software.html">Software</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+      <li class="active">
+        <a href="/category/web.html">Web</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">XSS攻击</h1>
+    <p class="meta">
+<time datetime="2021-03-14T18:00:00+08:00" pubdate>Sun 14 March 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><h1>XSS攻击</h1>
+<h3>反射型XSS</h3>
+<p>请求代码出现在URL中，作为输入提交到服务器，服务器解析后响应，响应内容中出现这段XSS代码，最后在浏览器解析执行，达到攻击效果。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 常用攻击payload</span>
+<span class="s1">&#39; onclick=alert(1)//</span>
+<span class="s1">&#39;</span><span class="err">&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;&lt;script&gt;alert(1)&lt;/script&gt;//</span>
+</code></pre></div>
+
+
+<h3>存储型XSS</h3>
+<h3>DOM型XSS</h3></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        leelongcrazy
+    </span>
+  </span>
+<time datetime="2021-03-14T18:00:00+08:00" pubdate>Sun 14 March 2021</time>  <span class="categories">
+    <a class='category' href='/category/web.html'>Web</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/websec.html">WebSec</a>,    <a class="category" href="/tag/pwn.html">PWN</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/vbsjiao-ben-xue-xi.html">VBS脚本学习</a>
+      </li>
+      <li class="post">
+          <a href="/vimduo-wen-jian-bian-ji.html">vim多文件编辑</a>
+      </li>
+      <li class="post">
+          <a href="/zhi-qing-yi.html">知 情 意</a>
+      </li>
+      <li class="post">
+          <a href="/cai-keng-ji-lu.html">踩坑记录</a>
+      </li>
+      <li class="post">
+          <a href="/guan-yu-wo.html">关于我</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/article.html">Article</a></li>
+        <li><a href="/category/books.html">Books</a></li>
+        <li><a href="/category/cpp.html">CPP</a></li>
+        <li><a href="/category/it.html">IT</a></li>
+        <li><a href="/category/movie.html">Movie</a></li>
+        <li><a href="/category/software.html">Software</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+        <li><a href="/category/web.html">Web</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/vim.html">Vim</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/websec.html">WebSec</a>,    <a href="/tag/pwn.html">PWN</a>,    <a href="/tag/mfc.html">MFC</a>,    <a href="/tag/programe.html">Programe</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/vue.html">VUE</a>,    <a href="/tag/bash.html">Bash</a>,    <a href="/tag/zsh.html">zsh</a>,    <a href="/tag/github.html">Github</a>,    <a href="/tag/git.html">Git</a>,    <a href="/tag/os.html">os</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/code.html">Code</a>,    <a href="/tag/iot.html">Iot</a>,    <a href="/tag/ai.html">AI</a>,    <a href="/tag/movie.html">Movie</a>,    <a href="/tag/article.html">Article</a>,    <a href="/tag/it.html">it</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://github.com/leelongcrazy" target="_blank">Github</a></li>
+            <li><a href="https://twitter.com/leelongcrazy" target="_blank">Twitter</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="http://leelongcrazy.com" target="_blank">LeeLongCrazy</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2017&ndash;2021  leelongcrazy &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

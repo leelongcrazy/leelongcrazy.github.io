@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>VBS脚本学习 &mdash; leelongcrazy's blog</title>
+  <meta name="author" content="leelongcrazy">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">leelongcrazy's blog</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/article.html">Article</a>
+      </li>
+      <li >
+        <a href="/category/books.html">Books</a>
+      </li>
+      <li >
+        <a href="/category/cpp.html">Cpp</a>
+      </li>
+      <li class="active">
+        <a href="/category/it.html">It</a>
+      </li>
+      <li >
+        <a href="/category/movie.html">Movie</a>
+      </li>
+      <li >
+        <a href="/category/software.html">Software</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+      <li >
+        <a href="/category/web.html">Web</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">VBS脚本学习</h1>
+    <p class="meta">
+<time datetime="2021-03-28T17:00:00+08:00" pubdate>Sun 28 March 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><h1>VBS脚本学习</h1>
+<h2>Demo one</h2>
+<div class="highlight"><pre><span></span><code><span class="err"># 启动notepad程序</span>
+<span class="k">set</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">CreateObject</span><span class="p">(</span><span class="c1">&#39;Wscript.Shell&#39;)</span><span class="w"></span>
+<span class="n">ojb</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="c1">&#39;notepad&#39;)</span><span class="w"></span>
+<span class="o">=</span><span class="err">》 </span>
+<span class="err">?</span>
+
+<span class="err"># ping 百度，后台静默运行</span>
+<span class="k">set</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">CreateObject</span><span class="p">(</span><span class="s2">&quot;Wscript.Shell&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">obj</span><span class="p">.</span><span class="n">Run</span><span class="w"> </span><span class="s2">&quot;ping www.baidu.com&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>run 有三个参数:</p>
+<p>第一个参数是你要执行的程序的路径</p>
+<p>第二个程序是窗口的形式</p>
+<p>​   0是在后台运行；</p>
+<p>​   1表示正常运行</p>
+<p>​   2表示激活程序并且显示为最小化</p>
+<p>​   3表示激活程序并且显示为最大化</p>
+<p>​   一共有10个这样的参数我只列出了4个最常用的。</p>
+<p>第三个参数是表示这个脚本是等待还是继续执行，如果设为了true,脚本就会等待调用的程序退出后再向后执行。</p>
+<h2>VBS and CMD</h2>
+<p>程序框架：</p>
+<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="n">objshell</span><span class="o">=</span><span class="nb">createobject</span><span class="p">(</span><span class="s2">&quot;wscript.shell&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">objshell</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;%comspec% /k **********&quot;</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="no">true</span><span class="w"></span>
+
+<span class="err">## 第一行，打开一个命令行窗口。</span>
+<span class="err">## %comspec% 是一个指向当前命令行外壳的环境变量。通过使用 %comspec%，您不必担心命令行外壳是 cmd.exe 还是 command.exe；%comspec% 会自动选择正确的一个。</span>
+<span class="err">## 在调用你给出的命令后，确保窗口始终保持打开。这就是 /k 参数的用处。如果我们想要确保命令窗口会在你给出的命令调用完成后被自动关闭，应该将 /k (keep) 修改为 /c (close)。</span>
+</code></pre></div></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        leelongcrazy
+    </span>
+  </span>
+<time datetime="2021-03-28T17:00:00+08:00" pubdate>Sun 28 March 2021</time>  <span class="categories">
+    <a class='category' href='/category/it.html'>IT</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/vim.html">Vim</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/vbsjiao-ben-xue-xi.html">VBS脚本学习</a>
+      </li>
+      <li class="post">
+          <a href="/vimduo-wen-jian-bian-ji.html">vim多文件编辑</a>
+      </li>
+      <li class="post">
+          <a href="/zhi-qing-yi.html">知 情 意</a>
+      </li>
+      <li class="post">
+          <a href="/cai-keng-ji-lu.html">踩坑记录</a>
+      </li>
+      <li class="post">
+          <a href="/guan-yu-wo.html">关于我</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/article.html">Article</a></li>
+        <li><a href="/category/books.html">Books</a></li>
+        <li><a href="/category/cpp.html">CPP</a></li>
+        <li><a href="/category/it.html">IT</a></li>
+        <li><a href="/category/movie.html">Movie</a></li>
+        <li><a href="/category/software.html">Software</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+        <li><a href="/category/web.html">Web</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/vim.html">Vim</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/websec.html">WebSec</a>,    <a href="/tag/pwn.html">PWN</a>,    <a href="/tag/mfc.html">MFC</a>,    <a href="/tag/programe.html">Programe</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/vue.html">VUE</a>,    <a href="/tag/bash.html">Bash</a>,    <a href="/tag/zsh.html">zsh</a>,    <a href="/tag/github.html">Github</a>,    <a href="/tag/git.html">Git</a>,    <a href="/tag/os.html">os</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/code.html">Code</a>,    <a href="/tag/iot.html">Iot</a>,    <a href="/tag/ai.html">AI</a>,    <a href="/tag/movie.html">Movie</a>,    <a href="/tag/article.html">Article</a>,    <a href="/tag/it.html">it</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://github.com/leelongcrazy" target="_blank">Github</a></li>
+            <li><a href="https://twitter.com/leelongcrazy" target="_blank">Twitter</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="http://leelongcrazy.com" target="_blank">LeeLongCrazy</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2017&ndash;2021  leelongcrazy &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

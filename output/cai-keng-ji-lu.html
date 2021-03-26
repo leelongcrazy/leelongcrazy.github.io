@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>踩坑记录 &mdash; leelongcrazy's blog</title>
+  <meta name="author" content="leelongcrazy">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">leelongcrazy's blog</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/article.html">Article</a>
+      </li>
+      <li >
+        <a href="/category/books.html">Books</a>
+      </li>
+      <li >
+        <a href="/category/cpp.html">Cpp</a>
+      </li>
+      <li class="active">
+        <a href="/category/it.html">It</a>
+      </li>
+      <li >
+        <a href="/category/movie.html">Movie</a>
+      </li>
+      <li >
+        <a href="/category/software.html">Software</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+      <li >
+        <a href="/category/web.html">Web</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">踩坑记录</h1>
+    <p class="meta">
+<time datetime="2021-03-18T17:00:00+08:00" pubdate>Thu 18 March 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><h2>踩坑记录</h2>
+<h1>Centos7安装uwsgi出现关于SSL错误的问题</h1>
+<p>系统中安装了两个版本的OpenSSL，冲突了导致uwsgi安装一直不成功。
+pip install uwsgi # 不成功
+源码编译安装也不成功</p>
+<div class="highlight"><pre><span></span><code><span class="err">core/subscription.o: In function `uwsgi_remove_subscribe_node&#39;:</span>
+<span class="err">subscription.c:(.text+0x942): undefined reference to `EVP_MD_CTX_free&#39;</span>
+<span class="err">subscription.c:(.text+0x991): undefined reference to `EVP_MD_CTX_free&#39;</span>
+<span class="err">core/subscription.o: In function `subscription_new_sign_ctx&#39;:</span>
+<span class="err">subscription.c:(.text+0x13c5): undefined reference to `EVP_MD_CTX_new&#39;</span>
+<span class="err">subscription.c:(.text+0x1456): undefined reference to `EVP_MD_CTX_free&#39;</span>
+<span class="err">core/ssl.o: In function `uwsgi_ssl_init&#39;:</span>
+<span class="err">ssl.c:(.text+0xa9): undefined reference to `OPENSSL_init_ssl&#39;</span>
+<span class="err">ssl.c:(.text+0xb5): undefined reference to `OPENSSL_init_ssl&#39;</span>
+<span class="err">ssl.c:(.text+0xc1): undefined reference to `OPENSSL_init_crypto&#39;</span>
+<span class="err">core/ssl.o: In function `uwsgi_ssl_new_server_context&#39;:</span>
+<span class="err">ssl.c:(.text+0x200): undefined reference to `TLS_server_method&#39;</span>
+<span class="err">ssl.c:(.text+0x2e5): undefined reference to `SSL_CTX_set_options&#39;</span>
+<span class="err">ssl.c:(.text+0x321): undefined reference to `SSL_CTX_set_options&#39;</span>
+<span class="err">ssl.c:(.text+0x53e): undefined reference to `SSL_CTX_set_options&#39;</span>
+<span class="err">core/ssl.o: In function `uwsgi_rsa_sign&#39;:</span>
+<span class="err">ssl.c:(.text+0x7ac): undefined reference to `EVP_MD_CTX_new&#39;</span>
+<span class="err">ssl.c:(.text+0x832): undefined reference to `EVP_MD_CTX_free&#39;</span>
+<span class="err">ssl.c:(.text+0x955): undefined reference to `EVP_MD_CTX_free&#39;</span>
+<span class="err">core/ssl.o: In function `uwsgi_sni_cb&#39;:</span>
+<span class="err">ssl.c:(.text+0xe1b): undefined reference to `SSL_CTX_get_options&#39;</span>
+<span class="err">ssl.c:(.text+0xe26): undefined reference to `SSL_set_options&#39;</span>
+<span class="c">collect2: error: ld returned 1 exit status</span>
+<span class="err">*** error linking uWSGI ***</span>
+</code></pre></div>
+
+
+<p>根据出错信息定位到大概是OpenSSL出了问题，一直在网上寻找编译指定OpenSSL路径到方法，最后在网上找到这篇文章。
+<code>yum remove openssl-devel</code>
+问题解决了。</p>
+<p><a href="https://blog.csdn.net/rongDang/article/details/102871874">参考文章</a></p>
+<h1>nginx安装</h1>
+<h4>nginx服务程序安装成功后，网站需要增设https支持功能，编译的nginx没有添加对应https服务的<code>--with-http_stub_status_module --with-http_ssl_module</code>这两个模块，重装编译的过程历尽艰辛，后来又重新安装编译了更新版本的openssl 模块，因为没有指定对openssl路径的问题，在编译nginx过程中频繁出错，改目录，改编译配置文件都没有成功，失败的次数越多对编译的流程越来越熟悉，最终还是成功的把nginx服务编译成功了。</h4>
+<p>直接上图。</p>
+<p><img alt="nginx.png" src="./images/nginx.png">
+<img alt="nginx" src=".images/nginx.png"></p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        leelongcrazy
+    </span>
+  </span>
+<time datetime="2021-03-18T17:00:00+08:00" pubdate>Thu 18 March 2021</time>  <span class="categories">
+    <a class='category' href='/category/it.html'>IT</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/linux.html">Linux</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/vbsjiao-ben-xue-xi.html">VBS脚本学习</a>
+      </li>
+      <li class="post">
+          <a href="/vimduo-wen-jian-bian-ji.html">vim多文件编辑</a>
+      </li>
+      <li class="post">
+          <a href="/zhi-qing-yi.html">知 情 意</a>
+      </li>
+      <li class="post">
+          <a href="/cai-keng-ji-lu.html">踩坑记录</a>
+      </li>
+      <li class="post">
+          <a href="/guan-yu-wo.html">关于我</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/article.html">Article</a></li>
+        <li><a href="/category/books.html">Books</a></li>
+        <li><a href="/category/cpp.html">CPP</a></li>
+        <li><a href="/category/it.html">IT</a></li>
+        <li><a href="/category/movie.html">Movie</a></li>
+        <li><a href="/category/software.html">Software</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+        <li><a href="/category/web.html">Web</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/vim.html">Vim</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/websec.html">WebSec</a>,    <a href="/tag/pwn.html">PWN</a>,    <a href="/tag/mfc.html">MFC</a>,    <a href="/tag/programe.html">Programe</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/vue.html">VUE</a>,    <a href="/tag/bash.html">Bash</a>,    <a href="/tag/zsh.html">zsh</a>,    <a href="/tag/github.html">Github</a>,    <a href="/tag/git.html">Git</a>,    <a href="/tag/os.html">os</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/code.html">Code</a>,    <a href="/tag/iot.html">Iot</a>,    <a href="/tag/ai.html">AI</a>,    <a href="/tag/movie.html">Movie</a>,    <a href="/tag/article.html">Article</a>,    <a href="/tag/it.html">it</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://github.com/leelongcrazy" target="_blank">Github</a></li>
+            <li><a href="https://twitter.com/leelongcrazy" target="_blank">Twitter</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="http://leelongcrazy.com" target="_blank">LeeLongCrazy</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2017&ndash;2021  leelongcrazy &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

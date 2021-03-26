@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>web安全学习笔记 &mdash; leelongcrazy's blog</title>
+  <meta name="author" content="leelongcrazy">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">leelongcrazy's blog</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/article.html">Article</a>
+      </li>
+      <li >
+        <a href="/category/books.html">Books</a>
+      </li>
+      <li >
+        <a href="/category/cpp.html">Cpp</a>
+      </li>
+      <li >
+        <a href="/category/it.html">It</a>
+      </li>
+      <li >
+        <a href="/category/movie.html">Movie</a>
+      </li>
+      <li >
+        <a href="/category/software.html">Software</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+      <li class="active">
+        <a href="/category/web.html">Web</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">web安全学习笔记</h1>
+    <p class="meta">
+<time datetime="2021-03-14T18:00:00+08:00" pubdate>Sun 14 March 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><h4>渗透测试工程师：模拟黑客角度入侵企业以达到测试企业安全防御体系的目的。</h4>
+<h5>渗透测试是通过模拟恶意黑客的攻击方法，来评估计算机网络系统安全的一种评估方法。</h5>
+<h5>渗透测试是模拟黑客攻击测试，但两者也有区别，渗透测试是“面”的测试，黑客攻击是“深度”测试。前者涉及内容更加广泛，后者讲究的是破坏性。</h5>
+<h2>常见web安全漏洞</h2>
+<ol>
+<li>SQL注入漏洞</li>
+<li>命令（代码）注入</li>
+<li>跨站脚本注入XSS（Cross Site Script Inject）</li>
+<li>客户端请求伪造（CSRF）</li>
+<li>服务端请求伪造（SSRF）</li>
+<li>任意文件上传</li>
+<li>文件包含（LFI/RFI）</li>
+<li>XML实体注入 XXE</li>
+</ol>
+<h2>SQL注入漏洞</h2>
+<h5>SQL是用于访问和处理数据库的标准的计算机语言。SQL注入，就是把SQL命令插入到web表单提交或输入域名或页面请求的查询字符串，以达到欺骗服务器执行恶意SQL命令的目的。</h5>
+<p><strong>SQL注入的分类</strong> </p>
+<ul>
+<li>报错注入</li>
+<li>union注入</li>
+<li>时间盲注</li>
+<li>布尔盲注</li>
+<li>堆叠盲注</li>
+</ul>
+<h4>常见的注入语句：</h4>
+<div class="highlight"><pre><span></span><code><span class="err">‘ or 1=1</span>
+<span class="err">‘ or 1=1#</span>
+<span class="err">‘ or 1=1- -</span>
+<span class="err">‘ or 1=1/*</span>
+</code></pre></div>
+
+
+<p><a href="https://raw.githubusercontent.com/TheKingOfDuck/fuzzDicts/master/sqlDict/sql.txt">【SQL注入字典】</a></p>
+<p><a href="https://twosecurity-resource.oss-cn-hangzhou.aliyuncs.com/resources/MySQL_5.1_Reference_Manual-zh-Function_and_Operator.pdf">【MySQL 5.1 中文参考手册】</a></p>
+<h2>命令注入漏洞</h2>
+<h6>通过提交恶意构造的参数，破坏命令语句结构，从而达到执行恶意命令的目的。</h6>
+<h2>XSS攻击</h2>
+<h6>全称Cross Site Scripting，跨站脚本。</h6>
+<h6>XSS攻击主要分为三类：</h6>
+<ol>
+<li>反射性XSS</li>
+<li>存储型XSS（最隐蔽的攻击类型）</li>
+<li>DOM型XSS</li>
+</ol>
+<p><strong>上述三种类型的XSS也可以根据输出点的不同分为三类：</strong></p>
+<ol>
+<li>输出在html属性中</li>
+<li>输出在CSS代码中</li>
+<li>输出在JavaScript中。</li>
+</ol>
+<h5>XSS盲注的特点：</h5>
+<ol>
+<li>通常不会立即触发；</li>
+<li>通常无任何及时响应；</li>
+<li>是否XSS注入成功未知；</li>
+<li>危险系数较高。</li>
+</ol>
+<p>XSS的防御</p>
+<ol>
+<li>http-only设置，导致拿不到cookie</li>
+<li>对用户输入进行过滤</li>
+<li>对用户输出进行过滤</li>
+</ol>
+<p>常用的XSS语句：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">svg</span> <span class="na">onload</span><span class="o">=</span><span class="s">alert(1)</span><span class="p">&gt;</span>
+直接输出HTML
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;autofocus onfocus=alert(1)//&quot;</span><span class="p">&gt;</span>
+未过滤，输出在input框中
+value=&quot;&quot;&gt;<span class="p">&lt;</span><span class="nt">svg</span> <span class="na">onload</span><span class="o">=</span><span class="s">alert(&quot;XSS&quot;)//&quot;</span><span class="p">&gt;</span>
+未过滤，其他属性值中
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">-</span><span class="nx">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="err">/&quot;;</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+未过滤，输出在JS变量中
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="kd">var</span> <span class="nx">website</span><span class="o">=</span><span class="s2">&quot;xxxx&quot;</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="err">/&quot;;</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+未过滤，输出在JS变量中
+</code></pre></div>
+
+
+<p><strong>绕过XSS过滤的方法：</strong></p>
+<ul>
+<li>
+<p>大小写：<code>&lt;sCriPt&gt;alert(1)&lt;/sCriPt&gt;</code></p>
+</li>
+<li>
+<p>组合过滤:<code>&lt;scr&lt;script&gt;ipt&gt;alert(1)&lt;/sc&lt;script&gt;ript&gt;</code></p>
+</li>
+<li>
+<p>输出在JS中：</p>
+</li>
+<li>
+<p>JS单行注释：利用换行符，回车符-》<code>%0d, %0a</code></p>
+</li>
+<li>
+<p>JS多行注释：利用多行注释符，<code>*/</code></p>
+</li>
+<li>
+<p>URL编码：<code>encodeURIComponent("&lt;svg onload=alert(1)&gt;") "%3Csvg%20onload%3Dalert(1)%3E"</code></p>
+</li>
+<li>
+<p>XSS本地存储：<code>localStorage.setItem()</code></p>
+</li>
+</ul>
+<h4>XSS 攻击的要点：构造XSS payload，打破html结构，使其出错，利用错误信息进一步完善payload以达到攻击目的。</h4>
+<p><strong>可能回遇到的困难：</strong></p>
+<ul>
+<li>
+<p>语句过长，输入长度受限；</p>
+</li>
+<li>
+<p>有过滤机制</p>
+</li>
+<li>
+<p>有Waf</p>
+</li>
+</ul>
+<h4>URL Redirect URL重定向漏洞</h4>
+<p>URL跳转，URL重定向漏洞，由于目标网站未对程序跳转的URL地址及参数做合法性判断，导致应用程序直接跳转到参数中指定的URL地址。</p>
+<p><strong>危害：</strong></p>
+<ul>
+<li>可将跳转URL地址修改为指向恶意地址，即可发起网络钓鱼、诈骗甚至窃取用户凭据等。</li>
+</ul>
+<p>常见的应用场景：</p>
+<ul>
+<li>
+<p>主要是业务逻辑中需要进行跳转的地方。</p>
+</li>
+<li>
+<p>比如登录处，注册处，访问用户信息，订单信息，加入购物车，分享，收藏等处。</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">// URL跳转参数</span>
+<span class="err">redirect</span>
+<span class="err">url</span>
+<span class="err">redirectUrl</span>
+<span class="err">callback</span>
+<span class="err">return_url</span>
+<span class="err">toUrl</span>
+<span class="err">ReturnUrl</span>
+<span class="err">fromUrl</span>
+<span class="err">redUrl</span>
+<span class="err">request</span>
+<span class="err">redirect_to</span>
+<span class="err">redirect_url</span>
+<span class="err">jump</span>
+<span class="err">jump_to</span>
+<span class="err">target</span>
+<span class="err">targetUrl</span>
+<span class="err">to</span>
+<span class="err">goto</span>
+<span class="err">link</span>
+<span class="err">linkto</span>
+<span class="err">domain</span>
+<span class="err">oauth_callback</span>
+<span class="err">referrerdomain</span>
+<span class="err">next</span>
+<span class="err">service</span>
+</code></pre></div>
+
+
+<h3>Google serarch 大法</h3>
+<p>inurl:redirect_url intitle:登录 -"keywords" -"博客" -"wordpress" -"blog" intext:验证码</p>
+<h2>SSRF</h2>
+<p><strong>Server-Side Request Forgery</strong>:服务器端请求伪造，攻击者构造成服务端发起请求的一个安全漏洞。
+形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤和限制。
+SSRF漏洞一般位于远程图片加载与下载、图片或文章收藏功能、URL分享、通过URL在线翻译、转码等功能点处。</p>
+<h2>文件包含</h2>
+<p>程序猿通常会把可重复使用的函数写到单个文件中，在使用其它函数时，直接调用此文件，而无需再次编写，这种调用文件的过程一般称为包含；程序猿希望代码更加灵活，所以通常会将被包含的文件设置为变量，用来进行动态调用。</p>
+<p><strong>分类：</strong></p>
+<ul>
+<li>本地包含</li>
+<li>远程包含</li>
+</ul>
+<h2>任意文件上传</h2>
+<p>攻击者通过上传木马文件，获得webshell，危害等级超级高，现在的入侵中上传漏洞也是常见的漏洞。</p>
+<p><strong>修复方案：</strong></p>
+<ol>
+<li>对文件格式限制，只允许某些格式的文件上传；</li>
+<li>对文件格式进行校验，前端跟服务器都要进行检验，（前端校验扩展名，后端校验扩展名、content-type等）</li>
+<li>将上传目录放置到工程目录之外，当作静态资源路径，对文件的权限进行设定，禁止文件下的执行权限。</li>
+</ol>
+<h2>反序列化</h2>
+<p>把磁盘或网络节点上的字节序列恢复到对象的过程称为对象的反序列化，在java中比较常见，ObjectInputStream类的readObject()方法用于反序列化。</p>
+<h2>XML实体注入</h2>
+<p><strong>XXE的危害</strong></p>
+<ul>
+<li>读取任意文件</li>
+<li>执行系统命令，但需要有 expect 插件</li>
+<li>扫描网站的端口以及是否存在某些目录或文件</li>
+<li>
+<p>通过 http 协议发起 SSRF 攻击
+<strong>如何防御XXE攻击？</strong></p>
+</li>
+<li>
+<p>使用开发语言提供的禁用外部实体的方法</p>
+</li>
+<li>过滤用户提交的XML数据</li>
+</ul>
+<h2>漏洞防御</h2>
+<p><strong>没有绝对安全系统</strong></p>
+<p>防护的三个方面：</p>
+<ul>
+<li>从源头上解决</li>
+<li>通过过滤代码</li>
+<li>第三方的防护</li>
+</ul>
+<h4>web漏洞是渗透测试的基础</h4>
+<h4>理解漏洞原理能帮助我们更好的挖掘漏洞</h4>
+<h4>攻防是一个整体</h4>
+<p><strong>渗透测试的三种类型：</strong></p>
+<ul>
+<li>黑盒渗透测试<blockquote>
+<p>测试人员没有被提供更多他要渗透目标的信息，却有责任收集有关目标网络，系统或者应用程序的信息。</p>
+</blockquote>
+</li>
+<li>白盒渗透测试<blockquote>
+<p>测试人员将获得有关网络，系统或应用程序的完整信息以及源代码，操作系统详细信息和其他有关信息。可以认为是模拟内部来源的攻击。 </p>
+</blockquote>
+</li>
+<li>灰盒渗透测试<blockquote>
+<p>测试人员将具有网络，系统或应用程序的部分信息。可以认为是外部黑客的攻击，黑客已经非法访问组织的网络基础设施文档。</p>
+</blockquote>
+</li>
+</ul>
+<h2>渗透测试执行标准（Penetration Testing Execution Standard：PTES）</h2>
+<ol>
+<li>前期交互: 确定项目范围，周期，采用的技术手段和工具，以及其他约束条件</li>
+<li>信息收集: 收集目标相关资产信息，包括域名，IP，邮箱，防御措施等。</li>
+<li>威胁建模: 利用已经收集的信息对目标资产进行分析，获取其可能存在的威胁，并规划攻击路径。</li>
+<li>漏洞分析: 发现目标系统和应用中存在的漏洞</li>
+<li>漏洞利用: 对发现的漏洞使用攻击向量进行攻击</li>
+<li>后渗透: 建立立足点，进行持续维权以及内网渗透，获取指定的渗透目标数据、权限等。清理。</li>
+<li>报告: 输出渗透测试报告</li>
+</ol>
+<h2>渗透测试执行流程</h2>
+<ul>
+<li>目标确认: 渗透约束条件和渗透最终目标</li>
+<li>信息收集: 收集目标范围内的各类信息</li>
+<li>漏洞发现: 在信息收集的基础上，发现目标应用系统的漏洞</li>
+<li>漏洞利用: 对发现的目标漏洞进行利用，通过漏洞利用获取目标系统权限</li>
+<li>权限维持，内网渗透: 进入目标系统，进行横向拓展，向渗透目标靠近</li>
+<li>目标获取，清理痕迹: 获取渗透目标权限或数据，回传数据，清理痕迹</li>
+</ul>
+<h2>渗透测试的本质是信息收集</h2>
+<h2>收集的信息越多，意味着攻击面越广</h2>
+<blockquote>
+<p>当渗透没有思路的时候，再重新回到信息收集       ---- Micropoor</p>
+</blockquote>
+<p><strong>四个维度的漏洞发现：</strong></p>
+<ol>
+<li>传统漏洞</li>
+<li>利用通用漏洞</li>
+<li>弱口令等目标脆弱点</li>
+<li>代码审计</li>
+</ol>
+<h2>UDF提权</h2>
+<p>Userdefined function 用户自定义函数，Mysql为用户提供的一个扩展功能的接口。用户可以通过编写代码的方式编译成.so .dll文件，使用自定义的函数。</p>
+<p><strong>UDF提权的条件</strong>
+* 需要Mysql高于5.1的版本
+* .so  .dll文件必须放在mysql的plugin目录下</p>
+<h2>redis提权</h2>
+<p>利用其服务端的程序的配置问题或漏洞来进行提权</p>
+<h2>获取shell</h2>
+<ul>
+<li>正向shell -&gt; 客户端连接服务器端，客户端想要获取服务器端的shell</li>
+<li>
+<p>反向shell -&gt; 客户端连接服务器端，服务器端想要获得客户端的shell</p>
+</li>
+<li>
+<p>数据库提权：udf提权，mof提权</p>
+</li>
+<li>shell提权</li>
+<li>SQL注入获取shell</li>
+<li>XSS获取shell</li>
+<li>弱口令获取服务器权限</li>
+</ul>
+<h2>业务逻辑漏洞</h2>
+<p>由于程序逻辑不严谨或逻辑太复杂，导致一些逻辑分支不能正常处理或处理错误导致的漏洞。
+与传统的漏洞相比，业务逻辑漏洞不易发现，挖掘思路不统一；不易防护，没有明确的防护方案
+<strong>业务逻辑漏洞存在的可能场景：</strong></p>
+<ul>
+<li>用户注册场景</li>
+<li>登录场景</li>
+<li>支付场景</li>
+<li>修改资料场景</li>
+<li>信息交互场景</li>
+<li>绑定手机场景</li>
+</ul>
+<h2>权限控制</h2>
+<p><strong>越权：</strong></p>
+<ul>
+<li>平行越权访问漏洞，指的是权限平级的两个用户之间的越权访问；</li>
+<li>垂直越权访问漏洞，指的是权限不等的两个用户之间的越权访问。</li>
+<li>接口控制：特殊接口，没有做访问权限的控制</li>
+</ul>
+<p><strong>什么是接口控制？</strong></p>
+<h5>在博客论坛中，一个正常的普通用户A使用官方提供的API接口构造链接，用户B通过点击该链接后进行发送或转发用户A指定的内容。</h5>
+<p><strong>平行越权漏洞的防护：</strong></p>
+<ul>
+<li>增加访问与操作对象的用户属性，在对目标对象进行访问与操作时，服务端检验会话与对象的用户属性，在校验通过后才能执行读取和操作。</li>
+</ul>
+<p><strong>垂直越权漏洞的防护：</strong></p>
+<ul>
+<li>所有访问采用默认拒绝机制，采取基于角色访问控制，对于各个功能的访问，规定不同角色拥有不同的访问权限，当用户在使用该功能时，系统要校对用户的权限与访问控制机制是否与规定相同，通过校验者才能使用，否则拒绝使用该功能。</li>
+</ul>
+<h5>传统的漏洞可以从哪三个方面进行防护？</h5>
+<ul>
+<li>从源头上解决，防止漏洞的产生；</li>
+<li>通过代码过滤，</li>
+<li>通过第三方服务介入</li>
+</ul>
+<p><strong>让事物以迥于初衷的方式运作</strong></p>
+<h2>漏洞复现</h2>
+<ul>
+<li>漏洞复现是对某一漏洞进行还原验证的过程。</li>
+</ul>
+<p><strong>漏洞复现的意义？</strong></p>
+<ul>
+<li>第一，可以认识到相关的系统知识，比如命令行、系统配置文件等等；</li>
+<li>第二，对漏洞复现的认知，这个漏洞是如何产生的，是哪里的代码逻辑出现了问题。</li>
+</ul>
+<h5>漏洞复现的三个步骤：</h5>
+<ul>
+<li>搭建环境-》实现漏洞-》原理解析</li>
+</ul>
+<h2>通用漏洞</h2>
+<ul>
+<li>企业及互联网中常用的操作系统，系统组件，重要的框架以及应用中的安全漏洞。
+通用漏洞是渗透测试流程中漏洞发现部分关注的漏洞方向之一，是学习漏洞挖掘知识的重要来源。</li>
+<li>PoC指一段漏洞证明的代码</li>
+<li>通用漏洞在渗透测试过程中占有很重要的分量，通过学习通用漏洞，既可以丰富个人的攻击宽度，也可以学习相关漏洞知识和挖掘漏洞的思路。</li>
+</ul>
+<h2>代码审计原理</h2>
+<ul>
+<li>代码审计是一种以发现程序错误，安全漏洞和违反程序规范为目标的源代码分析。</li>
+<li>代码审计是漏洞挖掘的重要途径。</li>
+<li>代码审计还是企业安全建设SDL流程中的一个环节。</li>
+<li>代码审计（白盒），能够覆盖更全面的安全问题。</li>
+<li>与黑盒测试相比，当有源代码时（代码审计）在寻找代码入口和程序执行路径等漏洞挖掘点时所做的猜测性工作会大大减少。</li>
+</ul>
+<h2>代码审计的技能要求：</h2>
+<ul>
+<li>对编程的掌握（能看懂代码的逻辑）</li>
+<li>对漏洞形成原理的理解</li>
+<li>系统，中间件，框架等的熟悉程度</li>
+</ul>
+<h2>代码审计思路：</h2>
+<ul>
+<li>关键词搜索：依赖漏洞关联的函数，搜索函数名称并追踪输入</li>
+<li>框架类基于功能审计：MVC框架功能和代码路由关系，直接定位业务逻辑代码</li>
+<li>通读代码：研究其代码构建逻辑</li>
+<li>敏感函数回溯</li>
+<li>通读全文</li>
+<li>功能点定向审计</li>
+</ul></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        leelongcrazy
+    </span>
+  </span>
+<time datetime="2021-03-14T18:00:00+08:00" pubdate>Sun 14 March 2021</time>  <span class="categories">
+    <a class='category' href='/category/web.html'>Web</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/websec.html">WebSec</a>,    <a class="category" href="/tag/pwn.html">PWN</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/vbsjiao-ben-xue-xi.html">VBS脚本学习</a>
+      </li>
+      <li class="post">
+          <a href="/vimduo-wen-jian-bian-ji.html">vim多文件编辑</a>
+      </li>
+      <li class="post">
+          <a href="/zhi-qing-yi.html">知 情 意</a>
+      </li>
+      <li class="post">
+          <a href="/cai-keng-ji-lu.html">踩坑记录</a>
+      </li>
+      <li class="post">
+          <a href="/guan-yu-wo.html">关于我</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/article.html">Article</a></li>
+        <li><a href="/category/books.html">Books</a></li>
+        <li><a href="/category/cpp.html">CPP</a></li>
+        <li><a href="/category/it.html">IT</a></li>
+        <li><a href="/category/movie.html">Movie</a></li>
+        <li><a href="/category/software.html">Software</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+        <li><a href="/category/web.html">Web</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/vim.html">Vim</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/websec.html">WebSec</a>,    <a href="/tag/pwn.html">PWN</a>,    <a href="/tag/mfc.html">MFC</a>,    <a href="/tag/programe.html">Programe</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/vue.html">VUE</a>,    <a href="/tag/bash.html">Bash</a>,    <a href="/tag/zsh.html">zsh</a>,    <a href="/tag/github.html">Github</a>,    <a href="/tag/git.html">Git</a>,    <a href="/tag/os.html">os</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/code.html">Code</a>,    <a href="/tag/iot.html">Iot</a>,    <a href="/tag/ai.html">AI</a>,    <a href="/tag/movie.html">Movie</a>,    <a href="/tag/article.html">Article</a>,    <a href="/tag/it.html">it</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="https://github.com/leelongcrazy" target="_blank">Github</a></li>
+            <li><a href="https://twitter.com/leelongcrazy" target="_blank">Twitter</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="http://leelongcrazy.com" target="_blank">LeeLongCrazy</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2017&ndash;2021  leelongcrazy &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
