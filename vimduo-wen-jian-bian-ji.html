@@ -4,8 +4,10 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tag: zsh &mdash; leelongcrazy's blog</title>
+  <title>vim多文件编辑 &mdash; leelongcrazy's blog</title>
   <meta name="author" content="leelongcrazy">
+
+
 
 
 
@@ -45,7 +47,7 @@
       <li >
         <a href="/category/cpp.html">Cpp</a>
       </li>
-      <li >
+      <li class="active">
         <a href="/category/it.html">It</a>
       </li>
       <li >
@@ -64,51 +66,90 @@
   <div id="main">
     <div id="content">
 <div>
-	<article role="article">
-    	<header>
-    		<h1 class="entry-title">Tag: zsh</h1>
-    	</header>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">vim多文件编辑</h1>
+    <p class="meta">
+<time datetime="2021-03-28T17:00:00+08:00" pubdate>Sun 28 March 2021</time>    </p>
+</header>
 
-    	<div id="blog-archives">
-            <h2>2020</h2>
-                    <article>
-                        <h1><a href="/oh-my-zshshi-yong-zhi-nan.html">oh-my-zsh使用指南</a></h1>
-                        <time datetime="2020-08-29 17:00:00+08:00" pubdate>
-                            <span class="month">Aug</span>
-                            <span class="day">29</span>
-                            <span class="year">2020</span>
-                        </time>
-                        <footer>
-                            <span class="categories">posted in
-                                <a class='category' href='/category/it.html'>IT</a>
-                            </span>
-                        </footer>
-                    </article>
-                    <article>
-                        <h1><a href="/oh-my-zsh-git.html">oh my zsh && git</a></h1>
-                        <time datetime="2020-05-28 17:00:00+08:00" pubdate>
-                            <span class="month">May</span>
-                            <span class="day">28</span>
-                            <span class="year">2020</span>
-                        </time>
-                        <footer>
-                            <span class="categories">posted in
-                                <a class='category' href='/category/it.html'>IT</a>
-                            </span>
-                        </footer>
-                    </article>
-	    </div>
-    </article>
+  <div class="entry-content"><h1>vim多文件编辑</h1>
+<h4>有需求利用vim同时对多个文件进行编辑的方法：</h4>
+<ul>
+<li>方法一 <strong>在未打开文件编辑的情况下</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">vi</span> <span class="n">file1</span> <span class="n">file2</span> <span class="n">file3</span>  <span class="o">#</span> <span class="err">不分屏编辑文档</span>
+<span class="n">vi</span> <span class="o">-</span><span class="n">o</span> <span class="n">file1</span> <span class="n">file2</span> <span class="n">file3</span> <span class="o">#</span> <span class="err">水平分屏编辑文档</span>
+<span class="n">vi</span> <span class="o">-</span><span class="n">O</span> <span class="n">file1</span> <span class="n">file2</span> <span class="n">file3</span> <span class="o">#</span> <span class="err">垂直分屏编辑文档</span>
+
+<span class="o">#</span> <span class="err">输入</span> <span class="p">:</span><span class="n">n</span> <span class="err">命令可转到下一文档编辑</span>
+<span class="o">#</span> <span class="err">输入</span> <span class="p">:</span><span class="n">N</span> <span class="err">命令可转到前一个文档编辑</span>
+<span class="o">#</span> <span class="n">ctrl</span> <span class="o">+</span> <span class="n">W</span> <span class="o">+</span> <span class="n">W</span> <span class="err">可以实现在打开的文档之间切换</span>
+</code></pre></div>
+
+
+<ul>
+<li>方法二 <strong>在已经打开编辑文档，想打开第二个文档编辑的情况下：</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">:sp file1   # 水平分屏编辑文档</span>
+<span class="err">:sv file1   # 水平分屏编辑文档(只读方式)</span>
+</code></pre></div>
+
+
+<h3>窗口分屏浏览目录</h3>
+<div class="highlight"><pre><span></span><code><span class="err"># 已经打开文件状态下</span>
+<span class="err">:He  # 在下面分屏浏览文件目录</span>
+<span class="err">:He! # 在上面分屏浏览文件目录</span>
+<span class="err">:Ve  # 左分屏浏览目录</span>
+<span class="err">:Ve! # 右分屏浏览目录</span>
+</code></pre></div>
+
+
+<h3>分屏同步移动</h3>
+<div class="highlight"><pre><span></span><code><span class="err"># 同步移动的两个屏中都输入如下命令</span>
+<span class="err">:set scb</span>
+<span class="err"># 解锁</span>
+<span class="err">:set scb!</span>
+<span class="err"># set scb 是 set scrollbind 的简写</span>
+</code></pre></div>
+
+
+<p><a href="https://justcode.ikeepstudying.com/2018/03/linux-vi-vim%E5%A4%9A%E6%A0%87%E7%AD%BE%E5%92%8C%E5%A4%9A%E7%AA%97%E5%8F%A3-tab%E9%A1%B5%E6%B5%8F%E8%A7%88%E7%9B%AE%E5%BD%95-%E5%A4%9Atab%E9%A1%B5%E7%BC%96%E8%BE%91/">参考文档</a></p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        leelongcrazy
+    </span>
+  </span>
+<time datetime="2021-03-28T17:00:00+08:00" pubdate>Sun 28 March 2021</time>  <span class="categories">
+    <a class='category' href='/category/it.html'>IT</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/vim.html">Vim</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
 </div>
 <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/oh-my-zshshi-yong-zhi-nan.html">oh-my-zsh使用指南</a>
+          <a href="/vbsjiao-ben-xue-xi.html">VBS脚本学习</a>
       </li>
       <li class="post">
-          <a href="/oh-my-zsh-git.html">oh my zsh && git</a>
+          <a href="/vimduo-wen-jian-bian-ji.html">vim多文件编辑</a>
+      </li>
+      <li class="post">
+          <a href="/zhi-qing-yi.html">知 情 意</a>
+      </li>
+      <li class="post">
+          <a href="/cai-keng-ji-lu.html">踩坑记录</a>
+      </li>
+      <li class="post">
+          <a href="/guan-yu-wo.html">关于我</a>
       </li>
     </ul>
   </section>
@@ -150,7 +191,7 @@
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-    Copyright &copy;  2020  leelongcrazy &mdash;
+    Copyright &copy;  2017&ndash;2021  leelongcrazy &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
   <script src="/theme/js/modernizr-2.0.js"></script>

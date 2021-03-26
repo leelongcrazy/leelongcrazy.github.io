@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>VIM注释代码与反注释 &mdash; leelongcrazy's blog</title>
+  <title>VBS脚本学习 &mdash; leelongcrazy's blog</title>
   <meta name="author" content="leelongcrazy">
 
 
@@ -68,40 +68,43 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">VIM注释代码与反注释</h1>
+      <h1 class="entry-title">VBS脚本学习</h1>
     <p class="meta">
-<time datetime="2018-02-28T17:00:00+08:00" pubdate>Wed 28 February 2018</time>    </p>
+<time datetime="2021-03-28T17:00:00+08:00" pubdate>Sun 28 March 2021</time>    </p>
 </header>
 
-  <div class="entry-content"><h2>VIM注释代码与反注释</h2>
-<h3>方法一： 块选择模式注释</h3>
-<ol>
-<li>按键“V”进入 <em>visual模式</em>，选中需要注释的代码行；</li>
-<li><code>Ctrl + V</code>  进去 <em>块选择模式</em>；</li>
-<li><code>I</code>进入插入模式，输入注释符号 “#” 或者 “//”...；</li>
-<li>
-<p>立即按下<code>ESC</code>键两次，即可注释完成</p>
-</li>
-<li>
-<p>取消注释</p>
-<ul>
-<li><code>Ctrl + V</code>  进去 <em>块选择模式</em>；</li>
-<li>选择要删除的注释符号，按<code>d</code>删除即可</li>
-</ul>
-</li>
-</ol>
-<h3>方法二：</h3>
-<ul>
-<li>批量注释<ul>
-<li><code>：开始行号，结束行号/s/^/注释符号/g</code></li>
-</ul>
-</li>
-<li>取消注释<ul>
-<li><code>：开始行号，结束行号/s/^注释符号//g</code></li>
-</ul>
-</li>
-</ul>
-<p>[参考链接：https://blog.csdn.net/xiajun07061225/article/details/8488210]（https://blog.csdn.net/xiajun07061225/article/details/8488210）</p></div>
+  <div class="entry-content"><h1>VBS脚本学习</h1>
+<h2>Demo one</h2>
+<div class="highlight"><pre><span></span><code><span class="err"># 启动notepad程序</span>
+<span class="k">set</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">CreateObject</span><span class="p">(</span><span class="c1">&#39;Wscript.Shell&#39;)</span><span class="w"></span>
+<span class="n">ojb</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="c1">&#39;notepad&#39;)</span><span class="w"></span>
+<span class="o">=</span><span class="err">》 </span>
+<span class="err">?</span>
+
+<span class="err"># ping 百度，后台静默运行</span>
+<span class="k">set</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">CreateObject</span><span class="p">(</span><span class="s2">&quot;Wscript.Shell&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">obj</span><span class="p">.</span><span class="n">Run</span><span class="w"> </span><span class="s2">&quot;ping www.baidu.com&quot;</span><span class="p">,</span><span class="mi">0</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>run 有三个参数:</p>
+<p>第一个参数是你要执行的程序的路径</p>
+<p>第二个程序是窗口的形式</p>
+<p>​   0是在后台运行；</p>
+<p>​   1表示正常运行</p>
+<p>​   2表示激活程序并且显示为最小化</p>
+<p>​   3表示激活程序并且显示为最大化</p>
+<p>​   一共有10个这样的参数我只列出了4个最常用的。</p>
+<p>第三个参数是表示这个脚本是等待还是继续执行，如果设为了true,脚本就会等待调用的程序退出后再向后执行。</p>
+<h2>VBS and CMD</h2>
+<p>程序框架：</p>
+<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="n">objshell</span><span class="o">=</span><span class="nb">createobject</span><span class="p">(</span><span class="s2">&quot;wscript.shell&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">objshell</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;%comspec% /k **********&quot;</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="no">true</span><span class="w"></span>
+
+<span class="err">## 第一行，打开一个命令行窗口。</span>
+<span class="err">## %comspec% 是一个指向当前命令行外壳的环境变量。通过使用 %comspec%，您不必担心命令行外壳是 cmd.exe 还是 command.exe；%comspec% 会自动选择正确的一个。</span>
+<span class="err">## 在调用你给出的命令后，确保窗口始终保持打开。这就是 /k 参数的用处。如果我们想要确保命令窗口会在你给出的命令调用完成后被自动关闭，应该将 /k (keep) 修改为 /c (close)。</span>
+</code></pre></div></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -109,11 +112,11 @@
         leelongcrazy
     </span>
   </span>
-<time datetime="2018-02-28T17:00:00+08:00" pubdate>Wed 28 February 2018</time>  <span class="categories">
+<time datetime="2021-03-28T17:00:00+08:00" pubdate>Sun 28 March 2021</time>  <span class="categories">
     <a class='category' href='/category/it.html'>IT</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/vim.html">Vim</a>,    <a class="category" href="/tag/code.html">Code</a>  </span>
+    <a class="category" href="/tag/vim.html">Vim</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
